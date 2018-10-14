@@ -22,7 +22,6 @@ public class RaycastInit : MonoBehaviour {
         if(other.gameObject.name == "HeadCollider")
         {
             headCollider = other.gameObject;
-            Debug.Log("Player is within raycast draw range");
             RaycastHit viewFace;
             /*
             if(Physics.SphereCast(other.gameObject.transform.position, viewArea, other.gameObject.transform.TransformDirection(Vector3.forward), out viewFace, viewDistance))
@@ -45,6 +44,22 @@ public class RaycastInit : MonoBehaviour {
                     triggerScript.rageMode();
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "HeadCollider")
+        {
+            Debug.Log("Player has entered raycast draw range");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "HeadCollider")
+        {
+            Debug.Log("Player has left raycast draw range");
         }
     }
 }

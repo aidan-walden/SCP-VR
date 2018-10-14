@@ -20,24 +20,23 @@ public class ShyGuyAttack : MonoBehaviour {
 
     private void FixedUpdate()
     {
-
+        if(isAttacking)
+        {
+            navAgent.SetDestination(lookingScript.headCollider.transform.position);
+        }
     }
 
     public void toggleAttack(bool shouldAttack = true)
     {
         isAttacking = shouldAttack;
-        if(shouldAttack)
+        if(!isAttacking)
         {
-            navAgent.SetDestination(lookingScript.headCollider.transform.position);
-        }
-        else
-        {
+            
             navAgent.SetDestination(transform.position);
         }
-
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Debug.Log("Collided with: " + collision.gameObject.name);
         Debug.Log("Collider root: " + collision.gameObject.transform.root.name);
