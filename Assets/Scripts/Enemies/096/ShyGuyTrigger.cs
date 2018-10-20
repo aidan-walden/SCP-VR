@@ -8,16 +8,20 @@ public class ShyGuyTrigger : MonoBehaviour {
     public float rageEnterBuffer = 3f;
     public float rageDuration = 12f;
     public float rageCooldown = 10f;
+    public float rageSpeed = 8f;
+    public float roamSpeed = 1f;
 
     private bool isRaging = false;
     private AudioSource shyGuySounds;
     private ShyGuyAttack attackScript;
     private Animator shyGuyAnims;
+    private NavMeshAgent shyGuy;
 	// Use this for initialization
 	void Start () {
         shyGuySounds = GetComponentInChildren<AudioSource>();
         attackScript = GetComponent<ShyGuyAttack>();
         shyGuyAnims = GetComponent<Animator>();
+        shyGuy = GetComponent<NavMeshAgent>();
     }
 	
 	// Update is called once per frame
@@ -35,6 +39,8 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private IEnumerator enterRage()
     {
+        shyGuy.destination = transform.position;
+        shyGuy.speed = rageSpeed;
         Debug.Log("096 is coming for you");
         isRaging = true;
         shyGuyAnims.StopPlayback();
@@ -59,6 +65,7 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private IEnumerator stopRage()
     {
+        shyGuy.speed = roamSpeed;
         shyGuySounds.Stop();
         shyGuySounds.loop = true;
         shyGuySounds.clip = roaming;
@@ -71,8 +78,8 @@ public class ShyGuyTrigger : MonoBehaviour {
         isRaging = false;
     }
 
-    private void roamingAnim()
+    public bool getIsRaging()
     {
-
+        return isRaging;
     }
 }

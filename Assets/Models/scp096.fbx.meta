@@ -103,6 +103,7 @@ ModelImporter:
     7400002: Roaming
     7400004: Triggered
     7400006: EnterRage
+    7400008: Running
     9500000: //RootNode
     13700000: Scene_Root_Untitled_001__SCP096
     13700002: Scene_Root_Untitled__SCP096_png
@@ -165,8 +166,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Roaming
       takeName: Animation
-      firstFrame: 2049
-      lastFrame: 2198
+      firstFrame: 2053
+      lastFrame: 2199
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -230,6 +231,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Running
+      takeName: Animation
+      firstFrame: 1332
+      lastFrame: 1369
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
