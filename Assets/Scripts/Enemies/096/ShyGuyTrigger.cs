@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ShyGuyTrigger : MonoBehaviour {
     public AudioClip startRage, rageActive, roaming;
@@ -11,15 +12,17 @@ public class ShyGuyTrigger : MonoBehaviour {
     private bool isRaging = false;
     private AudioSource shyGuySounds;
     private ShyGuyAttack attackScript;
+    private Animator shyGuyAnims;
 	// Use this for initialization
 	void Start () {
         shyGuySounds = GetComponentInChildren<AudioSource>();
         attackScript = GetComponent<ShyGuyAttack>();
-	}
+        shyGuyAnims = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
     public void rageMode(bool enteringRage = true)
@@ -34,6 +37,8 @@ public class ShyGuyTrigger : MonoBehaviour {
     {
         Debug.Log("096 is coming for you");
         isRaging = true;
+        shyGuyAnims.SetBool("isRoaming", false);
+        shyGuyAnims.SetBool("isEnteringRage", true);
         shyGuySounds.Stop();
         shyGuySounds.loop = false;
         shyGuySounds.clip = startRage;
@@ -43,6 +48,8 @@ public class ShyGuyTrigger : MonoBehaviour {
         shyGuySounds.clip = rageActive;
         shyGuySounds.loop = true;
         shyGuySounds.Play();
+        shyGuyAnims.SetBool("isEnteringRage", false);
+        shyGuyAnims.SetBool("isRaging", true);
         attackScript.toggleAttack(true);
         yield return new WaitForSeconds(rageDuration);
         StartCoroutine(stopRage());
@@ -55,8 +62,15 @@ public class ShyGuyTrigger : MonoBehaviour {
         shyGuySounds.loop = true;
         shyGuySounds.clip = roaming;
         shyGuySounds.Play();
+        shyGuyAnims.SetBool("isRaging", false);
+        shyGuyAnims.SetBool("isRoaming", true);
         attackScript.toggleAttack(false);
         yield return new WaitForSeconds(rageCooldown);
         isRaging = false;
+    }
+
+    private void roamingAnim()
+    {
+
     }
 }
