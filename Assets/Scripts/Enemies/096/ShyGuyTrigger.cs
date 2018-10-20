@@ -37,6 +37,7 @@ public class ShyGuyTrigger : MonoBehaviour {
     {
         Debug.Log("096 is coming for you");
         isRaging = true;
+        shyGuyAnims.StopPlayback();
         shyGuyAnims.SetBool("isRoaming", false);
         shyGuyAnims.SetBool("isEnteringRage", true);
         shyGuySounds.Stop();
@@ -62,6 +63,7 @@ public class ShyGuyTrigger : MonoBehaviour {
         shyGuySounds.loop = true;
         shyGuySounds.clip = roaming;
         shyGuySounds.Play();
+        shyGuyAnims.StopPlayback();
         shyGuyAnims.SetBool("isRaging", false);
         shyGuyAnims.SetBool("isRoaming", true);
         attackScript.toggleAttack(false);
