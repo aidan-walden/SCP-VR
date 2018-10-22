@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ShyGuyRoam : MonoBehaviour {
+public class GenericRoam : MonoBehaviour {
     public float roamingDestMaxDist = 20f;
 
-    private NavMeshAgent shyGuy;
-    private ShyGuyTrigger triggerScript;
+    private NavMeshAgent enemyNav;
+    private TargetPlayer triggerScript;
+    bool shouldRoam = true;
 	// Use this for initialization
 	void Start () {
-        shyGuy = GetComponent<NavMeshAgent>();
-        triggerScript = GetComponent<ShyGuyTrigger>();
+        enemyNav = GetComponent<NavMeshAgent>();
+        triggerScript = GetComponentInParent<TargetPlayer>();
         chooseRoamingDest();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(!shyGuy.pathPending && !triggerScript.getIsRaging()) //Check if 096 has reached dest
+        if(!enemyNav.pathPending && !triggerScript.getPlayerTargeted() && shouldRoam) //Check if enemy has reached dest
         {
-            if(shyGuy.remainingDistance <= shyGuy.stoppingDistance)
+            if(enemyNav.remainingDistance <= enemyNav.stoppingDistance)
             {
-                if(!shyGuy.hasPath || shyGuy.velocity.sqrMagnitude == 0f)
+                if(!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
                 {
                     // Done
                     chooseRoamingDest();
@@ -56,7 +57,7 @@ public class ShyGuyRoam : MonoBehaviour {
             checkArea.transform.position = endPos;
             if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0)
             {
-                shyGuy.destination = endPos;
+                enemyNav.destination = endPos;
             }
             else
             {
@@ -69,5 +70,11 @@ public class ShyGuyRoam : MonoBehaviour {
         {
             findValidDest(checkArea);
         }
+    }
+
+    public void toggleRoaming(bool roam)
+    {
+        shouldRoam = roam;
+        enemyNav.SetDestination(transform.position);
     }
 }

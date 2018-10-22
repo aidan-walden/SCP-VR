@@ -13,15 +13,17 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private bool isRaging = false;
     private AudioSource shyGuySounds;
-    private ShyGuyAttack attackScript;
+    private TargetPlayer attackScript;
     private Animator shyGuyAnims;
     private NavMeshAgent shyGuy;
+    private GenericRoam roamingScript;
 	// Use this for initialization
 	void Start () {
         shyGuySounds = GetComponentInChildren<AudioSource>();
-        attackScript = GetComponent<ShyGuyAttack>();
+        attackScript = GetComponentInParent<TargetPlayer>();
         shyGuyAnims = GetComponent<Animator>();
         shyGuy = GetComponent<NavMeshAgent>();
+        roamingScript = GetComponent<GenericRoam>();
     }
 	
 	// Update is called once per frame
@@ -39,7 +41,7 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private IEnumerator enterRage()
     {
-        shyGuy.destination = transform.position;
+        roamingScript.toggleRoaming(false);
         shyGuy.speed = rageSpeed;
         Debug.Log("096 is coming for you");
         isRaging = true;
@@ -57,7 +59,7 @@ public class ShyGuyTrigger : MonoBehaviour {
         shyGuySounds.Play();
         shyGuyAnims.SetBool("isEnteringRage", false);
         shyGuyAnims.SetBool("isRaging", true);
-        attackScript.toggleAttack(true);
+        attackScript.targetPlayer(shyGuy, true);
         yield return new WaitForSeconds(rageDuration);
         StartCoroutine(stopRage());
         
@@ -73,7 +75,8 @@ public class ShyGuyTrigger : MonoBehaviour {
         shyGuyAnims.StopPlayback();
         shyGuyAnims.SetBool("isRaging", false);
         shyGuyAnims.SetBool("isRoaming", true);
-        attackScript.toggleAttack(false);
+        attackScript.targetPlayer(shyGuy, false);
+        roamingScript.toggleRoaming(true);
         yield return new WaitForSeconds(rageCooldown);
         isRaging = false;
     }
