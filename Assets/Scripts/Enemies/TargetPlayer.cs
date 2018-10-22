@@ -27,13 +27,7 @@ public class TargetPlayer : MonoBehaviour {
         playerTargeted = goAfterPlayer;
     }
 
-    private void OnTriggerEnter(Collider collision) //Kill player if the "hitbox" collides with him/her
-    {
-        if (playerTargeted && collision.gameObject.transform.root.name == "Player")
-        {
-            collision.gameObject.transform.root.GetComponent<PlayerEvents>().killPlayer();
-        }
-    }
+    
 
     public bool getPlayerTargeted()
     {

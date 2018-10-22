@@ -85,4 +85,12 @@ public class ShyGuyTrigger : MonoBehaviour {
     {
         return isRaging;
     }
+
+    private void OnTriggerEnter(Collider collision) //Kill player if the "hitbox" collides with him/her
+    {
+        if (attackScript.getPlayerTargeted() && collision.gameObject.transform.root.name == "Player")
+        {
+            collision.gameObject.transform.root.GetComponent<PlayerEvents>().killPlayer();
+        }
+    }
 }
