@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
-
+    private bool godMode = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,9 +18,12 @@ public class PlayerEvents : MonoBehaviour {
 
     public void killPlayer()
     {
-        Camera VRCam = GetComponentInChildren<Camera>();
-        VRCam.enabled = false;
-        Invoke("loadGame", 3f);
+        if(!godMode)
+        {
+            Camera VRCam = GetComponentInChildren<Camera>();
+            VRCam.enabled = false;
+            Invoke("loadGame", 3f);
+        }
     }
 
     private void loadGame()

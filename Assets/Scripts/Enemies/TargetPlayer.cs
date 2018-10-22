@@ -25,6 +25,7 @@ public class TargetPlayer : MonoBehaviour {
         enemy = nav;
         enemy.SetDestination(enemy.transform.position);
         playerTargeted = goAfterPlayer;
+        enemy.gameObject.GetComponent<Music>().toggleChaseMusic();
     }
 
     
