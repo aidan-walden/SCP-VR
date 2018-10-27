@@ -7,12 +7,15 @@ public class Music : MonoBehaviour {
     public AudioClip killSound;
     bool chaseMusicActive = false;
     AudioSource[] playerAudio;
-    AudioSource playerMusic, playerSounds;
+    AudioSource playerMusic;
+    GameObject player;
+    PlayerEvents playerEvents;
     // Use this for initialization
     void Start () {
-        playerAudio = GetComponentInParent<TargetPlayer>().player.transform.root.GetComponents<AudioSource>(); //Get the HeadCollider's master object's AudioSource components using the Player parameter from TargetPlayer
+        player = GetComponentInParent<TargetPlayer>().player;
+        playerAudio = player.transform.root.GetComponents<AudioSource>(); //Get the HeadCollider's master object's AudioSource components using the Player parameter from TargetPlayer
         playerMusic = playerAudio[0];
-        playerSounds = playerAudio[1];
+        playerEvents = player.transform.root.GetComponent<PlayerEvents>();
     }
 	
 	// Update is called once per frame
@@ -40,9 +43,11 @@ public class Music : MonoBehaviour {
 
     public void playKillSound()
     {
-        playerSounds.clip = killSound;
-        playerSounds.Play();
+
+        StartCoroutine(playerEvents.playSound(killSound));
     }
+
+   
 
     
 }

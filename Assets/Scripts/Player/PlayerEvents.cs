@@ -30,4 +30,15 @@ public class PlayerEvents : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public IEnumerator playSound(AudioClip sound)
+    {
+        AudioSource audioSource = this.gameObject.AddComponent<AudioSource>(); //Create a new audio source for every sound so that way we don't have to worry about swapping out sounds at correct times
+        audioSource.clip = sound;
+        //TODO: Set volume to that of user preferences when they are implimented
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Destroy(audioSource); //Destory the audio source after the sound is done playing so that the components of the player don't get cluttered
+
+    }
 }

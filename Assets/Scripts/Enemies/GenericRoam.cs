@@ -25,7 +25,6 @@ public class GenericRoam : MonoBehaviour {
             {
                 if(!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
                 {
-                    // Done
                     chooseRoamingDest();
                 }
             }
@@ -37,7 +36,7 @@ public class GenericRoam : MonoBehaviour {
         //Create a sphere trigger to check if the area is suitable for a destination
         GameObject checkArea = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         checkArea.AddComponent(typeof(SphereCollider));
-        checkArea.AddComponent(typeof(MeshRenderer));
+        //checkArea.AddComponent(typeof(MeshRenderer));
         checkArea.AddComponent(typeof(RoamingDestDetector));
         //checkArea.GetComponent<MeshRenderer>().enabled = false;
         checkArea.GetComponent<SphereCollider>().isTrigger = true;
@@ -54,21 +53,21 @@ public class GenericRoam : MonoBehaviour {
         if (!Physics.Raycast(transform.position, raycastDir, out dest, roamingDestMaxDist)) //If the raycast didnt find any obstructions
         {
             Vector3 endPos = transform.position + raycastDir * roamingDestMaxDist;
-            checkArea.transform.position = endPos;
-            if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0)
+            checkArea.transform.position = endPos; //Put the sphere at the end of the raycast
+            if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0) //Is the area of the sphere empty
             {
                 enemyNav.destination = endPos;
             }
             else
             {
-                findValidDest(checkArea);
+                findValidDest(checkArea); //Retry
             }
             
             Destroy(checkArea);
         }
         else
         {
-            findValidDest(checkArea);
+            findValidDest(checkArea); //Retry
         }
     }
 
