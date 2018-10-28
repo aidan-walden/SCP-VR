@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ElevatorMove : MonoBehaviour {
 
     public BoxCollider otherEle;
-    List<Transform> objectsInEle = new List<Transform>();
+    public List<Transform> objectsInEle = new List<Transform>();
     // Use this for initialization
     void Start () {
 
@@ -23,22 +23,18 @@ public class ElevatorMove : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         bool isValid = true;
-        bool rootIsIn = false;
         if (other.transform.root.name != "Environment")
         {
-            foreach(Transform passenger in objectsInEle)
+            Debug.Log(other.name + " has entered the elevator. Checking for validity...");
+            foreach (Transform passenger in objectsInEle)
             {
                 if(other.transform.root.gameObject == passenger.gameObject) //Check for duplicate entries
                 {
                     isValid = false;
                     break;
                 }
-                if (other.transform.root.gameObject == passenger.gameObject)
-                {
-                    rootIsIn = false;
-                }
             }
-            if (isValid && rootIsIn)
+            if (isValid)
             {
                 objectsInEle.Add(other.transform.root);
                 Debug.Log(other.name + " has entered the elevator. Its root is: " + other.transform.root);
@@ -62,46 +58,51 @@ public class ElevatorMove : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        bool isValid = true;
 
         if (other.transform.root.name != "Environment")
         {
-            foreach (Transform passenger in objectsInEle)
-            {
-                if (other.transform.root.gameObject != passenger.gameObject)
-                {
-                    isValid = false;
-                    break;
-                    
-                }
-            }
-            if(isValid)
-            {
-                Debug.Log(other.name + " has entered the elevator. Its root is: " + other.transform.root);
-                objectsInEle.Remove(other.transform.root);
-            }
+
+            objectsInEle.Remove(other.transform.root);
         }
     }
 
     void swapElevators()
     {
+        Debug.Log("swapping elevators");
         foreach(Transform passenger in objectsInEle)
         {
-            
-            Vector3 passPos = transform.position - passenger.position;
-            Vector3 newPassPos = otherEle.transform.position - passPos;
-            NavMeshAgent nav = passenger.gameObject.GetComponent<NavMeshAgent>();
-            Debug.Log(passenger.name + ": " + passPos + ", " + newPassPos);
-            if (nav != null)
+            Debug.Log(passenger.name + " is in the elevator");
+            bool rootIsIn = false;
+            for (int i = 0; i < objectsInEle.Count; i++)
             {
-                nav.Warp(newPassPos);
+                if (passenger.root.gameObject == objectsInEle[i].gameObject)
+                {
+                    rootIsIn = true;
+                    Debug.Log(passenger.name + "'s root is in the elevator. Setting bool...");
+                    break;
+                }
+            }
+            if (rootIsIn)
+            {
+                Debug.Log(passenger.name + "'s root is in the elevator. Proceeding...");
+                Vector3 passPos = transform.position - passenger.position;
+                Vector3 newPassPos = otherEle.transform.position - passPos;
+                NavMeshAgent nav = passenger.gameObject.GetComponent<NavMeshAgent>();
+                Debug.Log(passenger.name + ": " + passPos + ", " + newPassPos);
+
+                if (nav != null)
+                {
+                    nav.Warp(newPassPos);
+                }
+                else
+                {
+                    passenger.position = newPassPos;
+                }
             }
             else
             {
-                passenger.position = newPassPos;
+                Debug.Log(passenger.name + "'s root is not in the elevator!");
             }
-            
-
         }
     }
 
