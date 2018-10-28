@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
-    private bool godMode = false;
+    [SerializeField] private bool godMode = false;
 	// Use this for initialization
 	void Start () {
 		

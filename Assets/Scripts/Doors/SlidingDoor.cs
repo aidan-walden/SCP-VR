@@ -2,16 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SlidingDoor : MonoBehaviour {
     public Transform openPos;
     private Vector3 moveTo;
     private Vector3 origPos;
+    private NavMeshAgent enemyNav;
     public float speed = 0.43143504788f;
-    public bool openDoor = true;
-    public bool doorChanging = false;
-    public bool doorStartsOpen = false;
+    public bool enemyCanOpen = true;
+    public bool doorChanging, doorStartsOpen = false;
     public AudioClip doorOpen, doorClose;
+    private bool doorIsOpen = false;
     [HideInInspector] public AudioSource doorSounds;
 
     // Use this for initialization
@@ -19,6 +21,7 @@ public class SlidingDoor : MonoBehaviour {
         origPos = transform.position;
         moveTo = origPos;
         doorSounds = GetComponent<AudioSource>();
+        doorStartsOpen = doorIsOpen;
     }
 	
 	// Update is called once per frame
@@ -29,6 +32,7 @@ public class SlidingDoor : MonoBehaviour {
             if(transform.position == moveTo)
             {
                 doorChanging = false;
+                doorIsOpen = !doorIsOpen;
             }
         }
         
@@ -39,7 +43,7 @@ public class SlidingDoor : MonoBehaviour {
     {
         if (doorStartsOpen)
         {
-            openDoor = !openDoor; //We do this so that you dont really have to think about creating doors, as there will be a lot of them.
+            openDoor = !openDoor; //Invert open door variable because the door is meant to start closed.
         }
         if (openDoor)
         {
@@ -53,6 +57,35 @@ public class SlidingDoor : MonoBehaviour {
         }
         doorSounds.Play();
         doorChanging = true;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.root.gameObject.tag != "Environment")
+        {
+            enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (enemyNav != null && enemyCanOpen)
+        {
+            if (enemyNav.isOnOffMeshLink)
+            {
+                if(!doorIsOpen)
+                {
+                    speed *= 1.5f;
+                    moveDoor(true);
+                }
+
+                if (!doorChanging)
+                {
+                    speed /= 1.5f;
+                    enemyNav.CompleteOffMeshLink();
+
+                }
+
+            }
+        }
     }
 
 }

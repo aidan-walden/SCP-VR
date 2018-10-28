@@ -12,17 +12,18 @@ public class GenericRoam : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         enemyNav = GetComponent<NavMeshAgent>();
+        enemyNav.autoTraverseOffMeshLink = false;
         triggerScript = GetComponent<TargetPlayer>();
         chooseRoamingDest();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
         if(Input.GetKeyDown(KeyCode.P))
         {
             enemyNav.Warp(new Vector3(-7.2f, 0.508f, -22.62f));
         }
+
 
         if(!enemyNav.pathPending && !triggerScript.getPlayerTargeted() && shouldRoam) //Check if enemy has reached dest
         {
