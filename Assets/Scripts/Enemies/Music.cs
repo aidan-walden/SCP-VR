@@ -12,7 +12,7 @@ public class Music : MonoBehaviour {
     PlayerEvents playerEvents;
     // Use this for initialization
     void Start () {
-        player = GetComponentInParent<TargetPlayer>().player;
+        player = GetComponent<TargetPlayer>().player;
         playerAudio = player.transform.root.GetComponents<AudioSource>(); //Get the HeadCollider's master object's AudioSource components using the Player parameter from TargetPlayer
         playerMusic = playerAudio[0];
         playerEvents = player.transform.root.GetComponent<PlayerEvents>();

@@ -17,13 +17,15 @@ public class ShyGuyTrigger : MonoBehaviour {
     private Animator shyGuyAnims;
     private NavMeshAgent shyGuy;
     private GenericRoam roamingScript;
+    private SphereCollider raycastFinder;
 	// Use this for initialization
 	void Start () {
         shyGuySounds = GetComponentInChildren<AudioSource>();
-        attackScript = GetComponentInParent<TargetPlayer>();
+        attackScript = GetComponent<TargetPlayer>();
         shyGuyAnims = GetComponent<Animator>();
         shyGuy = GetComponent<NavMeshAgent>();
         roamingScript = GetComponent<GenericRoam>();
+        raycastFinder = GetComponentInChildren<SphereCollider>();
     }
 	
 	// Update is called once per frame
@@ -41,6 +43,7 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private IEnumerator enterRage()
     {
+        raycastFinder.enabled = false;
         roamingScript.toggleRoaming(false);
         shyGuy.speed = rageSpeed;
         Debug.Log("096 is coming for you");
@@ -67,6 +70,7 @@ public class ShyGuyTrigger : MonoBehaviour {
 
     private IEnumerator stopRage()
     {
+        raycastFinder.enabled = true;
         shyGuy.speed = roamSpeed;
         shyGuySounds.Stop();
         shyGuySounds.loop = true;
