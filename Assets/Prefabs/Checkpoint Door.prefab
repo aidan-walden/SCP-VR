@@ -537,7 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openPos: {fileID: 4462672135583142}
   speed: 0.71275836
-  enemyCanOpen: 1
+  enemyCanOpen: 0
   doorChanging: 0
   doorStartsOpen: 0
   doorOpen: {fileID: 0}

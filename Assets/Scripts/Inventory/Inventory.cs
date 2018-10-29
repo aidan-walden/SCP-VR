@@ -53,7 +53,8 @@ namespace Valve.VR.InteractionSystem
         public void Open(Hand hand)
         {
             //StartCoroutine(DoOpen(hand));
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Debug.Break();
         }
 
         public void Close(Hand hand)

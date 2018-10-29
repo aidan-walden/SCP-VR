@@ -6,12 +6,11 @@ using UnityEngine.AI;
 
 public class SlidingDoor : MonoBehaviour {
     public Transform openPos;
-    private Vector3 moveTo;
-    private Vector3 origPos;
+    private Vector3 moveTo, origPos;
     private NavMeshAgent enemyNav;
     public float speed = 0.43143504788f;
     public bool enemyCanOpen = true;
-    public bool doorChanging, doorStartsOpen = false;
+    public bool doorChanging, doorStartsOpen, isDependent = false;
     public AudioClip doorOpen, doorClose;
     private bool doorIsOpen = false;
     [HideInInspector] public AudioSource doorSounds;
@@ -22,6 +21,10 @@ public class SlidingDoor : MonoBehaviour {
         moveTo = origPos;
         doorSounds = GetComponent<AudioSource>();
         doorStartsOpen = doorIsOpen;
+        if(!enemyCanOpen && !isDependent)
+        {
+            GetComponent<OffMeshLink>().activated = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -47,45 +50,60 @@ public class SlidingDoor : MonoBehaviour {
         }
         if (openDoor)
         {
-            doorSounds.clip = doorOpen;
+            if(!isDependent)
+            {
+                doorSounds.clip = doorOpen;
+            }
             moveTo = openPos.position;
         }
         else
         {
-            doorSounds.clip = doorClose;
+            if(!isDependent)
+            {
+                doorSounds.clip = doorClose;
+            }
             moveTo = origPos;
         }
-        doorSounds.Play();
+        if(!isDependent)
+        {
+            doorSounds.Play();
+        }
         doorChanging = true;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.root.gameObject.tag != "Environment")
+        if(!isDependent)
         {
-            enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
+            if (other.transform.root.gameObject.tag != "Environment")
+            {
+                enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
+            }
         }
+        
     }
     private void OnTriggerStay(Collider other)
     {
-        if (enemyNav != null && enemyCanOpen)
+        if(!isDependent)
         {
-            if (enemyNav.isOnOffMeshLink)
+            if (enemyNav != null && enemyCanOpen)
             {
-                if(!doorIsOpen)
+                if (enemyNav.isOnOffMeshLink)
                 {
-                    speed *= 1.5f;
-                    moveDoor(true);
+                    if (!doorIsOpen)
+                    {
+                        //speed *= 1.5f;
+                        moveDoor(true);
+                    }
+
+                    if (!doorChanging)
+                    {
+                        //speed /= 1.5f;
+                        enemyNav.CompleteOffMeshLink();
+
+                    }
+
                 }
-
-                if (!doorChanging)
-                {
-                    speed /= 1.5f;
-                    enemyNav.CompleteOffMeshLink();
-
-                }
-
             }
         }
     }
-
 }

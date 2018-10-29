@@ -219,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1412097085233062}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.979, y: 0.501, z: -8.894}
+  m_LocalPosition: {x: -3.74, y: 0.488, z: -8.887}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4622473453230898}
@@ -379,7 +379,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -512,10 +512,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openPos: {fileID: 4619802512912324}
-  speed: 0.71275836
+  speed: 1.5
   enemyCanOpen: 1
   doorChanging: 0
   doorStartsOpen: 0
+  isDependent: 0
   doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
   doorSounds: {fileID: 0}
