@@ -32,10 +32,11 @@ public class SlidingDoor : MonoBehaviour {
         if(doorChanging)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
+            //TODO: Find speed/animation of original CB door
             if(transform.position == moveTo)
             {
                 doorChanging = false;
-                doorIsOpen = !doorIsOpen;
+                doorIsOpen = !(moveTo == origPos);
             }
         }
         
@@ -48,27 +49,30 @@ public class SlidingDoor : MonoBehaviour {
         {
             openDoor = !openDoor; //Invert open door variable because the door is meant to start closed.
         }
-        if (openDoor)
+        if(!doorChanging)
         {
-            if(!isDependent)
+            if (openDoor)
             {
-                doorSounds.clip = doorOpen;
+                if (!isDependent)
+                {
+                    doorSounds.clip = doorOpen;
+                }
+                moveTo = openPos.position;
             }
-            moveTo = openPos.position;
-        }
-        else
-        {
-            if(!isDependent)
+            else
             {
-                doorSounds.clip = doorClose;
+                if (!isDependent)
+                {
+                    doorSounds.clip = doorClose;
+                }
+                moveTo = origPos;
             }
-            moveTo = origPos;
+            if (!isDependent)
+            {
+                doorSounds.Play();
+            }
+            doorChanging = true;
         }
-        if(!isDependent)
-        {
-            doorSounds.Play();
-        }
-        doorChanging = true;
     }
     private void OnTriggerEnter(Collider other)
     {

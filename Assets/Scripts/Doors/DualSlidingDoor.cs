@@ -67,26 +67,34 @@ public class DualSlidingDoor : MonoBehaviour
         }
     }
 
+    public void changeDoorState()
+    {
+        moveDoor(!doorIsOpen);
+    }
+
     public void moveDoor(bool openDoor)
     {
         if(doorStartsOpen)
         {
             openDoor = !openDoor;
         }
-        if(openDoor)
+        if(!doors[0].doorChanging && !doors[1].doorChanging)
         {
-            doorSounds.clip = doorOpen;
-        }
-        else
-        {
-            doorSounds.clip = doorOpen;
-        }
-        doorSounds.Play();
-        foreach(SlidingDoor door in doors)
-        {
-            door.moveDoor(openDoor);
-        }
-        doorIsOpen = openDoor;
+            if (openDoor)
+            {
+                doorSounds.clip = doorOpen;
+            }
+            else
+            {
+                doorSounds.clip = doorClose;
+            }
+            doorSounds.Play();
+            foreach (SlidingDoor door in doors)
+            {
+                door.moveDoor(openDoor);
+            }
+            doorIsOpen = openDoor;
+        } 
     }
 
     void changeSpeed(float doorSpeed)

@@ -9,7 +9,7 @@ namespace Valve.VR.InteractionSystem
 {
     public class Inventory : MonoBehaviour
     {
-        public GameObject invSphere;
+        public GameObject invSphere, scp096;
         public float offsetHoriz = 5;
         public float offsetVert = 10;
         GameObject invSphereDisplaying;
@@ -54,7 +54,7 @@ namespace Valve.VR.InteractionSystem
         {
             //StartCoroutine(DoOpen(hand));
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Debug.Break();
+            scp096.SetActive(!scp096.activeSelf);
         }
 
         public void Close(Hand hand)
