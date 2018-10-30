@@ -40,7 +40,6 @@ public class DualSlidingDoor : MonoBehaviour
         if (other.transform.root.gameObject.tag != "Environment")
         {
             enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
-            Debug.Log(enemyNav.name + " is in the trigger");
         }
     }
     private void OnTriggerStay(Collider other)
