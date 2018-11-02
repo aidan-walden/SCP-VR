@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class TargetPlayer : MonoBehaviour {
     bool playerTargeted = false;
+    public bool PlayerTargeted { get; }
     NavMeshAgent enemy;
     public GameObject player;
 	// Use this for initialization
@@ -27,13 +28,4 @@ public class TargetPlayer : MonoBehaviour {
         playerTargeted = goAfterPlayer;
         enemy.gameObject.GetComponent<Music>().toggleChaseMusic();
     }
-
-    
-
-    public bool getPlayerTargeted()
-    {
-        return playerTargeted;
-    }
-
-
 }

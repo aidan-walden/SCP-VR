@@ -25,7 +25,7 @@ public class GenericRoam : MonoBehaviour {
         }
 
 
-        if(!enemyNav.pathPending && !triggerScript.getPlayerTargeted() && shouldRoam) //Check if enemy has reached dest
+        if(!enemyNav.pathPending && !triggerScript.PlayerTargeted && shouldRoam) //Check if enemy has reached dest
         {
             if(enemyNav.remainingDistance <= enemyNav.stoppingDistance)
             {

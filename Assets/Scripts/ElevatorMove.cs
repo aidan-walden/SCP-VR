@@ -22,19 +22,10 @@ public class ElevatorMove : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        bool isValid = true;
         if (other.transform.root.name != "Environment")
         {
             Debug.Log(other.name + " has entered the elevator. Checking for validity...");
-            foreach (Transform passenger in objectsInEle)
-            {
-                if(other.transform.root.gameObject == passenger.gameObject) //Check for duplicate entries
-                {
-                    isValid = false;
-                    break;
-                }
-            }
-            if (isValid)
+            if(!objectsInEle.Contains(other.transform.root))
             {
                 objectsInEle.Add(other.transform.root);
                 Debug.Log(other.name + " has entered the elevator. Its root is: " + other.transform.root);
@@ -72,16 +63,7 @@ public class ElevatorMove : MonoBehaviour {
         foreach(Transform passenger in objectsInEle)
         {
             Debug.Log(passenger.name + " is in the elevator");
-            bool rootIsIn = false;
-            for (int i = 0; i < objectsInEle.Count; i++)
-            {
-                if (passenger.root.gameObject == objectsInEle[i].gameObject)
-                {
-                    rootIsIn = true;
-                    Debug.Log(passenger.name + "'s root is in the elevator. Setting bool...");
-                    break;
-                }
-            }
+            bool rootIsIn = objectsInEle.Contains(passenger.transform.root);
             if (rootIsIn)
             {
                 Debug.Log(passenger.name + "'s root is in the elevator. Proceeding...");

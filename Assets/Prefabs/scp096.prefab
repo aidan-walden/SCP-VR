@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 114314523711740958}
   m_Layer: 0
   m_Name: scp096
-  m_TagString: Untagged
+  m_TagString: EnemyNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1639,7 +1639,7 @@ MonoBehaviour:
   roaming: {fileID: 8300000, guid: fe756b3bd004e324eaf192af518b1e5a, type: 3}
   rageEnterBuffer: 3
   rageDuration: 15
-  rageCooldown: 10
+  rageCooldown: 5
   rageSpeed: 8
   roamSpeed: 0.8
 --- !u!135 &135936570488646142
