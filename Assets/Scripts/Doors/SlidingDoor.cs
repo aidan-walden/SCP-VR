@@ -13,6 +13,7 @@ public class SlidingDoor : MonoBehaviour {
     public bool doorChanging, doorStartsOpen, isDependent = false;
     public AudioClip doorOpen, doorClose;
     private bool doorIsOpen = false;
+    [SerializeField] OffMeshLink offMeshLink;
     [HideInInspector] public AudioSource doorSounds;
 
     // Use this for initialization
@@ -23,7 +24,7 @@ public class SlidingDoor : MonoBehaviour {
         doorStartsOpen = doorIsOpen;
         if(!enemyCanOpen && !isDependent)
         {
-            GetComponent<OffMeshLink>().activated = false;
+            offMeshLink.activated = false;
         }
     }
 	
@@ -78,7 +79,7 @@ public class SlidingDoor : MonoBehaviour {
     {
         if(!isDependent)
         {
-            if (other.transform.root.gameObject.tag != "Environment")
+            if (other.transform.root.gameObject.tag == "EnemyNPC")
             {
                 enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
             }

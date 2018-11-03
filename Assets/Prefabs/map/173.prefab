@@ -3999,6 +3999,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 191681541186214954}
   doorSounds: {fileID: 0}
 --- !u!114 &114064119999364396
 MonoBehaviour:
@@ -4069,6 +4070,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorIsOpen: 0
   doorStartsOpen: 0
+  doors:
+  - {fileID: 114045105319309902}
+  - {fileID: 114480015936767826}
+  doorSounds: {fileID: 82197849002050262}
   doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
   speed: 1
@@ -4114,6 +4119,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 191681541186214954}
   doorSounds: {fileID: 0}
 --- !u!114 &114532520460791326
 MonoBehaviour:
@@ -4280,6 +4286,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 0}
   doorSounds: {fileID: 0}
 --- !u!114 &114768879013771418
 MonoBehaviour:
@@ -4407,6 +4414,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 0}
   doorSounds: {fileID: 0}
 --- !u!114 &114918473484184896
 MonoBehaviour:
@@ -4456,6 +4464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorIsOpen: 0
   doorStartsOpen: 0
+  doors: []
+  doorSounds: {fileID: 0}
   doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
   speed: 1

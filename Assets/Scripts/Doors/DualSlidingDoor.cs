@@ -10,17 +10,15 @@ public class DualSlidingDoor : MonoBehaviour
     public bool doorIsOpen = false;
     public bool doorStartsOpen = false;
     private NavMeshAgent enemyNav;
-    private SlidingDoor[] doors;
-    private AudioSource doorSounds;
+    [SerializeField] private SlidingDoor[] doors;
+    [SerializeField] AudioSource doorSounds;
     [SerializeField] private AudioClip doorOpen, doorClose;
     public float speed = 1.5f;
     // Use this for initialization
     void Start()
     {
         doorIsOpen = doorStartsOpen;
-        doors = GetComponentsInChildren<SlidingDoor>();
         enemyCanOpen = doors[0].enemyCanOpen;
-        doorSounds = GetComponent<AudioSource>();
         changeSpeed(speed);
     }
     // Update is called once per frame
@@ -37,7 +35,7 @@ public class DualSlidingDoor : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.gameObject.tag != "Environment")
+        if (other.transform.root.gameObject.tag == "EnemyNPC")
         {
             enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
         }
