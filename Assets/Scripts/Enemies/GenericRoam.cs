@@ -6,14 +6,12 @@ using UnityEngine.AI;
 public class GenericRoam : MonoBehaviour {
     public float roamingDestMaxDist = 20f;
 
-    private NavMeshAgent enemyNav;
-    private TargetPlayer triggerScript;
+    [SerializeField] NavMeshAgent enemyNav;
+    [SerializeField] TargetPlayer triggerScript;
     bool shouldRoam = true;
 	// Use this for initialization
 	void Start () {
-        enemyNav = GetComponent<NavMeshAgent>();
         enemyNav.autoTraverseOffMeshLink = false;
-        triggerScript = GetComponent<TargetPlayer>();
         chooseRoamingDest();
 	}
 	

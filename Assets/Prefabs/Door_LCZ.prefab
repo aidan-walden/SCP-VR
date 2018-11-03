@@ -650,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31088938a59b3c540b8e0112a945c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCanOpen: 1
   doorIsOpen: 0
   doorStartsOpen: 0
   doors:

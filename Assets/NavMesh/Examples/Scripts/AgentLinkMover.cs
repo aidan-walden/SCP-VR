@@ -15,12 +15,16 @@ public class AgentLinkMover : MonoBehaviour
 {
     public OffMeshLinkMoveMethod m_Method = OffMeshLinkMoveMethod.Parabola;
     public AnimationCurve m_Curve = new AnimationCurve();
+    NavMeshAgent agent;
 
-    IEnumerator Start()
+    private void Start()
     {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.autoTraverseOffMeshLink = false;
-        while (true)
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    public IEnumerator MoveNavMesh()
+    {
+        if (agent.isOnOffMeshLink)
         {
             if (agent.isOnOffMeshLink)
             {
@@ -39,7 +43,7 @@ public class AgentLinkMover : MonoBehaviour
     IEnumerator NormalSpeed(NavMeshAgent agent)
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
-        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        Vector3 endPos = data.endPos + Vector3.up * (agent.baseOffset * agent.transform.localScale.y);
         while (agent.transform.position != endPos)
         {
             agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
@@ -51,7 +55,7 @@ public class AgentLinkMover : MonoBehaviour
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
-        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        Vector3 endPos = data.endPos + Vector3.up * (agent.baseOffset * agent.transform.localScale.y);
         float normalizedTime = 0.0f;
         while (normalizedTime < 1.0f)
         {
@@ -66,7 +70,7 @@ public class AgentLinkMover : MonoBehaviour
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 startPos = agent.transform.position;
-        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        Vector3 endPos = data.endPos + Vector3.up * (agent.baseOffset * agent.transform.localScale.y);
         float normalizedTime = 0.0f;
         while (normalizedTime < 1.0f)
         {

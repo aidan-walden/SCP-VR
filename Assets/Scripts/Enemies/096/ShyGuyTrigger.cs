@@ -12,20 +12,22 @@ public class ShyGuyTrigger : MonoBehaviour {
     public float roamSpeed = 1f;
 
     private bool isRaging = false;
-    private AudioSource shyGuySounds;
-    private TargetPlayer attackScript;
-    private Animator shyGuyAnims;
-    private NavMeshAgent shyGuy;
-    private GenericRoam roamingScript;
-    private SphereCollider raycastFinder;
+    public bool IsRaging
+    {
+        get
+        {
+            return isRaging;
+        }
+    }
+    [SerializeField] AudioSource shyGuySounds;
+    [SerializeField] TargetPlayer attackScript;
+    [SerializeField] Animator shyGuyAnims;
+    [SerializeField] NavMeshAgent shyGuy;
+    [SerializeField] GenericRoam roamingScript;
+    [SerializeField] SphereCollider raycastFinder;
 	// Use this for initialization
 	void Start () {
-        shyGuySounds = GetComponentInChildren<AudioSource>();
-        attackScript = GetComponent<TargetPlayer>();
-        shyGuyAnims = GetComponent<Animator>();
-        shyGuy = GetComponent<NavMeshAgent>();
-        roamingScript = GetComponent<GenericRoam>();
-        raycastFinder = GetComponentInChildren<SphereCollider>();
+        StartCoroutine(enterRage());
     }
 	
 	// Update is called once per frame
@@ -83,11 +85,6 @@ public class ShyGuyTrigger : MonoBehaviour {
         roamingScript.toggleRoaming(true);
         yield return new WaitForSeconds(rageCooldown);
         isRaging = false;
-    }
-
-    public bool getIsRaging()
-    {
-        return isRaging;
     }
 
     private void OnTriggerEnter(Collider collision) //Kill player if the "hitbox" collides with him/her

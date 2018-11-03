@@ -12,8 +12,9 @@ public class SlidingDoor : MonoBehaviour {
     public bool enemyCanOpen = true;
     public bool doorChanging, doorStartsOpen, isDependent = false;
     public AudioClip doorOpen, doorClose;
-    private bool doorIsOpen = false;
+    private bool doorIsOpen, enemyIsWalkingThru = false;
     [SerializeField] OffMeshLink offMeshLink;
+    AgentLinkMover agentLinkMover;
     [HideInInspector] public AudioSource doorSounds;
 
     // Use this for initialization
@@ -82,6 +83,7 @@ public class SlidingDoor : MonoBehaviour {
             if (other.transform.root.gameObject.tag == "EnemyNPC")
             {
                 enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
+                agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
             }
         }
         
@@ -100,15 +102,21 @@ public class SlidingDoor : MonoBehaviour {
                         moveDoor(true);
                     }
 
-                    if (!doorChanging)
+                    if (!doorChanging && !enemyIsWalkingThru)
                     {
                         //speed /= 1.5f;
-                        enemyNav.CompleteOffMeshLink();
+                        StartCoroutine(agentLinkMover.MoveNavMesh());
+                        enemyIsWalkingThru = true;
 
                     }
 
                 }
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        enemyIsWalkingThru = false;
     }
 }

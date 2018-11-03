@@ -6,10 +6,11 @@ using UnityEngine.AI;
 
 public class DualSlidingDoor : MonoBehaviour
 {
-    bool enemyCanOpen;
+    public bool enemyCanOpen;
     public bool doorIsOpen = false;
-    public bool doorStartsOpen = false;
+    public bool doorStartsOpen, enemyIsWalkingThru = false;
     private NavMeshAgent enemyNav;
+    private AgentLinkMover agentLinkMover;
     [SerializeField] private SlidingDoor[] doors;
     [SerializeField] AudioSource doorSounds;
     [SerializeField] private AudioClip doorOpen, doorClose;
@@ -18,7 +19,10 @@ public class DualSlidingDoor : MonoBehaviour
     void Start()
     {
         doorIsOpen = doorStartsOpen;
-        enemyCanOpen = doors[0].enemyCanOpen;
+        foreach(SlidingDoor door in doors)
+        {
+            door.enemyCanOpen = enemyCanOpen;
+        }
         changeSpeed(speed);
     }
     // Update is called once per frame
@@ -38,6 +42,7 @@ public class DualSlidingDoor : MonoBehaviour
         if (other.transform.root.gameObject.tag == "EnemyNPC")
         {
             enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
+            agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -53,15 +58,21 @@ public class DualSlidingDoor : MonoBehaviour
                     moveDoor(true);
                 }
 
-                if (!doors[0].doorChanging)
+                if (!doors[0].doorChanging && !enemyIsWalkingThru)
                 {
                     //speed /= 1.5f;
-                    enemyNav.CompleteOffMeshLink();
+                    StartCoroutine(agentLinkMover.MoveNavMesh());
+                    enemyIsWalkingThru = true;
 
                 }
 
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        enemyIsWalkingThru = false;
     }
 
     public void changeDoorState()
