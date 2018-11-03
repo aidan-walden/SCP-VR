@@ -5,7 +5,13 @@ using UnityEngine.AI;
 
 public class TargetPlayer : MonoBehaviour {
     bool playerTargeted = false;
-    public bool PlayerTargeted { get; }
+    public bool PlayerTargeted
+    {
+        get
+        {
+            return playerTargeted;
+        }
+    }
     NavMeshAgent enemy;
     public GameObject player;
 	// Use this for initialization
@@ -27,5 +33,13 @@ public class TargetPlayer : MonoBehaviour {
         enemy.SetDestination(enemy.transform.position);
         playerTargeted = goAfterPlayer;
         enemy.gameObject.GetComponent<Music>().toggleChaseMusic();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (playerTargeted && other.gameObject.transform.root.name == "Player")
+        {
+            other.gameObject.transform.root.GetComponent<PlayerEvents>().killPlayer();
+        }
     }
 }

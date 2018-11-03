@@ -5,12 +5,11 @@ using UnityEngine.AI;
 
 public class ShyGuyAttack : MonoBehaviour {
     private bool isAttacking = false;
-    private RaycastInit lookingScript;
-    private NavMeshAgent navAgent;
+    [SerializeField] private RaycastInit lookingScript;
+    [SerializeField] private NavMeshAgent navAgent;
+    [SerializeField] private TargetPlayer targetPlayer;
 	// Use this for initialization
 	void Start () {
-        lookingScript = GetComponentInChildren<RaycastInit>();
-        navAgent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
