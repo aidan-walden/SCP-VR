@@ -27,7 +27,7 @@ public class ShyGuyTrigger : MonoBehaviour {
     [SerializeField] SphereCollider raycastFinder;
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(enterRage());
+        //StartCoroutine(enterRage());
     }
 	
 	// Update is called once per frame

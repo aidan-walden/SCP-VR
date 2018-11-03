@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685591030851724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81, y: 0, z: 0}
+  m_LocalPosition: {x: 80.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4225668638061372}
@@ -285,7 +285,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072706655260060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.9, y: 0, z: 0}
+  m_LocalPosition: {x: -83.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4225668638061372}
@@ -653,13 +653,14 @@ MonoBehaviour:
   enemyCanOpen: 1
   doorIsOpen: 0
   doorStartsOpen: 0
+  enemyIsWalkingThru: 0
   doors:
   - {fileID: 114036227133370632}
   - {fileID: 114013343476140020}
   doorSounds: {fileID: 82171203235400402}
   doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
-  speed: 1
+  speed: 1.5
 --- !u!191 &191781827829924972
 OffMeshLink:
   m_ObjectHideFlags: 1

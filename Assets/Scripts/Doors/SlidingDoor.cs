@@ -8,7 +8,7 @@ public class SlidingDoor : MonoBehaviour {
     public Transform openPos;
     private Vector3 moveTo, origPos;
     private NavMeshAgent enemyNav;
-    public float speed = 0.43143504788f;
+    public float speed = 0.7127584f;
     public bool enemyCanOpen = true;
     public bool doorChanging, doorStartsOpen, isDependent = false;
     public AudioClip doorOpen, doorClose;
