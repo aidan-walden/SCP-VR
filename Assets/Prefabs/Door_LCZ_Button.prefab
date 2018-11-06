@@ -330,7 +330,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1391013925489580}
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -0.1334587, y: 0, z: 1011.466}
+  m_LocalPosition: {x: 52.801666, y: -0.91999996, z: -52.392357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4987419384818882}
@@ -399,7 +399,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 09f4b60217856a641ad6b839bb7e9bbc, type: 3}
+  - {fileID: 2100000, guid: 2d5123c86840b1448b94e2e57b0e2969, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -434,7 +434,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 09f4b60217856a641ad6b839bb7e9bbc, type: 3}
+  - {fileID: 2100000, guid: 2d5123c86840b1448b94e2e57b0e2969, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -756,6 +756,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 0}
   doorSounds: {fileID: 0}
 --- !u!114 &114408617849258932
 MonoBehaviour:
@@ -857,8 +858,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31088938a59b3c540b8e0112a945c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCanOpen: 0
   doorIsOpen: 0
   doorStartsOpen: 0
+  enemyIsWalkingThru: 0
+  doors: []
+  doorSounds: {fileID: 0}
   doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
   speed: 1
@@ -893,6 +898,7 @@ MonoBehaviour:
   isDependent: 1
   doorOpen: {fileID: 0}
   doorClose: {fileID: 0}
+  offMeshLink: {fileID: 0}
   doorSounds: {fileID: 0}
 --- !u!114 &114994687213505438
 MonoBehaviour:

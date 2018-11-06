@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
+    public bool playerIsDead = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,15 +14,15 @@ public class PlayerEvents : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
     public void killPlayer()
     {
         if(!godMode)
         {
-            Camera VRCam = GetComponentInChildren<Camera>();
-            VRCam.enabled = false;
+            playerIsDead = true;
+            GetComponentInChildren<Camera>().enabled = false;
             Invoke("loadGame", 3f);
         }
     }
