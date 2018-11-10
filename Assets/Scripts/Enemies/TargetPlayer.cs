@@ -16,7 +16,7 @@ public class TargetPlayer : MonoBehaviour {
     public float enemyRange;
     NavMeshAgent enemy;
     public GameObject player;
-    public UnityEvent playerLost;
+    public UnityEvent playerLost, playerAttacked;
 	// Use this for initialization
 	void Start () {
 		
@@ -38,7 +38,7 @@ public class TargetPlayer : MonoBehaviour {
     {
         enemy = nav;
         Debug.Log(enemy.name + ", " + goAfterPlayer);
-        enemy.SetDestination(enemy.transform.position);
+        enemy.ResetPath();
         playerTargeted = goAfterPlayer;
         if(!goAfterPlayer)
         {
@@ -55,11 +55,7 @@ public class TargetPlayer : MonoBehaviour {
     {
         if (playerTargeted && other.gameObject.transform.root.name == "Player")
         {
-            PlayerEvents playerEvents = other.gameObject.transform.root.GetComponent<PlayerEvents>();
-            if(!playerEvents.playerIsDead)
-            {
-                playerEvents.killPlayer();
-            }
+            playerAttacked.Invoke();
         }
     }
 

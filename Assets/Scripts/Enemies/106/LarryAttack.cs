@@ -11,7 +11,7 @@ public class LarryAttack : MonoBehaviour {
     [SerializeField] NavMeshAgent larryNav;
     [SerializeField] AudioClip riseFromGround, laugh;
     [SerializeField] AudioSource larryBase, larryFace;
-    GameObject mucus;
+    GameObject mucus, player;
     [SerializeField] GameObject mucusPrefab;
     [SerializeField] Vector3 newMucusScale;
     public bool growMucus = false;
@@ -19,7 +19,8 @@ public class LarryAttack : MonoBehaviour {
 	void Start () {
         larryTimer = Random.Range(300, 600);
         updateAnimTimes();
-	}
+        player = targetPlayer.player.transform.root.gameObject;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -71,6 +72,7 @@ public class LarryAttack : MonoBehaviour {
 
     private void createMucus()
     {
+        //TODO: Use Object Pooling instead of Instantiate
         mucus = Instantiate(mucusPrefab);
         Debug.Log("X: " + transform.position.x + " Y: " + transform.position.y + " Z: " + transform.position.z);
         mucus.transform.parent = null;
@@ -117,6 +119,12 @@ public class LarryAttack : MonoBehaviour {
                     break;  
             }
         }
+    }
+
+    public void bringPlayerToPocket()
+    {
+        player.transform.position += Vector3.up * 20;
+        playerLost();
     }
 
 }

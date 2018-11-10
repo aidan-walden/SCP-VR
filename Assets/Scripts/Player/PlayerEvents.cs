@@ -19,7 +19,7 @@ public class PlayerEvents : MonoBehaviour {
 
     public void killPlayer()
     {
-        if(!godMode)
+        if(!godMode && !playerIsDead)
         {
             playerIsDead = true;
             GetComponentInChildren<Camera>().enabled = false;
