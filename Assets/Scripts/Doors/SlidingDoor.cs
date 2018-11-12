@@ -9,10 +9,11 @@ public class SlidingDoor : MonoBehaviour {
     private Vector3 moveTo, origPos;
     private NavMeshAgent enemyNav;
     public float speed = 0.7127584f;
+    [SerializeField] float computerCloseChance = 15f;
     public bool enemyCanOpen = true;
     public bool doorChanging, doorStartsOpen, isDependent = false;
-    public AudioClip doorOpen, doorClose;
-    private bool doorIsOpen, enemyIsWalkingThru = false;
+    public AudioClip doorOpen, doorClose, computerSound;
+    private bool doorIsOpen, enemyIsWalkingThru, doorIsLocked = false;
     [SerializeField] OffMeshLink offMeshLink;
     AgentLinkMover agentLinkMover;
     [HideInInspector] public AudioSource doorSounds;
@@ -41,7 +42,11 @@ public class SlidingDoor : MonoBehaviour {
                 doorIsOpen = !(moveTo == origPos);
             }
         }
-        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            moveDoor(!doorIsOpen);
+        }
+
     }
 
 
@@ -51,7 +56,7 @@ public class SlidingDoor : MonoBehaviour {
         {
             openDoor = !openDoor; //Invert open door variable because the door is meant to start closed.
         }
-        if(!doorChanging)
+        if(!doorChanging && !doorIsLocked)
         {
             if (openDoor)
             {
@@ -85,6 +90,16 @@ public class SlidingDoor : MonoBehaviour {
                 enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
                 agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
             }
+            else if (tag == "Player")
+            {
+                System.Random chance = new System.Random();
+                int randomInt = chance.Next(0, 100);
+                if (randomInt <= computerCloseChance && doorIsOpen)
+                {
+                    StartCoroutine(playComputerSound(computerSound));
+                    moveDoor(false);
+                }
+            }
         }
         
     }
@@ -102,7 +117,7 @@ public class SlidingDoor : MonoBehaviour {
                         moveDoor(true);
                     }
 
-                    if (!doorChanging && !enemyIsWalkingThru)
+                    if (!doorChanging && !enemyIsWalkingThru && doorIsOpen)
                     {
                         //speed /= 1.5f;
                         StartCoroutine(agentLinkMover.MoveNavMesh());
@@ -118,5 +133,15 @@ public class SlidingDoor : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         enemyIsWalkingThru = false;
+    }
+
+    IEnumerator playComputerSound(AudioClip sound)
+    {
+        AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1f;
+        audioSource.clip = sound;
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Destroy(audioSource);
     }
 }

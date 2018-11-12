@@ -17,11 +17,11 @@ public class GenericRoam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            enemyNav.Warp(new Vector3(-7.2f, 0.508f, -22.62f));
-        }
 
+        if(enemyNav.isOnOffMeshLink)
+        {
+            Debug.Log(enemyNav.currentOffMeshLinkData.linkType);
+        }
 
         if(!enemyNav.pathPending && !triggerScript.PlayerTargeted && shouldRoam) //Check if enemy has reached dest
         {
@@ -58,7 +58,7 @@ public class GenericRoam : MonoBehaviour {
         {
             Vector3 endPos = transform.position + raycastDir * roamingDestMaxDist;
             checkArea.transform.position = endPos; //Put the sphere at the end of the raycast
-            if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0) //Is the area of the sphere empty
+            if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0) //Is the area of the sphere empty?
             {
                 enemyNav.destination = endPos;
             }
@@ -81,6 +81,6 @@ public class GenericRoam : MonoBehaviour {
     public void toggleRoaming(bool roam)
     {
         shouldRoam = roam;
-        enemyNav.SetDestination(transform.position);
+        enemyNav.ResetPath();
     }
 }

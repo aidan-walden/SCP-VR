@@ -9,6 +9,8 @@ TagManager:
   - Keycard
   - Mask
   - EnemyNPC
+  - Door
+  - Item
   layers:
   - Default
   - TransparentFX

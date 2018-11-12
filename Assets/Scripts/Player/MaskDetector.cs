@@ -6,7 +6,7 @@ namespace Valve.VR.InteractionSystem
     public class MaskDetector : MonoBehaviour
     {
         private bool maskAttached = false;
-        public Interactable interactable;
+        Interactable interactable;
         [SerializeField] private float maskOffset = 2f;
 
         // Use this for initialization
@@ -27,13 +27,16 @@ namespace Valve.VR.InteractionSystem
             {
                 Debug.Log("Mask in range");
                 interactable = other.gameObject.GetComponent<Interactable>();
-                if(!interactable.attachedToHand)
+                if(interactable != null)
                 {
-                    Debug.Log("User detached");
-                    other.gameObject.transform.position = transform.position + (transform.forward / maskOffset);
-                    other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                    other.gameObject.transform.parent = transform;
-                    maskAttached = true;
+                    if (!interactable.attachedToHand)
+                    {
+                        Debug.Log("User detached");
+                        other.gameObject.transform.position = transform.position + (transform.forward / maskOffset);
+                        other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                        other.gameObject.transform.parent = transform;
+                        maskAttached = true;
+                    }
                 }
             }
         }

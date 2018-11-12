@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SCP914 : MonoBehaviour {
-    public GameObject inputTrigger;
-    private enum upgradeSetting {ROUGH, COARSE, ONE_TO_ONE, FINE, VERY_FINE };
-    private int currentSetting = (int)upgradeSetting.ONE_TO_ONE;
-    public GameObject outputSpot, machineDial, inputDoor, outputDoor;
+    public GameObject inputTrigger, itemsManager;
+    public enum upgradeSetting {ROUGH, COARSE, ONE_TO_ONE, FINE, VERY_FINE };
+    public int currentSetting = (int)upgradeSetting.ONE_TO_ONE;
+    public GameObject outputSpot, machineDial;
     private AudioSource machineSounds;
     public AudioClip machineBuffer, machineDone;
     [SerializeField]  private float waitingOffset = 2f;
     private Input914 input;
-    private SlidingDoor inputDoorScript, outputDoorScript;
+    public SlidingDoor inputDoor, outputDoor;
     private bool isUpgrading = false;
-	// Use this for initialization
-	void Start () {
+    private Items itemsHolder;
+    // Use this for initialization
+    void Start () {
         input = GetComponentInChildren<Input914>();
-        inputDoorScript = inputDoor.GetComponent<SlidingDoor>();
-        outputDoorScript = outputDoor.GetComponent<SlidingDoor>();
         machineSounds = GetComponent<AudioSource>();
+        itemsHolder = itemsManager.GetComponent<Items>();
     }
 	
 	// Update is called once per frame
@@ -31,7 +31,7 @@ public class SCP914 : MonoBehaviour {
         if(!isUpgrading)
         {
             Debug.Log("Start upgrade");
-            StartCoroutine("fullMachineCycle");
+            StartCoroutine(fullMachineCycle());
         }
     }
 
@@ -39,8 +39,8 @@ public class SCP914 : MonoBehaviour {
     {
         isUpgrading = true;
         //Close doors
-        inputDoorScript.moveDoor(false);
-        outputDoorScript.moveDoor(false);
+        inputDoor.moveDoor(true);
+        outputDoor.moveDoor(true);
         //yield return new WaitUntil(() => !inputDoorScript.doorChanging);
         machineSounds.clip = machineBuffer;
         machineSounds.Play();
@@ -50,35 +50,43 @@ public class SCP914 : MonoBehaviour {
         {
             Debug.Log(item.name);
         }
-        upgradeItems(tempItemArray);
-        placeItemsInOutput(tempItemArray);
+        placeItemsInOutput(upgradeItems(tempItemArray));
         yield return new WaitForSeconds(machineSounds.clip.length - machineSounds.time); //Wait the remaining duration of the sound
         //Open doors
         machineSounds.clip = machineDone;
         machineSounds.Play();
-        inputDoorScript.moveDoor(true);
-        outputDoorScript.moveDoor(true);
+        inputDoor.moveDoor(false);
+        outputDoor.moveDoor(false);
         isUpgrading = false;
     }
 
 
-    void upgradeItems(List<GameObject> itemsToUpgrade)
+    List<GameObject> upgradeItems(List<GameObject> itemsToUpgrade)
     {
+        List<GameObject> upgradedItems = new List<GameObject>();
         Debug.Log("Upgrading items...");
         foreach(GameObject item in itemsToUpgrade)
         {
-            Debug.Log(item.name);
-            if(currentSetting == 3) //Fine setting
+            GameObject itemRoot = item.transform.root.gameObject;
+            if(currentSetting == (int)upgradeSetting.FINE) //Fine setting
             {
-                if (item.transform.parent.tag == "Keycard")
+               switch(itemRoot.name)
                 {
-                    Debug.Log(item.transform.parent.GetComponent<KeycardAuth>().lvl);
-                    item.transform.parent.GetComponent<KeycardAuth>().lvl++;
-                    Debug.Log(item.transform.parent.GetComponent<KeycardAuth>().lvl);
+                    case "Keycard":
+                        KeycardAuth keycard = itemRoot.GetComponent<KeycardAuth>();
+                        if(keycard.Lvl >= 3)
+                        {
+                            Destroy(itemRoot);
+                            upgradedItems.Add(itemsHolder.items["Playing Card"]);
+                            break;
+                        }
+                        keycard.Lvl++;
+                        upgradedItems.Add(itemRoot);
+                        break;
                 }
             }
-            
         }
+        return upgradedItems;
     }
 
     void placeItemsInOutput(List<GameObject> itemsToPlace)
@@ -86,13 +94,7 @@ public class SCP914 : MonoBehaviour {
         Debug.Log("Moving items...");
         foreach(GameObject item in itemsToPlace)
         {
-            if(item.transform.parent.tag == "Keycard")
-            {
-                item.transform.parent.transform.position = outputSpot.transform.position;
-            }
-            item.transform.position = outputSpot.transform.position;
+            item.transform.root.position = outputSpot.transform.position;
         }
     }
-
-
 }

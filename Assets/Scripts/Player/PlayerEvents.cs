@@ -34,6 +34,7 @@ public class PlayerEvents : MonoBehaviour {
 
     public IEnumerator playSound(AudioClip sound)
     {
+        Debug.Log("Playing sound...");
         AudioSource audioSource = this.gameObject.AddComponent<AudioSource>(); //Create a new audio source for every sound so that way we don't have to worry about swapping out sounds at correct times
         audioSource.clip = sound;
         //TODO: Set volume to that of user preferences when they are implimented

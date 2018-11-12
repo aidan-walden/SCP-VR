@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114443863331993786}
   - component: {fileID: 114581459134832126}
   - component: {fileID: 114272218181649366}
+  - component: {fileID: 114228341419814718}
   m_Layer: 0
   m_Name: Keycard
   m_TagString: Keycard
@@ -69,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619469950356166}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.001999855, y: 0.57699996, z: -0.008}
-  m_LocalScale: {x: 0.0100000035, y: 1.0000005, z: 0.59999996}
+  m_LocalPosition: {x: -13.032, y: 1.05, z: -11.3880005}
+  m_LocalScale: {x: 0.010000015, y: 1, z: 0.59999996}
   m_Children:
   - {fileID: 4499794048444060}
   m_Father: {fileID: 0}
@@ -91,7 +92,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 7e90f10e44a186a49a00679d068515ed, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,6 +146,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114228341419814718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1619469950356166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4eb862c39d4304498af1676d76904fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keycardPickup: {fileID: 8300000, guid: 4ee6b64351f157f4287cb23aae521f02, type: 3}
 --- !u!114 &114272218181649366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,7 +169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1a6fe649821454e9e4716ee6b8dfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvl: 6
+  cardMat: {fileID: 23806467088651774}
+  keycardMats:
+  - {fileID: 2100000, guid: dd5e433894592014f9b36fdb92a30927, type: 2}
+  - {fileID: 2100000, guid: 48093a60937c6be408387671dc3eba9e, type: 2}
+  - {fileID: 2100000, guid: d64b3084c81b7c34b96d2269d7e119b4, type: 2}
+  - {fileID: 2100000, guid: 9a696ce69a501d44680abaee6ad7ef42, type: 2}
+  - {fileID: 2100000, guid: 3a6d121d01298de4ebe00ce7d9b5f288, type: 2}
+  - {fileID: 2100000, guid: 0ab4799cf55e99e4b976db5f9c509661, type: 2}
 --- !u!114 &114443863331993786
 MonoBehaviour:
   m_ObjectHideFlags: 1

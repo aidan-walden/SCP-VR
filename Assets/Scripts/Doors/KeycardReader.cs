@@ -27,7 +27,7 @@ public class KeycardReader : MonoBehaviour {
         if(collision.gameObject.tag == "Keycard" && !doorIsOpening)
         {
             KeycardAuth ksScript = collision.gameObject.GetComponent<KeycardAuth>();
-            if(ksScript.lvl >= lvl)
+            if(ksScript.Lvl >= lvl)
             {
                 Debug.Log("Open door");
                 if(isCheckpoit)
