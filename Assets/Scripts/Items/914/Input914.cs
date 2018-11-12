@@ -17,13 +17,13 @@ public class Input914 : MonoBehaviour {
     private void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.gameObject.name + " is in 914");
-        if(!inputObjects.Contains(collision.transform.root.gameObject))
+        if(!inputObjects.Contains(collision.transform.root.gameObject) && collision.transform.root.name != "Environment")
         {
             inputObjects.Add(collision.transform.root.gameObject); //Adds objects in the input box to an array
         }
         foreach(GameObject item in inputObjects)
         {
-            Debug.Log(item.name);
+            Debug.Log(item.name + "Is an item within 914");
         }
 
     }
@@ -31,7 +31,7 @@ public class Input914 : MonoBehaviour {
     private void OnTriggerExit(Collider collision)
     {
         Debug.Log(collision.gameObject.name + " has left 914");
-        inputObjects.Remove(collision.gameObject);
+        inputObjects.Remove(collision.transform.root.gameObject);
         foreach (GameObject item in inputObjects)
         {
             Debug.Log(item.name);

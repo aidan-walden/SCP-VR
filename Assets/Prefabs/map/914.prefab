@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 4806642619172952}
   - component: {fileID: 33368336014980300}
   - component: {fileID: 23879897542905162}
+  - component: {fileID: 64244400345991984}
   m_Layer: 0
   m_Name: DoorFrame_ms3d_mo
   m_TagString: Untagged
@@ -559,6 +560,7 @@ GameObject:
   - component: {fileID: 4805490462753008}
   - component: {fileID: 33692698926922306}
   - component: {fileID: 23087992167261728}
+  - component: {fileID: 64100193891775080}
   m_Layer: 0
   m_Name: DoorFrame_ms3d_mo
   m_TagString: Untagged
@@ -21742,6 +21744,20 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300192, guid: a172f7a7e9980b24c981b087032f9621, type: 3}
+--- !u!64 &64100193891775080
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100279020556956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 21c10716fbb9644458479e336dea8401, type: 3}
 --- !u!64 &64101640318916308
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -22274,6 +22290,20 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300088, guid: a172f7a7e9980b24c981b087032f9621, type: 3}
+--- !u!64 &64244400345991984
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098304345480694}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 21c10716fbb9644458479e336dea8401, type: 3}
 --- !u!64 &64246380495734728
 MeshCollider:
   m_ObjectHideFlags: 1

@@ -84,6 +84,9 @@ public class SCP914 : MonoBehaviour {
                         keycard.Lvl++;
                         upgradedItems.Add(item);
                         break;
+                    default:
+                        upgradedItems.Add(item);
+                        break;
                 }
             }
         }
