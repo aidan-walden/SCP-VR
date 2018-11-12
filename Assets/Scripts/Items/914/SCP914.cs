@@ -76,8 +76,10 @@ public class SCP914 : MonoBehaviour {
                         KeycardAuth keycard = itemRoot.GetComponent<KeycardAuth>();
                         if(keycard.Lvl >= 3)
                         {
+                            GameObject playingCard = Instantiate(itemsHolder.items["Playing Card"]);
+                            playingCard.transform.position = itemRoot.transform.position;
                             Destroy(itemRoot);
-                            upgradedItems.Add(itemsHolder.items["Playing Card"]);
+                            upgradedItems.Add(playingCard);
                             break;
                         }
                         keycard.Lvl++;

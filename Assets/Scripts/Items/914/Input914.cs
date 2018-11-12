@@ -17,7 +17,10 @@ public class Input914 : MonoBehaviour {
     private void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.gameObject.name + " is in 914");
-        inputObjects.Add(collision.gameObject); //Adds objects in the input box to an array
+        if(!inputObjects.Contains(collision.transform.root.gameObject))
+        {
+            inputObjects.Add(collision.transform.root.gameObject); //Adds objects in the input box to an array
+        }
         foreach(GameObject item in inputObjects)
         {
             Debug.Log(item.name);
