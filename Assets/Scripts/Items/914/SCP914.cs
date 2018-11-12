@@ -67,23 +67,22 @@ public class SCP914 : MonoBehaviour {
         Debug.Log("Upgrading items...");
         foreach(GameObject item in itemsToUpgrade)
         {
-            GameObject itemRoot = item.transform.root.gameObject;
             if(currentSetting == (int)upgradeSetting.FINE) //Fine setting
             {
-               switch(itemRoot.name)
+               switch(item.name)
                 {
                     case "Keycard":
-                        KeycardAuth keycard = itemRoot.GetComponent<KeycardAuth>();
+                        KeycardAuth keycard = item.GetComponent<KeycardAuth>();
                         if(keycard.Lvl >= 3)
                         {
                             GameObject playingCard = Instantiate(itemsHolder.items["Playing Card"]);
-                            playingCard.transform.position = itemRoot.transform.position;
-                            Destroy(itemRoot);
+                            playingCard.transform.position = item.transform.position;
+                            Destroy(item);
                             upgradedItems.Add(playingCard);
                             break;
                         }
                         keycard.Lvl++;
-                        upgradedItems.Add(itemRoot);
+                        upgradedItems.Add(item);
                         break;
                 }
             }
