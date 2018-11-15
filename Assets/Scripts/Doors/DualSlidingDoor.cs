@@ -20,7 +20,8 @@ public class DualSlidingDoor : MonoBehaviour
     private AgentLinkMover agentLinkMover;
     [SerializeField] private SlidingDoor[] doors;
     [SerializeField] AudioSource doorSounds;
-    [SerializeField] private AudioClip doorOpen, doorClose, computerSound;
+    [SerializeField] private AudioClip[] doorOpen, doorClose;
+    [SerializeField] private AudioClip computerSound;
     [SerializeField] float speed = 1f;
     [SerializeField] float computerCloseChance = 15f;
     public float Speed
@@ -78,18 +79,18 @@ public class DualSlidingDoor : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (enemyNav != null && enemyCanOpen)
+        if (enemyNav != null)
         {
             if (enemyNav.isOnOffMeshLink)
             {
                 Debug.Log(enemyNav.name + " is on the off mesh link");
-                if (!doorIsOpen)
+                if (!doorIsOpen && !doors[0].doorChanging && !doors[1].doorChanging && enemyCanOpen)
                 {
                     //speed *= 1.5f;
                     moveDoor(true);
                 }
 
-                if (!doors[0].doorChanging && !enemyIsWalkingThru && doorIsOpen)
+                if (!doors[0].doorChanging && !doors[1].doorChanging && !enemyIsWalkingThru && doorIsOpen)
                 {
                     //speed /= 1.5f;
                     StartCoroutine(agentLinkMover.MoveNavMesh());
@@ -119,13 +120,16 @@ public class DualSlidingDoor : MonoBehaviour
         }
         if(!doors[0].doorChanging && !doors[1].doorChanging && !doorIsLocked)
         {
+            System.Random rnd = new System.Random();
+            int openSound = rnd.Next(0, doorOpen.Length - 1);
+            int closeSound = rnd.Next(0, doorClose.Length - 1);
             if (openDoor)
             {
-                doorSounds.clip = doorOpen;
+                doorSounds.clip = doorOpen[openSound];
             }
             else
             {
-                doorSounds.clip = doorClose;
+                doorSounds.clip = doorClose[closeSound];
             }
             doorSounds.Play();
             foreach (SlidingDoor door in doors)

@@ -54,7 +54,8 @@ namespace Valve.VR.InteractionSystem
         {
             //StartCoroutine(DoOpen(hand));
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            scp096.SetActive(!scp096.activeSelf);
+            //scp096.SetActive(!scp096.activeSelf);
+            this.transform.root.position = new Vector3(-3.45f, 0f, 26.19f);
         }
 
         public void Close(Hand hand)

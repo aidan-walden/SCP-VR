@@ -447,7 +447,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1951209726516478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.68, y: 0, z: -27.68}
+  m_LocalPosition: {x: -15.68, y: 0, z: -27.17}
   m_LocalScale: {x: 0.007, y: 0.007, z: 0.007}
   m_Children:
   - {fileID: 4785426235029926}
@@ -1273,8 +1273,8 @@ MonoBehaviour:
   doorChanging: 0
   doorStartsOpen: 0
   isDependent: 1
-  doorOpen: {fileID: 0}
-  doorClose: {fileID: 0}
+  doorOpen: []
+  doorClose: []
   computerSound: {fileID: 0}
   offMeshLink: {fileID: 191041579332063678}
   doorSounds: {fileID: 0}
@@ -1297,8 +1297,14 @@ MonoBehaviour:
   - {fileID: 114119815569230154}
   - {fileID: 114398607873191244}
   doorSounds: {fileID: 82165788033837450}
-  doorOpen: {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
-  doorClose: {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
+  doorOpen:
+  - {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
+  - {fileID: 8300000, guid: c92f45fa4c6807c42b5dfff7797267b0, type: 3}
+  - {fileID: 8300000, guid: 571259c5803e5b1409beb882d13e9f0c, type: 3}
+  doorClose:
+  - {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
+  - {fileID: 8300000, guid: b2db2bd608bda9040a15229b93d9f361, type: 3}
+  - {fileID: 8300000, guid: 0fd2874303936814fbb20ee6308f550e, type: 3}
   computerSound: {fileID: 8300000, guid: 9f1fbb1ffd9f1b540b04caca7cd560a1, type: 3}
   speed: 1.5
   computerCloseChance: 15
@@ -1320,8 +1326,8 @@ MonoBehaviour:
   doorChanging: 0
   doorStartsOpen: 0
   isDependent: 1
-  doorOpen: {fileID: 0}
-  doorClose: {fileID: 0}
+  doorOpen: []
+  doorClose: []
   computerSound: {fileID: 0}
   offMeshLink: {fileID: 191041579332063678}
   doorSounds: {fileID: 0}

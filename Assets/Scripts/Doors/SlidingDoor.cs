@@ -12,7 +12,8 @@ public class SlidingDoor : MonoBehaviour {
     [SerializeField] float computerCloseChance = 15f;
     public bool enemyCanOpen = true;
     public bool doorChanging, doorStartsOpen, isDependent = false;
-    public AudioClip doorOpen, doorClose, computerSound;
+    [SerializeField] private AudioClip[] doorOpen, doorClose;
+    [SerializeField] private AudioClip computerSound;
     private bool doorIsOpen, enemyIsWalkingThru, doorIsLocked = false;
     [SerializeField] OffMeshLink offMeshLink;
     AgentLinkMover agentLinkMover;
@@ -60,17 +61,21 @@ public class SlidingDoor : MonoBehaviour {
         {
             if (openDoor)
             {
-                if (!isDependent)
+                if (!isDependent && doorOpen.Length > 0)
                 {
-                    doorSounds.clip = doorOpen;
+                    System.Random rnd = new System.Random();
+                    int openSound = rnd.Next(0, doorOpen.Length - 1);
+                    doorSounds.clip = doorOpen[openSound];
                 }
                 moveTo = openPos.position;
             }
             else
             {
-                if (!isDependent)
+                if (!isDependent && doorClose.Length > 0)
                 {
-                    doorSounds.clip = doorClose;
+                    System.Random rnd = new System.Random();
+                    int closeSound = rnd.Next(0, doorClose.Length - 1);
+                    doorSounds.clip = doorClose[closeSound];
                 }
                 moveTo = origPos;
             }
@@ -111,7 +116,7 @@ public class SlidingDoor : MonoBehaviour {
             {
                 if (enemyNav.isOnOffMeshLink)
                 {
-                    if (!doorIsOpen)
+                    if (!doorIsOpen && !doorChanging)
                     {
                         //speed *= 1.5f;
                         moveDoor(true);
@@ -132,7 +137,10 @@ public class SlidingDoor : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        enemyIsWalkingThru = false;
+        if(other.transform.root.gameObject.tag == "EnemyNPC")
+        {
+            enemyIsWalkingThru = false;
+        }
     }
 
     IEnumerator playComputerSound(AudioClip sound)
