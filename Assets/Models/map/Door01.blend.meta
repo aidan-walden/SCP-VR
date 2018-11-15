@@ -11,6 +11,7 @@ ModelImporter:
     2300000: Door01_ms3d_mo
     3300000: Door01_ms3d_mo
     4300000: Door01_ms3d_mo
+    6400000: Door01_ms3d_mo
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -46,7 +47,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

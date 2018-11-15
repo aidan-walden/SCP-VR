@@ -30,7 +30,6 @@ public class Dial914 : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Euler Angles: " + transform.eulerAngles.z);
         if (rotateToOrig)
         {
             Debug.Log("Rotating...");
