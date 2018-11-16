@@ -620,7 +620,6 @@ GameObject:
   - component: {fileID: 114490994380301904}
   - component: {fileID: 114627269919516258}
   - component: {fileID: 114782223769784368}
-  - component: {fileID: 114314523711740958}
   - component: {fileID: 114424404946009150}
   m_Layer: 0
   m_Name: scp096
@@ -1714,18 +1713,6 @@ MonoBehaviour:
   viewArea: 1
   viewDistance: Infinity
   headCollider: {fileID: 0}
---- !u!114 &114314523711740958
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1791511515966906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 360cb090c52576e4f9df97029a6ecebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &114424404946009150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1774,8 +1761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamingDestMaxDist: 10
-  enemyNav: {fileID: 195503637732739080}
-  triggerScript: {fileID: 114314523711740958}
+  enemy: {fileID: 114846162413572952}
 --- !u!114 &114782223769784368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1789,6 +1775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseMusic: {fileID: 8300000, guid: 95e92d22985973f43ad9aa1b1e063844, type: 3}
   killSound: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &114846162413572952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1800,18 +1787,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d606a91ea13714d499819166fbc73e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAnims: {fileID: 95368199773018834}
+  playerIsInRange: 0
+  playerTargeted: 0
+  enemyRange: 0
+  player: {fileID: 0}
+  enemyNav: {fileID: 195503637732739080}
+  enemySounds: {fileID: 82018592504334260}
   startRage: {fileID: 8300000, guid: 4421f4fc7eb185746a0a249f94b1e18b, type: 3}
   rageActive: {fileID: 8300000, guid: c7268a071675dd34ea404bb5f735be9c, type: 3}
   roaming: {fileID: 8300000, guid: fe756b3bd004e324eaf192af518b1e5a, type: 3}
   rageEnterBuffer: 3
-  rageDuration: 15
+  rageDuration: Infinity
   rageCooldown: 5
   rageSpeed: 8
   roamSpeed: 0.8
-  shyGuySounds: {fileID: 82018592504334260}
-  attackScript: {fileID: 114314523711740958}
-  shyGuyAnims: {fileID: 95368199773018834}
-  shyGuy: {fileID: 195503637732739080}
   roamingScript: {fileID: 114627269919516258}
   raycastFinder: {fileID: 135936570488646142}
 --- !u!135 &135936570488646142
@@ -1838,7 +1828,7 @@ CapsuleCollider:
   m_Radius: 0.01
   m_Height: 0.07
   m_Direction: 1
-  m_Center: {x: 0, y: 0.035, z: 0}
+  m_Center: {x: 0, y: 0.025, z: 0}
 --- !u!136 &136720875667737922
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1990,7 +1980,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.065
+  m_Height: 0.06
   m_BaseOffset: 0.013
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

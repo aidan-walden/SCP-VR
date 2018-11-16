@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class LarryAttack : MonoBehaviour {
-    [SerializeField] Animator larryAnims;
+public class LarryAttack : Enemy {
+    
     float floorRiseTime, idleTime, grabTime, ceilingWalkTime, ceilingRiseTime, ceilingGrabTime, walkTime;
     [SerializeField] private float larryTimer;
-    [SerializeField] TargetPlayer targetPlayer;
-    [SerializeField] NavMeshAgent larryNav;
     [SerializeField] AudioClip riseFromGround, laugh;
-    [SerializeField] AudioSource larryBase, larryFace;
-    GameObject mucus, player;
+    [SerializeField] AudioSource larryBase;
+    GameObject mucus;
     [SerializeField] GameObject mucusPrefab;
     [SerializeField] Vector3 newMucusScale;
     public bool growMucus = false;
@@ -19,22 +17,21 @@ public class LarryAttack : MonoBehaviour {
 	void Start () {
         larryTimer = Random.Range(300, 600);
         updateAnimTimes();
-        player = targetPlayer.player.transform.root.gameObject;
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.L))
         {
-            startAttack(targetPlayer.player.transform);
+            startAttack(player.transform);
         }
-        if(!targetPlayer.PlayerTargeted)
+        if(!playerTargeted)
         {
             larryTimer -= Time.deltaTime;
         }
         if (larryTimer <= 0)
         {
-            startAttack(targetPlayer.player.transform);
+            startAttack(player.transform);
             larryTimer = Random.Range(300, 600);
         }
         if(growMucus)
@@ -55,19 +52,19 @@ public class LarryAttack : MonoBehaviour {
 
     private IEnumerator emergeFromGround(Transform victimTransform, Vector3 teleportTo)
     {
-        larryNav.Warp(teleportTo);
+        enemyNav.Warp(teleportTo);
         transform.rotation = Quaternion.Inverse(victimTransform.rotation);
-        larryAnims.SetBool("isIdle", false);
-        larryAnims.SetBool("isComingFromGround", true);
+        enemyAnims.SetBool("isIdle", false);
+        enemyAnims.SetBool("isComingFromGround", true);
         createMucus();
         larryBase.clip = riseFromGround;
         larryBase.Play();
-        larryFace.clip = laugh;
-        larryFace.Play();
+        enemySounds.clip = laugh;
+        enemySounds.Play();
         yield return new WaitForSeconds(floorRiseTime);
-        larryAnims.SetBool("isComingFromGround", false);
-        larryAnims.SetBool("isWalking", true);
-        targetPlayer.targetPlayer(larryNav, true);
+        enemyAnims.SetBool("isComingFromGround", false);
+        enemyAnims.SetBool("isWalking", true);
+        targetPlayer(true);
     }
 
     private void createMucus()
@@ -76,22 +73,27 @@ public class LarryAttack : MonoBehaviour {
         mucus = Instantiate(mucusPrefab);
         Debug.Log("X: " + transform.position.x + " Y: " + transform.position.y + " Z: " + transform.position.z);
         mucus.transform.parent = null;
-        mucus.transform.position = new Vector3(transform.position.x, larryNav.height / transform.localScale.y, transform.position.z);
+        mucus.transform.position = new Vector3(transform.position.x, enemyNav.height / transform.localScale.y, transform.position.z);
         mucus.transform.rotation = Quaternion.identity;
         growMucus = true;
     }
 
-    public void playerLost()
+    protected override void OnPlayerLost()
     {
-        targetPlayer.targetPlayer(larryNav, false);
-        larryAnims.SetBool("isWalking", false);
-        larryAnims.SetBool("isIdle", true);
-        larryNav.Warp(transform.position - (transform.up * 200));
+        targetPlayer(false);
+        enemyAnims.SetBool("isWalking", false);
+        enemyAnims.SetBool("isIdle", true);
+        enemyNav.Warp(transform.position - (transform.up * 200));
+    }
+
+    protected override void OnPlayerAttacked()
+    {
+        bringPlayerToPocket();
     }
 
     private void updateAnimTimes()
     {
-        AnimationClip[] clips = larryAnims.runtimeAnimatorController.animationClips;
+        AnimationClip[] clips = enemyAnims.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in clips)
         {
             switch (clip.name)
@@ -123,8 +125,8 @@ public class LarryAttack : MonoBehaviour {
 
     public void bringPlayerToPocket()
     {
-        player.transform.position += Vector3.up * 20;
-        playerLost();
+        player.transform.root.position += Vector3.up * 20;
+        OnPlayerLost();
     }
 
 }

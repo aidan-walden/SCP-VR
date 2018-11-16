@@ -6,11 +6,12 @@ using UnityEngine.AI;
 public class GenericRoam : MonoBehaviour {
     public float roamingDestMaxDist = 20f;
 
-    [SerializeField] NavMeshAgent enemyNav;
-    [SerializeField] TargetPlayer triggerScript;
+    [SerializeField] Enemy enemy;
+    NavMeshAgent enemyNav;
     bool shouldRoam = true;
 	// Use this for initialization
 	void Start () {
+        enemyNav = enemy.GetComponent<NavMeshAgent>();
         enemyNav.autoTraverseOffMeshLink = false;
         chooseRoamingDest();
 	}
@@ -23,7 +24,7 @@ public class GenericRoam : MonoBehaviour {
             Debug.Log(enemyNav.currentOffMeshLinkData.linkType);
         }
 
-        if(!enemyNav.pathPending && !triggerScript.PlayerTargeted && shouldRoam) //Check if enemy has reached dest
+        if(!enemyNav.pathPending && !enemy.playerTargeted && shouldRoam) //Check if enemy has reached dest
         {
             if(enemyNav.remainingDistance <= enemyNav.stoppingDistance)
             {

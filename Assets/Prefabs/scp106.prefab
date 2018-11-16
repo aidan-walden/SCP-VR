@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 136381496839061636}
   - component: {fileID: 195724462262727420}
   - component: {fileID: 114839080645229076}
-  - component: {fileID: 114412292079985522}
   - component: {fileID: 114259707091949564}
   m_Layer: 0
   m_Name: scp106
@@ -1893,35 +1892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseMusic: {fileID: 8300000, guid: e02db68f6b2442c4d8c2ad2c87575068, type: 3}
   killSound: {fileID: 0}
---- !u!114 &114412292079985522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1875421569409742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 360cb090c52576e4f9df97029a6ecebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyRange: 25
   player: {fileID: 0}
-  playerLost:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114839080645229076}
-        m_MethodName: playerLost
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114839080645229076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1933,14 +1904,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcb146be4c86f649b196400ade1b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  larryAnims: {fileID: 95278565330289370}
+  enemyAnims: {fileID: 95278565330289370}
+  enemyRange: 50
+  player: {fileID: 0}
+  enemyNav: {fileID: 195724462262727420}
+  enemySounds: {fileID: 82709319159376802}
   larryTimer: 0
-  targetPlayer: {fileID: 114412292079985522}
-  larryNav: {fileID: 195724462262727420}
   riseFromGround: {fileID: 8300000, guid: 582c9a646a9b9474a8d0a1b8864059d4, type: 3}
   laugh: {fileID: 8300000, guid: 366a92e0d7e3b28438bd4d85c2bc3f31, type: 3}
   larryBase: {fileID: 82754915318534036}
-  larryFace: {fileID: 82709319159376802}
   mucusPrefab: {fileID: 1702094786533934, guid: 9bc777069c83adf4ba0e38b14bd9773d,
     type: 2}
   newMucusScale: {x: 0.3090967, y: 0.3090967, z: 0.3090967}

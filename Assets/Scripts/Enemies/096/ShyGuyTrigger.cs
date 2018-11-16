@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ShyGuyTrigger : MonoBehaviour {
+[RequireComponent(typeof(GenericRoam))]
+[RequireComponent(typeof(SphereCollider))]
+public class ShyGuyTrigger : Enemy {
     public AudioClip startRage, rageActive, roaming;
     public float rageEnterBuffer = 3f;
     public float rageDuration = 12f;
@@ -19,10 +21,6 @@ public class ShyGuyTrigger : MonoBehaviour {
             return isRaging;
         }
     }
-    [SerializeField] AudioSource shyGuySounds;
-    [SerializeField] TargetPlayer attackScript;
-    [SerializeField] Animator shyGuyAnims;
-    [SerializeField] NavMeshAgent shyGuy;
     [SerializeField] GenericRoam roamingScript;
     [SerializeField] SphereCollider raycastFinder;
 	// Use this for initialization
@@ -47,24 +45,24 @@ public class ShyGuyTrigger : MonoBehaviour {
     {
         raycastFinder.enabled = false;
         roamingScript.toggleRoaming(false);
-        shyGuy.speed = rageSpeed;
+        enemyNav.speed = rageSpeed;
         Debug.Log("096 is coming for you");
         isRaging = true;
-        shyGuyAnims.StopPlayback();
-        shyGuyAnims.SetBool("isRoaming", false);
-        shyGuyAnims.SetBool("isEnteringRage", true);
-        shyGuySounds.Stop();
-        shyGuySounds.loop = false;
-        shyGuySounds.clip = startRage;
-        shyGuySounds.Play();
+        enemyAnims.StopPlayback();
+        enemyAnims.SetBool("isRoaming", false);
+        enemyAnims.SetBool("isEnteringRage", true);
+        enemySounds.Stop();
+        enemySounds.loop = false;
+        enemySounds.clip = startRage;
+        enemySounds.Play();
         yield return new WaitForSeconds(rageEnterBuffer);
-        shyGuySounds.Stop();
-        shyGuySounds.clip = rageActive;
-        shyGuySounds.loop = true;
-        shyGuySounds.Play();
-        shyGuyAnims.SetBool("isEnteringRage", false);
-        shyGuyAnims.SetBool("isRaging", true);
-        attackScript.targetPlayer(shyGuy, true);
+        enemySounds.Stop();
+        enemySounds.clip = rageActive;
+        enemySounds.loop = true;
+        enemySounds.Play();
+        enemyAnims.SetBool("isEnteringRage", false);
+        enemyAnims.SetBool("isRaging", true);
+        targetPlayer(true);
         yield return new WaitForSeconds(rageDuration);
         StartCoroutine(stopRage());
         
@@ -73,15 +71,15 @@ public class ShyGuyTrigger : MonoBehaviour {
     private IEnumerator stopRage()
     {
         raycastFinder.enabled = true;
-        shyGuy.speed = roamSpeed;
-        shyGuySounds.Stop();
-        shyGuySounds.loop = true;
-        shyGuySounds.clip = roaming;
-        shyGuySounds.Play();
-        shyGuyAnims.StopPlayback();
-        shyGuyAnims.SetBool("isRaging", false);
-        shyGuyAnims.SetBool("isRoaming", true);
-        attackScript.targetPlayer(shyGuy, false);
+        enemyNav.speed = roamSpeed;
+        enemySounds.Stop();
+        enemySounds.loop = true;
+        enemySounds.clip = roaming;
+        enemySounds.Play();
+        enemyAnims.StopPlayback();
+        enemyAnims.SetBool("isRaging", false);
+        enemyAnims.SetBool("isRoaming", true);
+        targetPlayer(false);
         roamingScript.toggleRoaming(true);
         yield return new WaitForSeconds(rageCooldown);
         isRaging = false;
