@@ -1905,6 +1905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAnims: {fileID: 95278565330289370}
+  playerTargeted: 0
   enemyRange: 50
   player: {fileID: 0}
   enemyNav: {fileID: 195724462262727420}

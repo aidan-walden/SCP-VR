@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
     public bool playerIsDead = false;
+    public bool GodMode
+    {
+        get
+        {
+            return godMode;
+        }
+    }
 	// Use this for initialization
 	void Start () {
 		
@@ -23,7 +30,7 @@ public class PlayerEvents : MonoBehaviour {
         {
             playerIsDead = true;
             GetComponentInChildren<Camera>().enabled = false;
-            Invoke("loadGame", 3f);
+            Invoke("loadGame", 5f);
         }
     }
 

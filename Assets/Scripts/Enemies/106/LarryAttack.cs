@@ -14,13 +14,16 @@ public class LarryAttack : Enemy {
     [SerializeField] Vector3 newMucusScale;
     public bool growMucus = false;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+        base.Start();
+        lookForPlayer = false;
         larryTimer = Random.Range(300, 600);
         updateAnimTimes();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+        base.Update();
 		if(Input.GetKeyDown(KeyCode.L))
         {
             startAttack(player.transform);
@@ -64,7 +67,7 @@ public class LarryAttack : Enemy {
         yield return new WaitForSeconds(floorRiseTime);
         enemyAnims.SetBool("isComingFromGround", false);
         enemyAnims.SetBool("isWalking", true);
-        targetPlayer(true);
+        OnPlayerSpotted();
     }
 
     private void createMucus()

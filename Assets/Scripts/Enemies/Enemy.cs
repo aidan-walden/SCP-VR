@@ -6,41 +6,65 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour {
     [SerializeField] protected Animator enemyAnims;
-    public bool playerIsInRange, playerTargeted = false;
+    public bool playerTargeted = false;
+    protected bool lookForPlayer = true;
     public float enemyRange;
+    protected float sqrDist;
     [SerializeField] protected GameObject player;
     [SerializeField] protected NavMeshAgent enemyNav;
     [SerializeField] protected AudioSource enemySounds;
-    // Use this for initialization
-    void Start () {
-		
-	}
+    PlayerEvents playerScript;
 
-    void FixedUpdate()
+    protected virtual void Start()
     {
+        enemyNav.autoTraverseOffMeshLink = false;
+        playerScript = player.transform.root.GetComponent<PlayerEvents>();
+    }
+
+    protected virtual void Update()
+    {
+        Debug.Log(this.gameObject.name);
+        Vector3 relativePos = player.transform.position - transform.position;
+        sqrDist = relativePos.sqrMagnitude;
         if (playerTargeted) //Constantly update destination to change with the players position
         {
-            if (enemyRange > 0 && Vector3.Distance(player.transform.position, transform.position) > enemyRange)
+            if (enemyRange > 0 && sqrDist > enemyRange * enemyRange)
             {
                 OnPlayerLost();
             }
-            enemyNav.SetDestination(player.transform.position);
+            else
+            {
+                enemyNav.SetDestination(player.transform.position);
+            }
+        }
+        else if (lookForPlayer)
+        {
+            if (enemyRange > 0 && sqrDist < enemyRange * enemyRange)
+            {
+                OnPlayerSpotted();
+            }
         }
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     protected virtual void OnPlayerLost()
     {
         targetPlayer(false);
+        lookForPlayer = true;
+    }
+
+    protected virtual void OnPlayerSpotted()
+    {
+        lookForPlayer = false;
+        targetPlayer(true);
     }
 
     protected virtual void OnPlayerAttacked()
     {
-        player.transform.root.GetComponent<PlayerEvents>().killPlayer();
+        
+        if(!playerScript.GodMode)
+        {
+            playerScript.killPlayer();
+        }
     }
 
     protected virtual void targetPlayer(bool goAfterPlayer = true) //Stop current destination and enter the update loop
@@ -51,9 +75,7 @@ public class Enemy : MonoBehaviour {
         if (!goAfterPlayer)
         {
             Debug.Log("Clearing dest" + ", " + enemyNav.name);
-            enemyNav.isStopped = true;
             enemyNav.ResetPath();
-            enemyNav.isStopped = false;
 
         }
         enemyNav.gameObject.GetComponent<Music>().toggleChaseMusic();
@@ -65,5 +87,13 @@ public class Enemy : MonoBehaviour {
         {
             OnPlayerAttacked();
         }
+    }
+
+    protected IEnumerator WaitForAnimation(Animation animation)
+    {
+        do
+        {
+            yield return null;
+        } while (animation.isPlaying);
     }
 }

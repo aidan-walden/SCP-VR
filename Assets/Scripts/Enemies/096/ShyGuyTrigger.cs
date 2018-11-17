@@ -24,14 +24,14 @@ public class ShyGuyTrigger : Enemy {
     [SerializeField] GenericRoam roamingScript;
     [SerializeField] SphereCollider raycastFinder;
 	// Use this for initialization
-	void Start () {
+	//protected override void Start () {
         //StartCoroutine(enterRage());
-    }
+    //}
 	
 	// Update is called once per frame
-	void Update () {
+	//void Update () {
         
-	}
+	//}
 
     public void rageMode(bool enteringRage = true)
     {

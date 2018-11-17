@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Footstep : MonoBehaviour {
     public AudioSource footstepsSounds;
     public AudioClip[] footsteps;
