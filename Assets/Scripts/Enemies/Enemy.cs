@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
     [SerializeField] protected Animator enemyAnims;
     public bool playerTargeted = false;
+    public bool enemyChasesPlayer = true;
     protected bool lookForPlayer = true;
     public float enemyRange;
     protected float sqrDist;
@@ -23,9 +24,12 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Update()
     {
-        Debug.Log(this.gameObject.name);
-        Vector3 relativePos = player.transform.position - transform.position;
-        sqrDist = relativePos.sqrMagnitude;
+        Vector3 relativePos;
+        if(enemyChasesPlayer)
+        {
+            relativePos = player.transform.position - transform.position;
+            sqrDist = relativePos.sqrMagnitude;
+        }
         if (playerTargeted) //Constantly update destination to change with the players position
         {
             if (enemyRange > 0 && sqrDist > enemyRange * enemyRange)

@@ -1788,8 +1788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAnims: {fileID: 95368199773018834}
-  playerIsInRange: 0
   playerTargeted: 0
+  enemyChasesPlayer: 0
   enemyRange: 0
   player: {fileID: 0}
   enemyNav: {fileID: 195503637732739080}

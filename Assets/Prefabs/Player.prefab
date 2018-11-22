@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 114553062092943814}
   - component: {fileID: 114902055910687600}
   - component: {fileID: 114591178757887156}
+  - component: {fileID: 114345327447418576}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: Untagged
@@ -731,7 +732,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797374335991358}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -9.77, y: 0, z: -15.76}
+  m_LocalPosition: {x: -0.02, y: 0, z: 28.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4162481276454142}
@@ -1291,6 +1292,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highLightMaterial: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
   fireHapticsOnHightlight: 1
+--- !u!114 &114345327447418576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330509098682706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a8bd8e6f763474dac84b85ecc4b286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radio: {fileID: 0}
+  changeChannelUpAction: {fileID: 11400000, guid: a0c7e153f6eeb784784efd939c7ca5f7,
+    type: 2}
+  changeChannelDownAction: {fileID: 11400000, guid: c2a9e9f6f2fdffb4fae14c34b0d9d2ab,
+    type: 2}
+  hand: {fileID: 0}
 --- !u!114 &114356417886095468
 MonoBehaviour:
   m_ObjectHideFlags: 1
