@@ -9,6 +9,7 @@ using Valve.VR;
 public class Inventory : MonoBehaviour
 {
     public GameObject invSphere, scp096;
+    public Radio radio;
     public float offsetHoriz = 5;
     public float offsetVert = 10;
     GameObject invSphereDisplaying;
@@ -54,7 +55,8 @@ public class Inventory : MonoBehaviour
         //StartCoroutine(DoOpen(hand));
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //scp096.SetActive(!scp096.activeSelf);
-        this.transform.root.position = new Vector3(-3.45f, 0f, 26.19f);
+        //this.transform.root.position = new Vector3(-3.45f, 0f, 26.19f);
+        radio.testChange();
     }
 
     public void Close(Hand hand)

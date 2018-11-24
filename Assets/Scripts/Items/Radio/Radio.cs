@@ -47,17 +47,20 @@ public class Radio : MonoBehaviour {
 
     [SerializeField] AudioSource activeSource;
     [SerializeField] AudioClip radioStatic;
-    List<AudioSource> channelSources = new List<AudioSource>();
     
     // Use this for initialization
     void Awake () {
         //radioChannels[0] = new RadioChannel(1, 0.2f, channelSounds[0].clips);
         //radioChannels[1] = new RadioChannel(2, 0.2f, channelSounds[1].clips);
-        radioChannels[0] = new RadioChannel(1, 0.2f);
-        radioChannels[1] = new RadioChannel(2, 0.2f);
-        radioChannels[2] = new RadioChannel(3, 0.2f);
+        radioChannels[0] = new RadioChannel(1, 0.2f, radioStatic);
+        radioChannels[1] = new RadioChannel(2, 0.2f, radioStatic);
+        radioChannels[2] = new RadioChannel(3, 0.2f, radioStatic);
+        radioChannels[3] = new RadioChannel(4, 0.2f, radioStatic, true);
+        radioChannels[4] = new RadioChannel(5, 0.2f, radioStatic, true);
         radioChannels[1].messages = channelSounds[1].clips;
         radioChannels[2].messages = channelSounds[2].clips;
+        radioChannels[3].messages = channelSounds[3].clips;
+        radioChannels[4].messages = channelSounds[4].clips;
         radioText.text = currentChannel.ToString();
         StartCoroutine(setSounds());
     }
@@ -73,19 +76,25 @@ public class Radio : MonoBehaviour {
         radioChannels[0].messages = customSongs.getAudioClips();
         if(radioChannels[0].messages.Length == 0)
         {
-            AudioClip[] tempList = { radioStatic };
-            radioChannels[0].messages = tempList;
+            radioChannels[0].messages[0] = radioChannels[0].idleSound;
             radioChannels[0].waitBwClipsDuration = 0f;
         }
         foreach (RadioChannel channel in radioChannels)
         {
-            AudioSource channelSounds = this.gameObject.AddComponent<AudioSource>();
-            channelSounds.playOnAwake = false;
-            channelSounds.spatialBlend = 1f;
-            channelSounds.rolloffMode = AudioRolloffMode.Logarithmic;
-            channelSounds.minDistance = 0.2f;
-            channelSounds.clip = channel.messages[0];
-            channelSources.Add(channelSounds);
+            channel.channelSounds = this.gameObject.AddComponent<AudioSource>();
+            channel.channelSounds.playOnAwake = false;
+            channel.channelSounds.spatialBlend = 1f;
+            channel.channelSounds.rolloffMode = AudioRolloffMode.Logarithmic;
+            channel.channelSounds.minDistance = 0.2f;
+            if(channel.isCommsChannel)
+            {
+                channel.channelSounds.clip = channel.idleSound;
+                channel.waitBwClipsDuration = 0f;
+            }
+            else
+            {
+                channel.channelSounds.clip = channel.messages[0];
+            }
         }
     }
 
@@ -93,6 +102,11 @@ public class Radio : MonoBehaviour {
     void Update () {
     }
 
+    public void testChange()
+    {
+        StartCoroutine(radioChannels[3].startComms(radioChannels[3].messages[0]));
+
+    }
     protected virtual void OnAttachedToHand(Hand hand)
     {
         ChannelSwitcher switcher = hand.GetComponent<ChannelSwitcher>();
@@ -111,28 +125,37 @@ public class Radio : MonoBehaviour {
 
     public void changeChannel()
     {
-        foreach(AudioSource source in channelSources)
+        foreach (RadioChannel channel in radioChannels)
         {
-            if(channelSources.IndexOf(source) == CurrentChannel - 1)
+            if (channel.ChannelNum == CurrentChannel)
             {
-                source.mute = false;
-                activeSource = source;
-                if(radioChannels[CurrentChannel - 1].messages.Length == 1)
+                channel.channelSounds.mute = false;
+                if(channel.isCommsChannel)
                 {
-                    source.loop = true;
+                    if(!channel.commsActive)
+                    {
+                        channel.channelSounds.loop = true;
+                    }
                 }
                 else
                 {
-                    source.loop = false;
+                    if (channel.messages.Length == 1)
+                    {
+                        channel.channelSounds.loop = true;
+                    }
+                    else
+                    {
+                        channel.channelSounds.loop = false;
+                    }
                 }
             }
             else
             {
-                source.mute = true;
+                channel.channelSounds.mute = true;
             }
-            if(!source.isPlaying)
+            if(!channel.channelSounds.isPlaying)
             {
-                source.Play();
+                channel.channelSounds.Play();
             }
         }
         if(!radioIsPlaying)
@@ -140,29 +163,42 @@ public class Radio : MonoBehaviour {
             radioIsPlaying = true;
             foreach (RadioChannel channel in radioChannels)
             {
-                StartCoroutine(cycleClips(channel));
+               StartCoroutine(cycleClips(channel));
             }
         }
     }
 
     IEnumerator cycleClips(RadioChannel channel)
     {
-        AudioSource channelSource = channelSources[channel.channelNum - 1];
         if (radioIsPlaying)
         {
-            yield return new WaitForSeconds((channelSource.clip.length - channelSource.time) + channel.WaitBwClipsDuration);
+            yield return new WaitForSeconds((channel.channelSounds.clip.length - channel.channelSounds.time) + channel.WaitBwClipsDuration);
             if(radioIsPlaying)
             {
-                if (channel.currentTrack == channel.messages.Length - 1)
+                if(!channel.isCommsChannel)
                 {
-                    channel.currentTrack = 0;
+                    if (channel.currentTrack == channel.messages.Length - 1)
+                    {
+                        channel.currentTrack = 0;
+                    }
+                    else
+                    {
+                        channel.currentTrack++;
+                    }
+                    channel.channelSounds.clip = channel.messages[channel.currentTrack];
+                    channel.channelSounds.Play();
                 }
                 else
                 {
-                    channel.currentTrack++;
+                    if(!channel.commsActive)
+                    {
+                        if(channel.channelSounds.clip != channel.idleSound)
+                        {
+                            channel.channelSounds.clip = channel.idleSound;
+                        }
+                        channel.channelSounds.Play();
+                    }
                 }
-                channelSource.clip = channel.messages[channel.currentTrack];
-                channelSource.Play();
                 StartCoroutine(cycleClips(channel));
             }
         }
@@ -171,13 +207,13 @@ public class Radio : MonoBehaviour {
     IEnumerator stopRadio()
     {
         playerIsHolding = false;
-        yield return new WaitForSeconds(activeSource.clip.length - activeSource.time);
+        yield return new WaitForSeconds(radioChannels[currentChannel - 1].channelSounds.clip.length - radioChannels[currentChannel - 1].channelSounds.time);
         if(!playerIsHolding)
         {
             radioIsPlaying = false;
-            foreach(AudioSource source in channelSources)
+            foreach(RadioChannel channel in radioChannels)
             {
-                source.Pause();
+                channel.channelSounds.Pause();
             }
         }
     }
