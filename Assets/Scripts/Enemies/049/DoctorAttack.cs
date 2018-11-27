@@ -7,7 +7,7 @@ public class DoctorAttack : Enemy {
     [SerializeField] float armReachRange;
     protected override void OnPlayerSpotted()
     {
-        StartCoroutine(startWalk());
+        startWalk();
         base.OnPlayerSpotted();
         
     }
@@ -32,13 +32,10 @@ public class DoctorAttack : Enemy {
             }
         }
     }
-    IEnumerator startWalk()
+    void startWalk()
     {
-        enemyAnims.SetTrigger("startWalk");
         enemyAnims.SetBool("isIdle", false);
         enemyAnims.SetBool("isWalking", true);
-        yield return new WaitForSeconds(enemyAnims.GetAnimatorTransitionInfo(0).duration);
-        enemyAnims.ResetTrigger("startWalk");
     }
 
     void raiseArmWhileWalking()
