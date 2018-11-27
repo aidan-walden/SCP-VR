@@ -18,6 +18,8 @@ public class DoctorAttack : Enemy {
 
         if(playerTargeted && armReachRange > 0 )
         {
+            enemyAnims.SetBool("isIdle", false);
+            enemyAnims.SetBool("isWalking", true);
             if(sqrDist < armReachRange * armReachRange && !enemyAnims.GetBool("isInReachRange"))
             {
                 enemyAnims.ResetTrigger("stopReachRange");
