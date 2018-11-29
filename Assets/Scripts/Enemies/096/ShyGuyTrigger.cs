@@ -41,6 +41,15 @@ public class ShyGuyTrigger : Enemy {
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            enemyNav.Warp(new Vector3(-15.07f, 0.1580999f, -27.327f));
+        }
+    }
+
     private IEnumerator enterRage()
     {
         raycastFinder.enabled = false;

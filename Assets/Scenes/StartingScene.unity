@@ -2198,6 +2198,11 @@ Prefab:
       propertyPath: radio
       value: 
       objectReference: {fileID: 1332895159}
+    - target: {fileID: 114006526168649594, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
+        type: 2}
+      propertyPath: godMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 2}
   m_IsPrefabAsset: 0
@@ -11957,6 +11962,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 448012595}
+    - target: {fileID: 1726483508071840, guid: 46900b11ce52c234a9b402b6bbb0ee17, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46900b11ce52c234a9b402b6bbb0ee17, type: 2}
   m_IsPrefabAsset: 0
@@ -22101,20 +22110,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114846162413572952, guid: c68b25f7333a3284ea737eca45d27e4c,
+    - target: {fileID: 114280609336631410, guid: c68b25f7333a3284ea737eca45d27e4c,
         type: 2}
-      propertyPath: player
+      propertyPath: playerCam
       value: 
-      objectReference: {fileID: 815615926}
+      objectReference: {fileID: 2009009421}
     - target: {fileID: 114782223769784368, guid: c68b25f7333a3284ea737eca45d27e4c,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 448012595}
-    - target: {fileID: 1791511515966906, guid: c68b25f7333a3284ea737eca45d27e4c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114846162413572952, guid: c68b25f7333a3284ea737eca45d27e4c,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 815615926}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68b25f7333a3284ea737eca45d27e4c, type: 2}
   m_IsPrefabAsset: 0
@@ -24538,6 +24548,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1824904891}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1827453947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827453948}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827453948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1827453947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.07, y: 0.15809989, z: -27.327}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829827242
 GameObject:
   m_ObjectHideFlags: 0
@@ -26712,6 +26750,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!20 &2009009421 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20810754020046992, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
+    type: 2}
+  m_PrefabInternal: {fileID: 138158030}
 --- !u!1 &2012016173
 GameObject:
   m_ObjectHideFlags: 0
@@ -28164,11 +28207,6 @@ Prefab:
       propertyPath: itemsManager
       value: 
       objectReference: {fileID: 2012016173}
-    - target: {fileID: 64782197022719372, guid: 748faa9283122d44aa07590db8e22200,
-        type: 2}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 748faa9283122d44aa07590db8e22200, type: 2}
   m_IsPrefabAsset: 0

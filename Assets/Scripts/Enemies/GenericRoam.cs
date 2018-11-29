@@ -6,19 +6,23 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class GenericRoam : MonoBehaviour {
     public float roamingDestMaxDist = 20f;
-
+    int destTries = 0;
     [SerializeField] Enemy enemy;
     NavMeshAgent enemyNav;
     bool shouldRoam = true;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         enemyNav = enemy.GetComponent<NavMeshAgent>();
         enemyNav.autoTraverseOffMeshLink = false;
-        chooseRoamingDest();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        chooseRoamingDest();
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(enemyNav.isOnOffMeshLink)
         {
@@ -39,46 +43,29 @@ public class GenericRoam : MonoBehaviour {
 
     void chooseRoamingDest()
     {
-        //Create a sphere trigger to check if the area is suitable for a destination
-        GameObject checkArea = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        checkArea.AddComponent(typeof(SphereCollider));
-        //checkArea.AddComponent(typeof(MeshRenderer));
-        checkArea.AddComponent(typeof(RoamingDestDetector));
-        //checkArea.GetComponent<MeshRenderer>().enabled = false;
-        checkArea.GetComponent<SphereCollider>().isTrigger = true;
-        checkArea.name = "Check Sphere";
-        findValidDest(checkArea);
-        
-    }
-
-    void findValidDest(GameObject checkArea)
-    {
-        checkArea.transform.position = new Vector3(transform.position.x, transform.position.y + 0.46f, transform.position.z);
         Vector3 raycastDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); //Choose a random direction to go in
         RaycastHit dest;
         if (!Physics.Raycast(transform.position, raycastDir, out dest, roamingDestMaxDist)) //If the raycast didnt find any obstructions
         {
             Vector3 endPos = transform.position + raycastDir * roamingDestMaxDist;
-            checkArea.transform.position = endPos; //Put the sphere at the end of the raycast
-            if (checkArea.GetComponent<RoamingDestDetector>().getCollidingObj().Count <= 0) //Is the area of the sphere empty?
-            {
-                enemyNav.destination = endPos;
-            }
-            else
-            {
-                Destroy(checkArea);
-                findValidDest(checkArea); //Retry
-            }
-            
-            
+            enemyNav.SetDestination(endPos);
         }
         else
         {
-            Destroy(checkArea);
-            findValidDest(checkArea); //Retry
+            Debug.Log("Could not find valid destination");
+            destTries++;
+            if(destTries <= 5)
+            {
+                chooseRoamingDest(); //Retry
+            }
+            else
+            {
+                destTries = 0;
+                Invoke("chooseRoamingDest", 5f);
+            }
         }
-        Destroy(checkArea);
     }
+
 
     public void toggleRoaming(bool roam)
     {
