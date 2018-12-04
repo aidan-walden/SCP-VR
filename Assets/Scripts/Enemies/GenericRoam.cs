@@ -10,8 +10,9 @@ public class GenericRoam : MonoBehaviour {
     [SerializeField] Enemy enemy;
     NavMeshAgent enemyNav;
     bool shouldRoam = true;
-	// Use this for initialization
-	void Awake () {
+    bool isChoosingDest = false;
+    // Use this for initialization
+    void Awake () {
         enemyNav = enemy.GetComponent<NavMeshAgent>();
         enemyNav.autoTraverseOffMeshLink = false;
 	}
@@ -35,7 +36,10 @@ public class GenericRoam : MonoBehaviour {
             {
                 if(!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
                 {
-                    chooseRoamingDest();
+                    if(!isChoosingDest)
+                    {
+                        chooseRoamingDest();
+                    }
                 }
             }
         }
@@ -43,19 +47,21 @@ public class GenericRoam : MonoBehaviour {
 
     void chooseRoamingDest()
     {
+        isChoosingDest = true;
         Vector3 raycastDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); //Choose a random direction to go in
         RaycastHit dest;
         if (!Physics.Raycast(transform.position, raycastDir, out dest, roamingDestMaxDist)) //If the raycast didnt find any obstructions
         {
             Vector3 endPos = transform.position + raycastDir * roamingDestMaxDist;
             enemyNav.SetDestination(endPos);
+            isChoosingDest = false;
         }
         else
         {
-            Debug.Log("Could not find valid destination");
-            destTries++;
-            if(destTries <= 5)
+            Debug.Log("Could not find valid destination. Dest Tries: " + destTries);
+            if(destTries < 5)
             {
+                destTries++;
                 chooseRoamingDest(); //Retry
             }
             else
