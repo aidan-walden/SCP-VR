@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
-    public bool playerIsDead = false;
+    public bool playerIsDead, playerIsBlinking = false;
     public bool GodMode
     {
         get
@@ -14,6 +14,8 @@ public class PlayerEvents : MonoBehaviour {
             return godMode;
         }
     }
+
+    public float blinkDur = 0.3f;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,7 +23,10 @@ public class PlayerEvents : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            blink();
+        }
 	}
 
     public void killPlayer()
@@ -49,5 +54,21 @@ public class PlayerEvents : MonoBehaviour {
         yield return new WaitForSeconds(audioSource.clip.length);
         Destroy(audioSource); //Destory the audio source after the sound is done playing so that the components of the player don't get cluttered
 
+    }
+
+    void blinkOn()
+    {
+        playerIsBlinking = true;
+    }
+
+    void blinkOff()
+    {
+        playerIsBlinking = false;
+    }
+
+    void blink()
+    {
+        blinkOn();
+        Invoke("blinkOff", blinkDur);
     }
 }

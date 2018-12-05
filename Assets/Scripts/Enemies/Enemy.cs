@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AgentLinkMover))]
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour {
     [SerializeField] protected Animator enemyAnims;
     public bool playerTargeted = false;
@@ -14,7 +17,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected GameObject player;
     [SerializeField] protected NavMeshAgent enemyNav;
     [SerializeField] protected AudioSource enemySounds;
-    PlayerEvents playerScript;
+    protected PlayerEvents playerScript;
 
     protected virtual void Start()
     {
@@ -82,7 +85,12 @@ public class Enemy : MonoBehaviour {
             enemyNav.ResetPath();
 
         }
-        enemyNav.gameObject.GetComponent<Music>().toggleChaseMusic();
+        Music enemyMusic = enemyNav.gameObject.GetComponent<Music>();
+        if(enemyMusic != null)
+        {
+            enemyMusic.toggleChaseMusic();
+        }
+        
     }
 
     protected virtual void OnTriggerStay(Collider other)

@@ -10,7 +10,19 @@ public class SlidingDoor : MonoBehaviour {
     private NavMeshAgent enemyNav;
     public float speed = 0.7127584f;
     [SerializeField] float computerCloseChance = 15f;
-    public bool enemyCanOpen = true;
+    [SerializeField] private bool enemyCanOpen = true;
+    public bool EnemyCanOpen
+    {
+        get
+        {
+            return enemyCanOpen;
+        }
+        set
+        {
+            offMeshLink.enabled = value;
+            enemyCanOpen = value;
+        }
+    }
     public bool doorChanging, doorStartsOpen, isDependent = false;
     [SerializeField] private AudioClip[] doorOpen, doorClose;
     [SerializeField] private AudioClip computerSound;
@@ -21,6 +33,7 @@ public class SlidingDoor : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        EnemyCanOpen = enemyCanOpen;
         origPos = transform.position;
         moveTo = origPos;
         doorSounds = GetComponent<AudioSource>();

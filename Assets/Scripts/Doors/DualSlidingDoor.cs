@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class DualSlidingDoor : MonoBehaviour
 {
-    public bool enemyCanOpen;
+    public bool enemyCanOpen = true;
     private bool doorIsOpen = false;
     public bool DoorIsOpen
     {
@@ -46,7 +46,7 @@ public class DualSlidingDoor : MonoBehaviour
         doorIsOpen = doorStartsOpen;
         foreach(SlidingDoor door in doors)
         {
-            door.enemyCanOpen = enemyCanOpen;
+            door.EnemyCanOpen = enemyCanOpen;
         }
     }
     // Update is called once per frame
