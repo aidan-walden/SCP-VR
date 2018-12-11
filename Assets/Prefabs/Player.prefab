@@ -1177,8 +1177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1054d241b6f024c9a47eb01719e5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godMode: 0
+  godMode: 1
+  blinkOverlay: {fileID: 0}
+  blinkSmooth: 10
   playerIsDead: 0
+  playerIsBlinking: 0
+  blinkDur: 0.3
 --- !u!114 &114019939348931460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1192,6 +1196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invSphere: {fileID: 1477860607310606, guid: 41fc1d63a5a573e469924e42ed0f5006, type: 2}
   scp096: {fileID: 0}
+  radio: {fileID: 0}
   offsetHoriz: 5
   offsetVert: 10
   openAction: {fileID: 11400000, guid: 912df99dacbba2540a79923dbb899aea, type: 2}
@@ -1429,6 +1434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invSphere: {fileID: 1477860607310606, guid: 41fc1d63a5a573e469924e42ed0f5006, type: 2}
   scp096: {fileID: 0}
+  radio: {fileID: 0}
   offsetHoriz: 5
   offsetVert: 10
   openAction: {fileID: 11400000, guid: 912df99dacbba2540a79923dbb899aea, type: 2}

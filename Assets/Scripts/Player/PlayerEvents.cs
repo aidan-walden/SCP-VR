@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
+    [SerializeField] Image blinkOverlay;
+    [SerializeField] float blinkSmooth;
     public bool playerIsDead, playerIsBlinking = false;
     public bool GodMode
     {
@@ -25,9 +27,13 @@ public class PlayerEvents : MonoBehaviour {
 	void Update () {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            blink();
+            StartCoroutine(blink());
         }
-	}
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log(blinkOverlay.color.a);
+        }
+    }
 
     public void killPlayer()
     {
@@ -56,19 +62,52 @@ public class PlayerEvents : MonoBehaviour {
 
     }
 
-    void blinkOn()
+    IEnumerator blinkOn()
     {
+        while(blinkOverlay.color.a < 1f)
+        {
+            Debug.Log("Blink overlay opacity: " + blinkOverlay.color.a);
+            float newOpacity = Mathf.Lerp(blinkOverlay.color.a, 1f, Time.deltaTime * blinkSmooth);
+            if (newOpacity >= 0.99)
+            {
+                Debug.Log("Close enough");
+                newOpacity = 1f;
+            }
+            blinkOverlay.color = new Color(0f, 0f, 0f, newOpacity);
+            yield return null;
+        }
+        Debug.Log("player is blinking");
         playerIsBlinking = true;
+        yield return null;
     }
 
-    void blinkOff()
+    IEnumerator blinkOff()
     {
         playerIsBlinking = false;
+        while (blinkOverlay.color.a > 0f)
+        {
+            Debug.Log("Blink overlay opacity: " + blinkOverlay.color.a);
+            float newOpacity = Mathf.Lerp(blinkOverlay.color.a, 0f, Time.deltaTime * blinkSmooth);
+            if (newOpacity <= 0.01)
+            {
+                newOpacity = 0f;
+            }
+            blinkOverlay.color = new Color(0f, 0f, 0f, newOpacity);
+            yield return null;
+        }
+        Debug.Log("player is not blinking");
+        yield return null;
     }
 
-    void blink()
+    IEnumerator blink()
     {
-        blinkOn();
-        Invoke("blinkOff", blinkDur);
+        StartCoroutine(blinkOn());
+        yield return new WaitUntil(() => playerIsBlinking);
+        Invoke("startBlinkOff", blinkDur);
+    }
+
+    void startBlinkOff()
+    {
+        StartCoroutine(blinkOff());
     }
 }
