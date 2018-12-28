@@ -14,10 +14,11 @@ public class Enemy : MonoBehaviour {
     protected bool lookForPlayer = true;
     public float enemyRange;
     protected float sqrDist;
-    [SerializeField] protected GameObject player;
+    [SerializeField] protected GameObject player, forceDestination;
     [SerializeField] protected NavMeshAgent enemyNav;
     [SerializeField] protected AudioSource enemySounds;
     protected PlayerEvents playerScript;
+    [SerializeField] protected GenericRoam enemyRoam;
 
     protected virtual void Start()
     {
@@ -51,16 +52,31 @@ public class Enemy : MonoBehaviour {
                 OnPlayerSpotted();
             }
         }
+        if(Input.GetKeyDown(KeyCode.F9))
+        {
+            enemyNav.SetDestination(forceDestination.transform.position);
+        }
     }
 
     protected virtual void OnPlayerLost()
     {
+        if (enemyRoam != null)
+        {
+            enemyRoam.toggleRoaming(true);
+        }
         targetPlayer(false);
         lookForPlayer = true;
     }
 
     protected virtual void OnPlayerSpotted()
     {
+        enemyNav.isStopped = true;
+        if(enemyRoam != null)
+        {
+            enemyRoam.toggleRoaming(false);
+        }
+        enemyNav.SetDestination(transform.position);
+        enemyNav.isStopped = false;
         lookForPlayer = false;
         targetPlayer(true);
     }

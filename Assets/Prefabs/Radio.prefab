@@ -226,8 +226,7 @@ MonoBehaviour:
     channelNum: 0
     currentTrack: 0
     waitBwClipsDuration: 0.2
-    messages:
-    - {fileID: 8300000, guid: f34152eb82ca34240a7c92fe2e62506f, type: 3}
+    messages: []
     isCommsChannel: 0
     channelSounds: {fileID: 0}
     idleSound: {fileID: 0}
@@ -266,6 +265,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2d9b9f15e38dad746ba30f219f784759, type: 3}
     - {fileID: 8300000, guid: f0a8f8fe062fa0f40910f1c86c57e352, type: 3}
     - {fileID: 8300000, guid: b65de4727ad659949919845319616959, type: 3}
+  - clips:
+    - {fileID: 8300000, guid: f34152eb82ca34240a7c92fe2e62506f, type: 3}
+  - clips: []
   activeSource: {fileID: 0}
   radioStatic: {fileID: 8300000, guid: d327aa0a7ef40bb4495f3687ab47f0b5, type: 3}
 --- !u!114 &114167290463778928
@@ -326,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffefbea063cab884ca33e5a449e5c22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachmentFlags: 80
+  attachmentFlags: 88
   attachmentOffset: {fileID: 0}
   catchingSpeedThreshold: -1
   releaseVelocityStyle: 1

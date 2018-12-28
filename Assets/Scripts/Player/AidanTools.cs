@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace AidanTools
 {
+
     public class AidanTools : MonoBehaviour
     {
 	    public bool calculateIfInBounds(Plane[] planes, GameObject obj)
@@ -16,12 +17,10 @@ namespace AidanTools
             {
                 if(GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
                 {
-                    Debug.Log("Object is within bounds");
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Object is out of bounds");
                     return false;
                 }
             }
@@ -45,24 +44,20 @@ namespace AidanTools
                         Debug.DrawRay(cam.transform.position, obj.transform.position - cam.transform.position, Color.green);
                         if(hit.collider.gameObject.Equals(obj))
                         {
-                            Debug.Log("Object is visible because the raycast hit it");
                             return true;
                         }
                         else
                         {
-                            Debug.Log("Object is not visible because the raycast hit " + hit.collider.gameObject.name + ", whose root is " + hit.collider.transform.root.name);
                             return false;
                         }
                     }
                     else
                     {
-                        Debug.Log("Object is visible because it is in bounds but the raycast didnt hit anything");
                         return true;
                     }
                 }
                 else
                 {
-                    Debug.Log("Object is not visible because it is not in bounds");
                     return false;
                 }
             }

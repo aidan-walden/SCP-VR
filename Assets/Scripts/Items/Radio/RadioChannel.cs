@@ -49,11 +49,11 @@ public class RadioChannel {
 
     public RadioChannel(int channelNum, float waitBwClipsDuration, AudioClip idleSound, bool isCommsChannel = false)
     {
-        Debug.Log("this.channelNum: " + this.channelNum);
-        Debug.Log("channelNum: " + channelNum);
+
+
         this.channelNum = channelNum;
-        Debug.Log("this.channelNum after: " + this.channelNum);
-        Debug.Log("channelNum after: " + channelNum);
+
+
         this.waitBwClipsDuration = waitBwClipsDuration;
         this.isCommsChannel = isCommsChannel;
         this.idleSound = idleSound;

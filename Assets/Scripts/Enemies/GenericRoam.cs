@@ -6,24 +6,24 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class GenericRoam : MonoBehaviour {
     public float roamingDestMaxDist = 20f;
-    int destTries = 0;
-    [SerializeField] Enemy enemy;
-    NavMeshAgent enemyNav;
-    bool shouldRoam = true;
-    bool isChoosingDest = false;
+    protected int destTries = 0;
+    [SerializeField] protected Enemy enemy;
+    protected NavMeshAgent enemyNav;
+    protected bool shouldRoam = true;
+    protected bool isChoosingDest = false;
     // Use this for initialization
-    void Awake () {
+    protected virtual void Awake () {
         enemyNav = enemy.GetComponent<NavMeshAgent>();
         enemyNav.autoTraverseOffMeshLink = false;
 	}
 
-    private void Start()
+    protected virtual void Start()
     {
-        chooseRoamingDest();
+        StartCoroutine(chooseRoamingDest());
     }
 
     // Update is called once per frame
-    void Update () {
+    protected virtual void Update () {
 
         if(enemyNav.isOnOffMeshLink)
         {
@@ -38,14 +38,14 @@ public class GenericRoam : MonoBehaviour {
                 {
                     if(!isChoosingDest)
                     {
-                        chooseRoamingDest();
+                        StartCoroutine(chooseRoamingDest());
                     }
                 }
             }
         }
     }
 
-    void chooseRoamingDest()
+    protected virtual IEnumerator chooseRoamingDest()
     {
         isChoosingDest = true;
         Vector3 raycastDir = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); //Choose a random direction to go in
@@ -62,7 +62,7 @@ public class GenericRoam : MonoBehaviour {
             if(destTries < 5)
             {
                 destTries++;
-                chooseRoamingDest(); //Retry
+                StartCoroutine(chooseRoamingDest()); //Retry
             }
             else
             {
@@ -70,10 +70,11 @@ public class GenericRoam : MonoBehaviour {
                 Invoke("chooseRoamingDest", 5f);
             }
         }
+        yield return null;
     }
 
 
-    public void toggleRoaming(bool roam)
+    public virtual void toggleRoaming(bool roam)
     {
         shouldRoam = roam;
         enemyNav.ResetPath();

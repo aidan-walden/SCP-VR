@@ -1921,7 +1921,7 @@ GameObject:
   - component: {fileID: 114213295667920898}
   m_Layer: 0
   m_Name: InputDoor
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2931,7 +2931,7 @@ GameObject:
   - component: {fileID: 114542836588660434}
   m_Layer: 0
   m_Name: OutputDoor
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27495,14 +27495,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31088938a59b3c540b8e0112a945c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openPos: {fileID: 0}
+  speed: 0.4
+  computerCloseChance: 0
   enemyCanOpen: 0
+  doorChanging: 0
   doorStartsOpen: 0
-  enemyIsWalkingThru: 0
-  doorIsLocked: 0
-  doors:
-  - {fileID: 114267678671800576}
-  - {fileID: 114563330952163772}
-  doorSounds: {fileID: 82293863363954312}
+  isDependent: 0
   doorOpen:
   - {fileID: 8300000, guid: 69289b9362fef694c9756ae451a6aeb2, type: 3}
   - {fileID: 8300000, guid: a2b05a513569f0a4482f2763131d11b9, type: 3}
@@ -27512,8 +27511,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a58574c47a199de459b14c4d41c5f422, type: 3}
   - {fileID: 8300000, guid: d3b4640a02a64ab44b42a71db5f04dc9, type: 3}
   computerSound: {fileID: 0}
-  speed: 0.4
-  computerCloseChance: 0
+  offMeshLink: {fileID: 0}
+  doorSounds: {fileID: 82293863363954312}
+  doors:
+  - {fileID: 114267678671800576}
+  - {fileID: 114563330952163772}
 --- !u!114 &114213295667920898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27924,14 +27926,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31088938a59b3c540b8e0112a945c509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openPos: {fileID: 0}
+  speed: 1
+  computerCloseChance: 5
   enemyCanOpen: 1
+  doorChanging: 0
   doorStartsOpen: 0
-  enemyIsWalkingThru: 0
-  doorIsLocked: 0
-  doors:
-  - {fileID: 114010244325809140}
-  - {fileID: 114375750495092762}
-  doorSounds: {fileID: 82775388766976506}
+  isDependent: 0
   doorOpen:
   - {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
   - {fileID: 8300000, guid: c92f45fa4c6807c42b5dfff7797267b0, type: 3}
@@ -27941,8 +27942,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2db2bd608bda9040a15229b93d9f361, type: 3}
   - {fileID: 8300000, guid: 0fd2874303936814fbb20ee6308f550e, type: 3}
   computerSound: {fileID: 8300000, guid: 9f1fbb1ffd9f1b540b04caca7cd560a1, type: 3}
-  speed: 1
-  computerCloseChance: 5
+  offMeshLink: {fileID: 0}
+  doorSounds: {fileID: 82775388766976506}
+  doors:
+  - {fileID: 114010244325809140}
+  - {fileID: 114375750495092762}
 --- !u!114 &114476838309481788
 MonoBehaviour:
   m_ObjectHideFlags: 1

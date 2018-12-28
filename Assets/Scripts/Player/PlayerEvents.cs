@@ -16,11 +16,23 @@ public class PlayerEvents : MonoBehaviour {
             return godMode;
         }
     }
-
+    private bool ringOn = false;
+    public bool RingOn
+    {
+        get
+        {
+            return ringOn;
+        }
+        set
+        {
+            godMode = value;
+            ringOn = value;
+        }
+    }
     public float blinkDur = 0.3f;
 	// Use this for initialization
 	void Start () {
-		
+        RingOn = true;
 	}
 	
 	// Update is called once per frame

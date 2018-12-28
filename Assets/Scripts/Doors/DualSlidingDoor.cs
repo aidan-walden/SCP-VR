@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DualSlidingDoor : MonoBehaviour
+public class DualSlidingDoor : SlidingDoor
 {
-    public bool enemyCanOpen = true;
-    private bool doorIsOpen = false;
     public bool DoorIsOpen
     {
         get
@@ -15,15 +13,7 @@ public class DualSlidingDoor : MonoBehaviour
             return doorIsOpen;
         }
     }
-    public bool doorStartsOpen, enemyIsWalkingThru, doorIsLocked = false;
-    private NavMeshAgent enemyNav;
-    private AgentLinkMover agentLinkMover;
     [SerializeField] private SlidingDoor[] doors;
-    [SerializeField] AudioSource doorSounds;
-    [SerializeField] private AudioClip[] doorOpen, doorClose;
-    [SerializeField] private AudioClip computerSound;
-    [SerializeField] float speed = 1f;
-    [SerializeField] float computerCloseChance = 15f;
     public float Speed
     {
         get
@@ -40,7 +30,7 @@ public class DualSlidingDoor : MonoBehaviour
         } 
     }
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         Speed = speed;
         doorIsOpen = doorStartsOpen;
@@ -49,22 +39,15 @@ public class DualSlidingDoor : MonoBehaviour
             door.EnemyCanOpen = enemyCanOpen;
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    private void Awake()
-    {
-        
-    }
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         string tag = other.transform.root.gameObject.tag;
         if (tag == "EnemyNPC")
         {
             enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
             agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
+            enemyScript = other.transform.root.GetComponent<Enemy>();
+            
         }
         else if(tag == "Player")
         {
@@ -77,7 +60,7 @@ public class DualSlidingDoor : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
         if (enemyNav != null)
         {
@@ -95,16 +78,14 @@ public class DualSlidingDoor : MonoBehaviour
                     //speed /= 1.5f;
                     StartCoroutine(agentLinkMover.MoveNavMesh());
                     enemyIsWalkingThru = true;
-
+                    if (!enemyScript.playerTargeted)
+                    {
+                        StartCoroutine(closeDoorBehind());
+                    }
                 }
 
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        enemyIsWalkingThru = false;
     }
 
     public void changeDoorState()
@@ -112,7 +93,7 @@ public class DualSlidingDoor : MonoBehaviour
         moveDoor(!doorIsOpen);
     }
 
-    public void moveDoor(bool openDoor)
+    public override void moveDoor(bool openDoor)
     {
         if(doorStartsOpen)
         {
@@ -138,15 +119,5 @@ public class DualSlidingDoor : MonoBehaviour
             }
             doorIsOpen = openDoor;
         } 
-    }
-
-    IEnumerator playComputerSound(AudioClip sound)
-    {
-        AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
-        audioSource.spatialBlend = 1f;
-        audioSource.clip = sound;
-        audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length);
-        Destroy(audioSource);
     }
 }

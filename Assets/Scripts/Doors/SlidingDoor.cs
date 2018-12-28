@@ -7,10 +7,11 @@ using UnityEngine.AI;
 public class SlidingDoor : MonoBehaviour {
     public Transform openPos;
     private Vector3 moveTo, origPos;
-    private NavMeshAgent enemyNav;
+    protected NavMeshAgent enemyNav;
+    protected Enemy enemyScript;
     public float speed = 0.7127584f;
-    [SerializeField] float computerCloseChance = 15f;
-    [SerializeField] private bool enemyCanOpen = true;
+    [SerializeField] protected float computerCloseChance = 15f;
+    [SerializeField] protected bool enemyCanOpen = true;
     public bool EnemyCanOpen
     {
         get
@@ -23,16 +24,17 @@ public class SlidingDoor : MonoBehaviour {
             enemyCanOpen = value;
         }
     }
-    public bool doorChanging, doorStartsOpen, isDependent = false;
-    [SerializeField] private AudioClip[] doorOpen, doorClose;
-    [SerializeField] private AudioClip computerSound;
-    private bool doorIsOpen, enemyIsWalkingThru, doorIsLocked = false;
-    [SerializeField] OffMeshLink offMeshLink;
-    AgentLinkMover agentLinkMover;
+    public bool doorChanging, doorStartsOpen = false;
+    [SerializeField] bool isDependent = false;
+    [SerializeField] protected AudioClip[] doorOpen, doorClose;
+    [SerializeField] protected AudioClip computerSound;
+    protected bool doorIsOpen, enemyIsWalkingThru, doorIsLocked = false;
+    public OffMeshLink offMeshLink;
+    protected AgentLinkMover agentLinkMover;
     [HideInInspector] public AudioSource doorSounds;
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
         EnemyCanOpen = enemyCanOpen;
         origPos = transform.position;
         moveTo = origPos;
@@ -45,7 +47,7 @@ public class SlidingDoor : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
         if(doorChanging)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
@@ -64,7 +66,7 @@ public class SlidingDoor : MonoBehaviour {
     }
 
 
-    public void moveDoor(bool openDoor)
+    public virtual void moveDoor(bool openDoor)
     {
         if (doorStartsOpen)
         {
@@ -99,7 +101,7 @@ public class SlidingDoor : MonoBehaviour {
             doorChanging = true;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(!isDependent)
         {
@@ -107,6 +109,8 @@ public class SlidingDoor : MonoBehaviour {
             {
                 enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
                 agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
+                enemyScript = other.transform.root.GetComponent<Enemy>();
+                
             }
             else if (tag == "Player")
             {
@@ -121,7 +125,7 @@ public class SlidingDoor : MonoBehaviour {
         }
         
     }
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         if(!isDependent)
         {
@@ -140,7 +144,10 @@ public class SlidingDoor : MonoBehaviour {
                         //speed /= 1.5f;
                         StartCoroutine(agentLinkMover.MoveNavMesh());
                         enemyIsWalkingThru = true;
-
+                        if (!enemyScript.playerTargeted)
+                        {
+                            StartCoroutine(closeDoorBehind());
+                        }
                     }
 
                 }
@@ -148,15 +155,16 @@ public class SlidingDoor : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if(other.transform.root.gameObject.tag == "EnemyNPC")
         {
+            Debug.Log("Closing door behind enemy");
             enemyIsWalkingThru = false;
         }
     }
 
-    IEnumerator playComputerSound(AudioClip sound)
+    protected virtual IEnumerator playComputerSound(AudioClip sound)
     {
         AudioSource audioSource = this.gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1f;
@@ -164,5 +172,11 @@ public class SlidingDoor : MonoBehaviour {
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
         Destroy(audioSource);
+    }
+
+    protected virtual IEnumerator closeDoorBehind()
+    {
+        yield return new WaitUntil(() => !enemyIsWalkingThru);
+        moveDoor(false);
     }
 }

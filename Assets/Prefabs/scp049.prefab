@@ -718,6 +718,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1583331715518870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4354895166743210}
+  - component: {fileID: 135073611214615080}
+  - component: {fileID: 114576006894424854}
+  m_Layer: 0
+  m_Name: DoorDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1608922669379952
 GameObject:
   m_ObjectHideFlags: 1
@@ -894,8 +911,10 @@ GameObject:
   - component: {fileID: 95829981910028470}
   - component: {fileID: 54633140984719416}
   - component: {fileID: 136260662120797162}
+  - component: {fileID: 136680219742337810}
   - component: {fileID: 195414990111926684}
   - component: {fileID: 114500173710582120}
+  - component: {fileID: 114529960336835066}
   - component: {fileID: 114098643860262012}
   - component: {fileID: 114195612383113294}
   m_Layer: 0
@@ -1593,6 +1612,19 @@ Transform:
   m_Father: {fileID: 4614983017376522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4354895166743210
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583331715518870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4885436248813792}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4357253412158808
 Transform:
   m_ObjectHideFlags: 1
@@ -2269,6 +2301,7 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children:
   - {fileID: 4756950189798238}
+  - {fileID: 4354895166743210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -2403,7 +2436,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2490,7 +2523,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 83982e5daa0aa9441ba89473368dd7cd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2541,11 +2574,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnims: {fileID: 95829981910028470}
   playerTargeted: 0
+  enemyChasesPlayer: 1
   enemyRange: 10
   player: {fileID: 0}
+  forceDestination: {fileID: 0}
   enemyNav: {fileID: 195414990111926684}
   enemySounds: {fileID: 82143745253794784}
+  dest: {x: 0, y: 0, z: 0}
+  enemyChasingLines:
+  - {fileID: 8300000, guid: 49fba4d199c117b4ea18e371a88a3817, type: 3}
+  - {fileID: 8300000, guid: 818282d14853b204f98f5bc30f93854f, type: 3}
+  - {fileID: 8300000, guid: 433bcc8d32c31fb468b4e6018ba01a5b, type: 3}
+  - {fileID: 8300000, guid: 9ae0cd89b5a25d643b35ce965d12839c, type: 3}
+  - {fileID: 8300000, guid: e70fe3bda8abc444c9512bf8aadfb729, type: 3}
+  - {fileID: 8300000, guid: 767cd056d8165e346aefd2aa09e530d5, type: 3}
+  - {fileID: 8300000, guid: b2641d9beae014f4590792a4c7347f0b, type: 3}
+  enemyLostLines:
+  - {fileID: 8300000, guid: e1ba918e1f6484d4093dc65041f4eb85, type: 3}
+  - {fileID: 8300000, guid: 2ed57a5edfc17e948aaf2bea1541abcb, type: 3}
+  - {fileID: 8300000, guid: ffa298a60a233dd45b0a4e0ee48d99f0, type: 3}
+  - {fileID: 8300000, guid: 826884595a0bdb8409c332d0093fba7e, type: 3}
+  - {fileID: 8300000, guid: c60cac6c479ad1a43984a38de8262a37, type: 3}
+  - {fileID: 8300000, guid: b2a4efe9e452f894b8a66132bc68dce4, type: 3}
+  - {fileID: 8300000, guid: 5e30e549e818c12408ea95726b2af8ac, type: 3}
+  ringDetected: {fileID: 8300000, guid: 1bb03f41dd0b11a48ae5941e760759b3, type: 3}
   armReachRange: 5
+--- !u!114 &114529960336835066
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726483508071840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81f57f2870bed34886dad60b643d841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roamingDestMaxDist: 20
+  enemy: {fileID: 114500173710582120}
+  doorDetector: {fileID: 135073611214615080}
+  doorDistance: 15
+  furthestPoint: {fileID: 0}
+--- !u!114 &114576006894424854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583331715518870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e76d5f18e6d6147b6de43aa5a6ccbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorsInRange: []
+--- !u!135 &135073611214615080
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1583331715518870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136260662120797162
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2556,6 +2649,19 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.003
+  m_Height: 0.011
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.004, z: 0}
+--- !u!136 &136680219742337810
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726483508071840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.002
   m_Height: 0.011
   m_Direction: 1
   m_Center: {x: 0, y: 0.004, z: 0}
@@ -2676,8 +2782,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 1726483508071840}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.0025
-  m_Speed: 3.5
+  m_Radius: 0.002
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
