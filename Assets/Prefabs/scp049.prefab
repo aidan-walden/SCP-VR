@@ -2580,7 +2580,7 @@ MonoBehaviour:
   forceDestination: {fileID: 0}
   enemyNav: {fileID: 195414990111926684}
   enemySounds: {fileID: 82143745253794784}
-  dest: {x: 0, y: 0, z: 0}
+  enemyRoam: {fileID: 114529960336835066}
   enemyChasingLines:
   - {fileID: 8300000, guid: 49fba4d199c117b4ea18e371a88a3817, type: 3}
   - {fileID: 8300000, guid: 818282d14853b204f98f5bc30f93854f, type: 3}
@@ -2637,7 +2637,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136260662120797162
 CapsuleCollider:
@@ -2782,7 +2782,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1726483508071840}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.002
+  m_Radius: 0.003
   m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50

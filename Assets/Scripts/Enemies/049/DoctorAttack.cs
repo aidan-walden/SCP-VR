@@ -12,8 +12,11 @@ public class DoctorAttack : Enemy {
     protected override void Update()
     {
         base.Update();
-
-        if(playerTargeted)
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Doctor is on off mesh link: " + enemyNav.isOnOffMeshLink);
+        }
+        if (playerTargeted)
         {
             if (armReachRange > 0)
             {

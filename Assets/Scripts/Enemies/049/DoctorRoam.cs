@@ -14,6 +14,16 @@ public class DoctorRoam : GenericRoam {
         StartCoroutine(chooseRoamingDest());
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Doctor is on off mesh link: " + enemyNav.isOnOffMeshLink);
+        }
+    }
+    
+    
     protected override IEnumerator chooseRoamingDest()
     {
         isChoosingDest = true;
@@ -23,12 +33,12 @@ public class DoctorRoam : GenericRoam {
         {
             Transform closestDoor = getClosestDoor(closestDoors);
             SlidingDoor doorScript = closestDoor.gameObject.GetComponent<SlidingDoor>();
-            //TODO: Set dest to door, go thru door, remove door from closest doors array, repeat 1 more time
+            //Set dest to door, go thru door, remove door from closest doors array, repeat 1 more time
             Debug.Log(closestDoor.name);
             OffMeshLink closestDoorLink = closestDoor.GetComponent<OffMeshLink>();
             Transform[] startAndEnd =  {closestDoorLink.startTransform, closestDoorLink.endTransform };
             furthestPoint = getFurthestNav(startAndEnd);
-            enemyNav.SetDestination(getFurthestNav(startAndEnd).position);
+            enemyNav.SetDestination(furthestPoint.position + (-furthestPoint.transform.right * 2));
             if (i == 0 && closestDoors.Length > 1)
             {
                 bool enemyHasReachedDest = false;
@@ -41,8 +51,18 @@ public class DoctorRoam : GenericRoam {
                             if (!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
                             {
                                 enemyHasReachedDest = true;
+                                Debug.Log("Doctor has reached dest");
                             }
                         }
+                    }
+                    yield return null;
+                }
+                while (enemyNav.isOnOffMeshLink)
+                {
+                    if(!enemyNav.isOnOffMeshLink)
+                    {
+                        Debug.Log("Doctor has stopped off mesh link");
+                        break;
                     }
                     yield return null;
                 }
@@ -53,6 +73,7 @@ public class DoctorRoam : GenericRoam {
         }
         isChoosingDest = false;
     }
+    
 
     Transform getClosestDoor(Transform[] doors)
     {
@@ -69,23 +90,6 @@ public class DoctorRoam : GenericRoam {
             }
         }
         return closestDoor;
-    }
-
-    Transform getFurthestNav(Transform[] positions)
-    {
-        Transform furthestNav = null;
-        float minDist = 0;
-        Vector3 currentPos = transform.position;
-        foreach (Transform transform in positions)
-        {
-            float dist = Vector3.Distance(transform.position, currentPos);
-            if (dist > minDist)
-            {
-                furthestNav = transform;
-                minDist = dist;
-            }
-        }
-        return furthestNav;
     }
 
 }

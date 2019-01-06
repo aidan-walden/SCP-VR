@@ -41,12 +41,12 @@ public class DualSlidingDoor : SlidingDoor
     }
     protected override void OnTriggerEnter(Collider other)
     {
-        string tag = other.transform.root.gameObject.tag;
+        string tag = other.gameObject.tag;
         if (tag == "EnemyNPC")
         {
-            enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
-            agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
-            enemyScript = other.transform.root.GetComponent<Enemy>();
+            enemyNav = other.GetComponent<NavMeshAgent>();
+            agentLinkMover = other.GetComponent<AgentLinkMover>();
+            enemyScript = other.GetComponent<Enemy>();
             
         }
         else if(tag == "Player")
@@ -67,9 +67,10 @@ public class DualSlidingDoor : SlidingDoor
             if (enemyNav.isOnOffMeshLink)
             {
                 Debug.Log(enemyNav.name + " is on the off mesh link");
-                if (!doorIsOpen && !doors[0].doorChanging && !doors[1].doorChanging && enemyCanOpen)
+                if (!doorIsOpen && enemyCanOpen && !doors[0].doorChanging && !doors[1].doorChanging )
                 {
                     //speed *= 1.5f;
+                    Debug.Log("Moving door to open because the enemy is accessing the off mesh link with door name " + this.name + " and object name " + other.name);
                     moveDoor(true);
                 }
 

@@ -60,6 +60,7 @@ public class SlidingDoor : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
+            Debug.Log("Moving door to opposite state because player pressed O");
             moveDoor(!doorIsOpen);
         }
 
@@ -105,11 +106,11 @@ public class SlidingDoor : MonoBehaviour {
     {
         if(!isDependent)
         {
-            if (other.transform.root.gameObject.tag == "EnemyNPC")
+            if (other.tag == "EnemyNPC")
             {
-                enemyNav = other.transform.root.GetComponent<NavMeshAgent>();
-                agentLinkMover = other.transform.root.GetComponent<AgentLinkMover>();
-                enemyScript = other.transform.root.GetComponent<Enemy>();
+                enemyNav = other.GetComponent<NavMeshAgent>();
+                agentLinkMover = other.GetComponent<AgentLinkMover>();
+                enemyScript = other.GetComponent<Enemy>();
                 
             }
             else if (tag == "Player")
@@ -119,6 +120,7 @@ public class SlidingDoor : MonoBehaviour {
                 if (randomInt <= computerCloseChance && doorIsOpen)
                 {
                     StartCoroutine(playComputerSound(computerSound));
+                    Debug.Log("Moving door to closed because 079 decided to");
                     moveDoor(false);
                 }
             }
@@ -136,6 +138,7 @@ public class SlidingDoor : MonoBehaviour {
                     if (!doorIsOpen && !doorChanging)
                     {
                         //speed *= 1.5f;
+                        Debug.Log("Moving door to open because the enemy is accessing the offmeshlink");
                         moveDoor(true);
                     }
 
@@ -157,7 +160,7 @@ public class SlidingDoor : MonoBehaviour {
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if(other.transform.root.gameObject.tag == "EnemyNPC")
+        if(other.tag == "EnemyNPC")
         {
             Debug.Log("Closing door behind enemy");
             enemyIsWalkingThru = false;
@@ -177,6 +180,7 @@ public class SlidingDoor : MonoBehaviour {
     protected virtual IEnumerator closeDoorBehind()
     {
         yield return new WaitUntil(() => !enemyIsWalkingThru);
+        Debug.Log("Moving door to closed because the enemy is closing the door behind it");
         moveDoor(false);
     }
 }

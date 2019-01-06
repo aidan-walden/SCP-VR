@@ -18,7 +18,6 @@ public class DetectDoors : MonoBehaviour {
     {
         if (other.tag == "Door")
         {
-            SlidingDoor collideObject = other.GetComponent<SlidingDoor>();
             doorsInRange.Add(other.transform);
         }
     }
@@ -27,7 +26,6 @@ public class DetectDoors : MonoBehaviour {
     {
         if (other.tag == "Door")
         {
-            SlidingDoor collideObject = other.GetComponent<SlidingDoor>();
             doorsInRange.Remove(other.transform);
         }
     }

@@ -79,4 +79,38 @@ public class GenericRoam : MonoBehaviour {
         shouldRoam = roam;
         enemyNav.ResetPath();
     }
+
+    public Transform getFurthestNav(Transform[] positions)
+    {
+        Transform furthestNav = null;
+        float minDist = 0;
+        Vector3 currentPos = transform.position;
+        foreach (Transform transform in positions)
+        {
+            float dist = Vector3.Distance(transform.position, currentPos);
+            if (dist > minDist)
+            {
+                furthestNav = transform;
+                minDist = dist;
+            }
+        }
+        return furthestNav;
+    }
+
+    public Transform getClosestNav(Transform[] positions)
+    {
+        Transform closestNav = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = transform.position;
+        foreach (Transform transform in positions)
+        {
+            float dist = Vector3.Distance(transform.position, currentPos);
+            if (dist < minDist)
+            {
+                closestNav = transform;
+                minDist = dist;
+            }
+        }
+        return closestNav;
+    }
 }
