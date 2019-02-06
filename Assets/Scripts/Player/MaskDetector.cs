@@ -5,8 +5,10 @@ namespace Valve.VR.InteractionSystem
 {
     public class MaskDetector : MonoBehaviour
     {
-        private bool maskAttached = false;
         Interactable interactable;
+        Mask maskScript;
+        Hand maskHand;
+        GameObject mask;
         [SerializeField] private float maskOffset = 2f;
 
         // Use this for initialization
@@ -21,36 +23,52 @@ namespace Valve.VR.InteractionSystem
 
         }
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Mask" && !maskAttached)
+            
+            if (other.gameObject.tag == "Mask")
             {
-                Debug.Log("Mask in range");
-                interactable = other.gameObject.GetComponent<Interactable>();
-                if(interactable != null)
+                mask = other.gameObject;
+                interactable = mask.GetComponent<Interactable>();
+                if (interactable.attachedToHand)
                 {
-                    if (!interactable.attachedToHand)
+                    Debug.Log("Mask in range");
+                    maskScript = mask.GetComponent<Mask>();
+                    maskHand = maskScript.maskHand;
+                    if (interactable != null)
                     {
+                        mask.transform.position = transform.position + (transform.forward / maskOffset);
                         Debug.Log("User detached");
-                        other.gameObject.transform.position = transform.position + (transform.forward / maskOffset);
-                        other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                        other.gameObject.transform.parent = transform;
-                        maskAttached = true;
+                        mask.transform.parent = transform;
+                        mask.GetComponent<Rigidbody>().isKinematic = true;
+                        Debug.Log("Parenting mask to player");
                     }
                 }
             }
         }
         private void OnTriggerExit(Collider other)
         {
-            Rigidbody rg = other.gameObject.GetComponent<Rigidbody>();
-            if(rg != null)
+            for(int i = 0; i < 25; i++)
             {
-                rg.constraints = RigidbodyConstraints.None;
-                other.gameObject.transform.parent = null;
-                maskAttached = false;
+                Debug.Log("MASKDETECTOR ONTRIGGEREXIT");
             }
-            
-
+            if(interactable.attachedToHand && other.transform.root.tag == "Player" && other.gameObject.GetComponent<Hand>() != null)
+            {
+                Debug.Log("Hand Leaving Mask Detector with mask");
+                Rigidbody rg = mask.GetComponent<Rigidbody>();
+                other.gameObject.transform.parent = null;
+                rg.isKinematic = false;
+                Debug.Log("Deparenting...");
+                mask = null;
+            }
+            else if(!interactable.attachedToHand && other.transform.root.tag == "Player" && other.gameObject.GetComponent<Hand>() != null)
+            {
+                Debug.Log("Player hand left the trigger but was not attached to mask");
+            }
+            else
+            {
+                Debug.Log("Something left the trigger but did not meet conditions");
+            }
         }
     }
 }

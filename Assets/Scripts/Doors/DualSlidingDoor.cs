@@ -77,6 +77,7 @@ public class DualSlidingDoor : SlidingDoor
                 if (!doors[0].doorChanging && !doors[1].doorChanging && !enemyIsWalkingThru && doorIsOpen)
                 {
                     //speed /= 1.5f;
+                    enemyScript.enemyChasesPlayer = false;
                     StartCoroutine(agentLinkMover.MoveNavMesh());
                     enemyIsWalkingThru = true;
                     if (!enemyScript.playerTargeted)

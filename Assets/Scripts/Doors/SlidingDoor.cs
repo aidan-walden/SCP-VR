@@ -145,6 +145,7 @@ public class SlidingDoor : MonoBehaviour {
                     if (!doorChanging && !enemyIsWalkingThru && doorIsOpen)
                     {
                         //speed /= 1.5f;
+                        enemyScript.enemyChasesPlayer = false;
                         StartCoroutine(agentLinkMover.MoveNavMesh());
                         enemyIsWalkingThru = true;
                         if (!enemyScript.playerTargeted)
@@ -164,6 +165,7 @@ public class SlidingDoor : MonoBehaviour {
         {
             Debug.Log("Closing door behind enemy");
             enemyIsWalkingThru = false;
+            enemyScript.enemyChasesPlayer = true;
         }
     }
 

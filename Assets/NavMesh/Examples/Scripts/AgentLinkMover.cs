@@ -44,11 +44,13 @@ public class AgentLinkMover : MonoBehaviour
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 endPos = data.endPos + Vector3.up * (agent.baseOffset * agent.transform.localScale.y);
-        while (agent.transform.position != endPos)
+        agent.isStopped = true;
+        while (Vector3.Distance(agent.transform.position, endPos) > 0.1)
         {
             agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
             yield return null;
         }
+        agent.isStopped = false;
     }
 
     IEnumerator Parabola(NavMeshAgent agent, float height, float duration)

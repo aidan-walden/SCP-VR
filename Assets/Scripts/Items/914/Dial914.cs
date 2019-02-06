@@ -6,12 +6,10 @@ using Valve.VR.InteractionSystem;
 public class Dial914 : MonoBehaviour
 {
     Hand playerHand;
-    public bool rotateToOrig = false;
     public bool isKey = false;
     public float rotateSpeed;
     [SerializeField] Rigidbody dial;
     public SCP914 settingScript;
-    Vector3 rotateTo;
     // Use this for initialization
     void Start()
     {
@@ -28,18 +26,16 @@ public class Dial914 : MonoBehaviour
         transform.rotation = Quaternion.Euler(eulerRotation);
     }
 
-    private void Update()
+
+    private IEnumerator rotateToOrig(Vector3 rotateTo)
     {
-        if (rotateToOrig)
+        while (transform.rotation != Quaternion.Euler(rotateTo))
         {
             Debug.Log("Rotating...");
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateTo), Time.deltaTime * rotateSpeed);
-            if (transform.rotation == Quaternion.Euler(rotateTo))
-            {
-                Debug.Log("Stopping rotation...");
-                rotateToOrig = false;
-            }
+            yield return null;
         }
+        yield return null;
     }
 
     protected virtual void OnAttachedToHand(Hand hand)
@@ -65,8 +61,7 @@ public class Dial914 : MonoBehaviour
     void rotateDial(float rotation)
     {
         Debug.Log("Starting rotation...");
-        rotateTo = new Vector3(0, 0, rotation);
-        rotateToOrig = true;
+        StartCoroutine(rotateToOrig(new Vector3(0, 0, rotation)));
     }
 
     void chooseRotation()

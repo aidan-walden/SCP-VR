@@ -42,7 +42,29 @@ public class Enemy : MonoBehaviour {
             }
             else
             {
-                enemyNav.SetDestination(player.transform.position);
+                if(enemyRange > 0)
+                {
+                    NavMeshPath path = new NavMeshPath();
+                    enemyNav.CalculatePath(player.transform.position, path);
+                    if (path.status == NavMeshPathStatus.PathPartial || path.status == NavMeshPathStatus.PathInvalid)
+                    {
+                        OnPlayerLost();
+                    }
+                    else
+                    {
+                        if (enemyChasesPlayer)
+                        {
+                            enemyNav.SetDestination(player.transform.position);
+                        }
+                    }
+                }
+                else
+                {
+                    if(enemyChasesPlayer)
+                    {
+                        enemyNav.SetDestination(player.transform.position);
+                    }
+                }
             }
         }
         else if (lookForPlayer)
@@ -75,10 +97,15 @@ public class Enemy : MonoBehaviour {
         {
             enemyRoam.toggleRoaming(false);
         }
-        enemyNav.SetDestination(transform.position);
-        enemyNav.isStopped = false;
-        lookForPlayer = false;
-        targetPlayer(true);
+        NavMeshPath path = new NavMeshPath();
+        enemyNav.CalculatePath(player.transform.position, path);
+        if (path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+        {
+            enemyNav.ResetPath();
+            enemyNav.isStopped = false;
+            lookForPlayer = false;
+            targetPlayer(true);
+        }
     }
 
     protected virtual void OnPlayerAttacked()

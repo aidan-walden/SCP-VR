@@ -15,6 +15,7 @@ public class DoctorAttack : Enemy {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("Doctor is on off mesh link: " + enemyNav.isOnOffMeshLink);
+            Debug.Log("Doctor current destination: " + enemyNav.destination.ToString());
         }
         if (playerTargeted)
         {
