@@ -9,7 +9,40 @@ public class Lever : MonoBehaviour {
     [SerializeField] Rigidbody lever;
     public float flipSpeed;
     Hand playerHand;
-    public bool isOn = false;
+    private bool isOn = false;
+    public bool IsOn
+    {
+        get
+        {
+            return IsOn;
+        }
+        set
+        {
+            isOn = value;
+            if (isOn)
+            {
+                if (onPosition == OnPositions.Up)
+                {
+                    rotateLever(272f);
+                }
+                else
+                {
+                    rotateLever(87f);
+                }
+            }
+            else
+            {
+                if (onPosition == OnPositions.Up)
+                {
+                    rotateLever(87f);
+                }
+                else
+                {
+                    rotateLever(272f);
+                }
+            }
+        }
+    }
     public enum OnPositions
     {
         Up,
@@ -21,28 +54,7 @@ public class Lever : MonoBehaviour {
     void Start()
     {
         dialOffset = transform.parent.rotation.eulerAngles.y + 180f;
-        if (isOn)
-        {
-            if (onPosition == OnPositions.Up)
-            {
-                rotateLever(272f);
-            }
-            else
-            {
-                rotateLever(87f);
-            }
-        }
-        else
-        {
-            if (onPosition == OnPositions.Up)
-            {
-                rotateLever(87f);
-            }
-            else
-            {
-                rotateLever(272f);
-            }
-        }
+        IsOn = isOn;
     }
 
     // Update is called once per frame
@@ -56,7 +68,7 @@ public class Lever : MonoBehaviour {
 
     private void HandAttachedUpdate()
     {
-        Vector3 eulerRotation = new Vector3(0, dialOffset, playerHand.transform.eulerAngles.x);
+        Vector3 eulerRotation = new Vector3(playerHand.transform.eulerAngles.x, dialOffset, 0);
         transform.rotation = Quaternion.Euler(eulerRotation);
     }
 
@@ -74,10 +86,7 @@ public class Lever : MonoBehaviour {
 
     protected virtual void OnLeverFlipped()
     {
-        if(onPosition == OnPositions.Up)
-        {
-
-        }
+        
     }
 
     private IEnumerator rotateToOrig(Vector3 rotateTo)
@@ -100,13 +109,27 @@ public class Lever : MonoBehaviour {
     void chooseRotation()
     {
         float eulerX = transform.eulerAngles.x;
-        if(eulerX > 0)
+        if(eulerX > 90)
         {
-            rotateLever(272f);
+            if(onPosition == OnPositions.Up)
+            {
+                IsOn = true;
+            }
+            else
+            {
+                IsOn = false;
+            }
         }
         else
         {
-            rotateLever(87f);
+            if (onPosition == OnPositions.Down)
+            {
+                IsOn = true;
+            }
+            else
+            {
+                IsOn = false;
+            }
         }
         OnLeverFlipped();
     }
