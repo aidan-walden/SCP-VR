@@ -52,6 +52,7 @@ public class PlayerEvents : MonoBehaviour {
         if(!godMode && !playerIsDead)
         {
             playerIsDead = true;
+            //TODO: Proper death screen
             GetComponentInChildren<Camera>().enabled = false;
             Invoke("loadGame", 5f);
         }

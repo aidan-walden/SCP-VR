@@ -25,35 +25,35 @@ public class ElevatorMove : MonoBehaviour {
         if (other.transform.root.name != "Environment")
         {
             Debug.Log(other.name + " has entered the elevator. Checking for validity...");
-            if(!objectsInEle.Contains(other.transform.root))
+            if(other.transform.root == other.transform)
             {
-                objectsInEle.Add(other.transform.root);
+                objectsInEle.Add(other.transform);
                 Debug.Log(other.name + " has entered the elevator. Its root is: " + other.transform.root);
             }
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.root.name != "Environment")
         {
-            for (int i = 0; i < objectsInEle.Count; i++)
+            foreach(Transform eleObject in objectsInEle)
             {
-                if (objectsInEle[i].gameObject == other.gameObject)
+                if (eleObject.gameObject == other.gameObject)
                 {
-                    objectsInEle[i].position = other.transform.position;
+                    eleObject.position = other.transform.position;
                 }
             }
         }
     }
+    */
 
     private void OnTriggerExit(Collider other)
     {
-
-        if (other.transform.root.name != "Environment")
+        if(other.transform.root == other.transform)
         {
-
-            objectsInEle.Remove(other.transform.root);
+            objectsInEle.Remove(other.transform);
         }
     }
 
@@ -63,27 +63,18 @@ public class ElevatorMove : MonoBehaviour {
         foreach(Transform passenger in objectsInEle)
         {
             Debug.Log(passenger.name + " is in the elevator");
-            bool rootIsIn = objectsInEle.Contains(passenger.transform.root);
-            if (rootIsIn)
+            Debug.Log(passenger.name + "'s root is in the elevator. Proceeding...");
+            Vector3 passPos = transform.position - passenger.position;
+            Vector3 newPassPos = otherEle.transform.position - passPos;
+            NavMeshAgent nav = passenger.gameObject.GetComponent<NavMeshAgent>();
+            Debug.Log(passenger.name + ": " + passPos + ", " + newPassPos);
+            if (nav != null)
             {
-                Debug.Log(passenger.name + "'s root is in the elevator. Proceeding...");
-                Vector3 passPos = transform.position - passenger.position;
-                Vector3 newPassPos = otherEle.transform.position - passPos;
-                NavMeshAgent nav = passenger.gameObject.GetComponent<NavMeshAgent>();
-                Debug.Log(passenger.name + ": " + passPos + ", " + newPassPos);
-
-                if (nav != null)
-                {
-                    nav.Warp(newPassPos);
-                }
-                else
-                {
-                    passenger.position = newPassPos;
-                }
+                nav.Warp(newPassPos);
             }
             else
             {
-                Debug.Log(passenger.name + "'s root is not in the elevator!");
+                passenger.position = newPassPos;
             }
         }
     }

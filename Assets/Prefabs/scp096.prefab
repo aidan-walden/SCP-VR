@@ -1499,7 +1499,8 @@ AudioSource:
   m_GameObject: {fileID: 1574791336662058}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243996732065430804, guid: 6c9521335a9b04e48a259b875b49ae73,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fe756b3bd004e324eaf192af518b1e5a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1510,8 +1511,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 10
+  MinDistance: 0.15
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1594,7 +1595,8 @@ AudioSource:
   m_GameObject: {fileID: 1555542398681776}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243193043205048838, guid: 6c9521335a9b04e48a259b875b49ae73,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1605,8 +1607,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
+  MinDistance: 0.1
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1791,8 +1793,10 @@ MonoBehaviour:
   enemyChasesPlayer: 0
   enemyRange: 0
   player: {fileID: 0}
+  forceDestination: {fileID: 0}
   enemyNav: {fileID: 195503637732739080}
   enemySounds: {fileID: 82018592504334260}
+  enemyRoam: {fileID: 0}
   startRage: {fileID: 8300000, guid: 4421f4fc7eb185746a0a249f94b1e18b, type: 3}
   rageActive: {fileID: 8300000, guid: c7268a071675dd34ea404bb5f735be9c, type: 3}
   roaming: {fileID: 8300000, guid: fe756b3bd004e324eaf192af518b1e5a, type: 3}
@@ -1976,7 +1980,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.06

@@ -161,11 +161,14 @@ public class SlidingDoor : MonoBehaviour {
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        if(other.tag == "EnemyNPC")
+        if (!isDependent)
         {
-            Debug.Log("Closing door behind enemy");
-            enemyIsWalkingThru = false;
-            enemyScript.enemyChasesPlayer = true;
+            if (other.tag == "EnemyNPC")
+            {
+                Debug.Log("Closing door behind enemy");
+                enemyIsWalkingThru = false;
+                enemyScript.enemyChasesPlayer = true;
+            }
         }
     }
 

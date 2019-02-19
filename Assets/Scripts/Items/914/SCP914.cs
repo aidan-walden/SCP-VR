@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class SCP914 : MonoBehaviour {
     public GameObject inputTrigger, itemsManager;
-    public enum upgradeSetting {ROUGH, COARSE, ONE_TO_ONE, FINE, VERY_FINE };
-    public int currentSetting = (int)upgradeSetting.ONE_TO_ONE;
+    public enum upgradeSetting {
+        ROUGH,
+        COARSE,
+        ONE_TO_ONE,
+        FINE,
+        VERY_FINE
+    };
+    public upgradeSetting currentSetting = upgradeSetting.ONE_TO_ONE;
     public GameObject outputSpot, machineDial;
     private AudioSource machineSounds;
     public AudioClip machineBuffer, machineDone;
@@ -67,7 +73,7 @@ public class SCP914 : MonoBehaviour {
         Debug.Log("Upgrading items...");
         foreach(GameObject item in itemsToUpgrade)
         {
-            if(currentSetting == (int)upgradeSetting.FINE) //Fine setting
+            if(currentSetting == upgradeSetting.FINE) //Fine setting
             {
                switch(item.name)
                 {

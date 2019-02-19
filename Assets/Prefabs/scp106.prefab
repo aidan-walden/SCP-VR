@@ -1679,7 +1679,8 @@ AudioSource:
   m_GameObject: {fileID: 1212730158887842}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243996732065430804, guid: 6c9521335a9b04e48a259b875b49ae73,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1774,7 +1775,8 @@ AudioSource:
   m_GameObject: {fileID: 1739283977291042}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243996732065430804, guid: 6c9521335a9b04e48a259b875b49ae73,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1909,8 +1911,10 @@ MonoBehaviour:
   enemyChasesPlayer: 1
   enemyRange: 50
   player: {fileID: 0}
+  forceDestination: {fileID: 0}
   enemyNav: {fileID: 195724462262727420}
   enemySounds: {fileID: 82709319159376802}
+  enemyRoam: {fileID: 0}
   larryTimer: 0
   riseFromGround: {fileID: 8300000, guid: 582c9a646a9b9474a8d0a1b8864059d4, type: 3}
   laugh: {fileID: 8300000, guid: 366a92e0d7e3b28438bd4d85c2bc3f31, type: 3}

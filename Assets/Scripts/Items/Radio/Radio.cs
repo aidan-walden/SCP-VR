@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using Valve.VR.InteractionSystem;
 
@@ -14,6 +15,7 @@ public class AudioClipList
 
 [RequireComponent(typeof(Throwable))]
 public class Radio : MonoBehaviour {
+    AudioMixer mixer;
     public RadioChannel[] radioChannels = new RadioChannel[3];
     public Text radioText;
     public CustomSongs customSongs;
@@ -67,7 +69,7 @@ public class Radio : MonoBehaviour {
 
     private void Start()
     {
-        
+        mixer = Resources.Load("AudioMixer") as AudioMixer;
     }
 
     IEnumerator setSounds()
@@ -86,7 +88,8 @@ public class Radio : MonoBehaviour {
             channel.channelSounds.spatialBlend = 1f;
             channel.channelSounds.rolloffMode = AudioRolloffMode.Logarithmic;
             channel.channelSounds.minDistance = 0.2f;
-            if(channel.isCommsChannel)
+            channel.channelSounds.outputAudioMixerGroup = mixer.FindMatchingGroups("Music")[0];
+            if (channel.isCommsChannel)
             {
                 channel.channelSounds.clip = channel.idleSound;
                 channel.waitBwClipsDuration = 0f;
