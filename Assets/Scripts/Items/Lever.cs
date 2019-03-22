@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Valve.VR.InteractionSystem;
 [RequireComponent(typeof(Interactable))]
 [RequireComponent(typeof(Throwable))]
 [RequireComponent(typeof(Rigidbody))]
 public class Lever : MonoBehaviour {
+    public UnityEvent OnLeverEnabled, OnLeverDisabled;
     [SerializeField] Rigidbody lever;
     public float flipSpeed;
     Hand playerHand;
@@ -29,6 +31,7 @@ public class Lever : MonoBehaviour {
                 {
                     rotateLever(87f);
                 }
+                OnLeverEnabled.Invoke();
             }
             else
             {
@@ -40,6 +43,7 @@ public class Lever : MonoBehaviour {
                 {
                     rotateLever(272f);
                 }
+                OnLeverDisabled.Invoke();
             }
         }
     }
@@ -84,11 +88,6 @@ public class Lever : MonoBehaviour {
         chooseRotation();
     }
 
-    protected virtual void OnLeverFlipped()
-    {
-        
-    }
-
     private IEnumerator rotateToOrig(Vector3 rotateTo)
     {
         while (transform.rotation != Quaternion.Euler(rotateTo))
@@ -105,6 +104,7 @@ public class Lever : MonoBehaviour {
         Debug.Log("Starting rotation...");
         StartCoroutine(rotateToOrig(new Vector3(rotation, dialOffset, 0)));
     }
+
 
     void chooseRotation()
     {
@@ -131,6 +131,5 @@ public class Lever : MonoBehaviour {
                 IsOn = false;
             }
         }
-        OnLeverFlipped();
     }
 }
