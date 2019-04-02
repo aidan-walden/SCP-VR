@@ -1,0 +1,22 @@
+Finish elevators
+Add MTF enemies
+Add tesla gates
+Add all "functionality" rooms (106 recontainment, 914, 008, etc.)
+Add all "garbage" rooms (generic hallways, dead end rooms, etc.)
+Add 939 properly
+Add 008 properly
+Finish 049
+Add light outages
+Add proper checkpoints
+Add endings
+Add more radio
+Add proper masks
+Add inventory
+
+
+SCPs in the game so far:
+
+(kinda) 106
+(kinda) 173
+(kinda) 096
+(kinda) 049
