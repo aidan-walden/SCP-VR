@@ -63,7 +63,7 @@ public class PlayerEvents : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public IEnumerator playSound(AudioClip sound)
+    IEnumerator doPlaySound(AudioClip sound)
     {
         Debug.Log("Playing sound...");
         AudioSource audioSource = this.gameObject.AddComponent<AudioSource>(); //Create a new audio source for every sound so that way we don't have to worry about swapping out sounds at correct times
@@ -73,6 +73,11 @@ public class PlayerEvents : MonoBehaviour {
         yield return new WaitForSeconds(audioSource.clip.length);
         Destroy(audioSource); //Destory the audio source after the sound is done playing so that the components of the player don't get cluttered
 
+    }
+
+    public void playSound(AudioClip sound)
+    {
+        StartCoroutine(doPlaySound(sound));
     }
 
     IEnumerator blinkOn()

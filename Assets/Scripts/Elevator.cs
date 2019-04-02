@@ -5,9 +5,9 @@ using UnityEngine;
 public class Elevator : MonoBehaviour
 {
     public AudioClip ding, movement;
-    public PlayerEvents playerScript;
-    int player = 1;
+    PlayerEvents playerScript;
     public ElevatorMove[] moveScripts = new ElevatorMove[2];
+    bool elevatorIsMoving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,45 +25,47 @@ public class Elevator : MonoBehaviour
 
     IEnumerator callEvevator()
     {
-        foreach (ElevatorMove moveScript in moveScripts)
+        if (!elevatorIsMoving)
         {
-            moveScript.eleDoor.moveDoor(false);
-            foreach(Transform eleObject in moveScript.objectsInEle)
+            elevatorIsMoving = true;
+            foreach (ElevatorMove moveScript in moveScripts)
             {
-                if(eleObject.root.tag == "Player")
+                moveScript.eleDoor.moveDoor(false);
+                foreach (Transform eleObject in moveScript.objectsInEle)
                 {
-                    //player = eleObject.root.gameObject;
+                    if (eleObject.root.tag == "Player")
+                    {
+                        playerScript = eleObject.root.gameObject.GetComponent<PlayerEvents>();
+
+                    }
                 }
             }
-        }
-        if (player != null)
-        {
-            //playerScript = player.GetComponent<PlayerEvents>();
-            playerScript.playSound(ding);
-        }
-        foreach (ElevatorMove moveScript in moveScripts)
-        {
-            yield return new WaitUntil(() => !moveScript.eleDoor.doorChanging);
-        }
-        if (player != null)
-        {
-            yield return new WaitForSeconds(ding.length);
-            playerScript.playSound(movement);
-        }
-        yield return new WaitForSeconds(movement.length);
-        foreach(ElevatorMove moveScript in moveScripts)
-        {
-            moveScript.swapElevators();
-        }
-        if(player != null)
-        {
-            playerScript.playSound(ding);
-        }
+            foreach (ElevatorMove moveScript in moveScripts)
+            {
+                yield return new WaitUntil(() => !moveScript.eleDoor.doorChanging);
+            }
+            if (playerScript != null)
+            {
+                yield return new WaitForSeconds(ding.length);
+                playerScript.playSound(movement);
+            }
+            yield return new WaitForSeconds(movement.length - 4f);
+            foreach (ElevatorMove moveScript in moveScripts)
+            {
+                moveScript.swapElevators();
+            }
+            yield return new WaitForSeconds(4f);
+            if (playerScript != null)
+            {
+                playerScript.playSound(ding);
+            }
 
-        foreach (ElevatorMove moveScript in moveScripts)
-        {
-            moveScript.eleDoor.moveDoor(true);
+            foreach (ElevatorMove moveScript in moveScripts)
+            {
+                moveScript.eleDoor.moveDoor(true);
+            }
+            playerScript = null;
+            elevatorIsMoving = false;
         }
-
     }
 }

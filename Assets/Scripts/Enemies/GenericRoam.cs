@@ -25,10 +25,10 @@ public class GenericRoam : MonoBehaviour {
     // Update is called once per frame
     protected virtual void Update () {
 
-        if(enemyNav.isOnOffMeshLink)
-        {
-            Debug.Log(enemyNav.currentOffMeshLinkData.linkType);
-        }
+        //if(enemyNav.isOnOffMeshLink)
+        //{
+            //Debug.Log(enemyNav.currentOffMeshLinkData.linkType);
+        //}
 
         if(!enemyNav.pathPending && !enemy.playerTargeted && shouldRoam) //Check if enemy has reached dest
         {

@@ -66,7 +66,7 @@ public class DualSlidingDoor : SlidingDoor
         {
             if (enemyNav.isOnOffMeshLink)
             {
-                Debug.Log(enemyNav.name + " is on the off mesh link");
+                //Debug.Log(enemyNav.name + " is on the off mesh link");
                 if (!doorIsOpen && enemyCanOpen && !doors[0].doorChanging && !doors[1].doorChanging )
                 {
                     //speed *= 1.5f;

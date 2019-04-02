@@ -54,9 +54,16 @@ public class ElevatorMove : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.transform.root == other.transform)
+        if(other.transform.root == other.transform || other.transform.root.tag == "Player")
         {
-            objectsInEle.Remove(other.transform);
+            if (other.transform.root.tag == "Player")
+            {
+                objectsInEle.Remove(other.transform.root);
+            }
+            else
+            {
+                objectsInEle.Remove(other.transform);
+            }
         }
     }
 

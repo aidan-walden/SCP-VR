@@ -23,6 +23,6 @@ public class KeycardSounds : MonoBehaviour
     {
         Debug.Log("Playing sound");
 
-        StartCoroutine(hand.transform.root.GetComponent<PlayerEvents>().playSound(keycardPickup));
+        hand.transform.root.GetComponent<PlayerEvents>().playSound(keycardPickup);
     }
 }

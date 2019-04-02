@@ -43,7 +43,7 @@ public class Music : MonoBehaviour {
     public void playKillSound()
     {
 
-        StartCoroutine(playerEvents.playSound(killSound));
+        playerEvents.playSound(killSound);
     }
 
    

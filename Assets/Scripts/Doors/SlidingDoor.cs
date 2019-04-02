@@ -31,14 +31,13 @@ public class SlidingDoor : MonoBehaviour {
     protected bool doorIsOpen, enemyIsWalkingThru, doorIsLocked = false;
     public OffMeshLink offMeshLink;
     protected AgentLinkMover agentLinkMover;
-    [HideInInspector] public AudioSource doorSounds;
+    public AudioSource doorSounds;
 
     // Use this for initialization
     protected virtual void Start () {
         EnemyCanOpen = enemyCanOpen;
         origPos = transform.position;
         moveTo = origPos;
-        doorSounds = GetComponent<AudioSource>();
         doorStartsOpen = doorIsOpen;
         if(!enemyCanOpen && !isDependent)
         {

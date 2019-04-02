@@ -12,6 +12,9 @@ Add endings
 Add more radio
 Add proper masks
 Add inventory
+Generate the map
+Main menu
+Options
 
 
 SCPs in the game so far:
