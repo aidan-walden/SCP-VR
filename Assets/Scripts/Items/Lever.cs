@@ -92,8 +92,11 @@ public class Lever : MonoBehaviour {
     {
         while (transform.rotation != Quaternion.Euler(rotateTo))
         {
-            Debug.Log("Rotating...");
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotateTo), Time.deltaTime * flipSpeed);
+            if(Quaternion.Angle(transform.rotation, Quaternion.Euler(rotateTo)) < 1)
+            {
+                transform.rotation = Quaternion.Euler(rotateTo);
+            }
             yield return null;
         }
         yield return null;

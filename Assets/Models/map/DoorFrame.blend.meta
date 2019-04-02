@@ -12,21 +12,9 @@ ModelImporter:
     2300000: DoorFrame_ms3d_mo
     3300000: DoorFrame_ms3d_mo
     4300000: DoorFrame_ms3d_mo
-    6400000: DoorFrame_ms3d_mo
     7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material_1
-    second: {fileID: 2100000, guid: 638c5bd41250cc74892a728fbd8a7a84, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: material_2
-    second: {fileID: 2100000, guid: 2d5123c86840b1448b94e2e57b0e2969, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -59,7 +47,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

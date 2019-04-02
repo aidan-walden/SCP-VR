@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class ElevatorMove : MonoBehaviour {
 
+    public SlidingDoor eleDoor;
     public BoxCollider otherEle;
     public List<Transform> objectsInEle = new List<Transform>();
     // Use this for initialization
@@ -13,21 +14,23 @@ public class ElevatorMove : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Y))
-        {
-            swapElevators();
-        }
-	}
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.root.name != "Environment")
         {
             Debug.Log(other.name + " has entered the elevator. Checking for validity...");
-            if(other.transform.root == other.transform)
+            if(other.transform.root == other.transform || other.transform.root.tag == "Player")
             {
-                objectsInEle.Add(other.transform);
+                if(other.transform.root.tag == "Player")
+                {
+                    objectsInEle.Add(other.transform.root);
+                }
+                else
+                {
+                    objectsInEle.Add(other.transform);
+                }
                 Debug.Log(other.name + " has entered the elevator. Its root is: " + other.transform.root);
             }
         }
@@ -57,7 +60,7 @@ public class ElevatorMove : MonoBehaviour {
         }
     }
 
-    void swapElevators()
+    public void swapElevators()
     {
         Debug.Log("swapping elevators");
         foreach(Transform passenger in objectsInEle)
