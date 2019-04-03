@@ -48,6 +48,7 @@ MonoBehaviour:
   enemyCanOpen: 0
   doorChanging: 0
   doorStartsOpen: 1
+  doorIsOpen: 0
   isDependent: 1
   doorOpen: []
   doorClose: []
@@ -141,6 +142,7 @@ MonoBehaviour:
   enemyCanOpen: 0
   doorChanging: 0
   doorStartsOpen: 1
+  doorIsOpen: 0
   isDependent: 0
   doorOpen:
   - {fileID: 8300000, guid: 52fbae9b335622b40a528b39a4e1d395, type: 3}
@@ -313,6 +315,7 @@ MonoBehaviour:
   enemyCanOpen: 0
   doorChanging: 0
   doorStartsOpen: 1
+  doorIsOpen: 0
   isDependent: 1
   doorOpen: []
   doorClose: []

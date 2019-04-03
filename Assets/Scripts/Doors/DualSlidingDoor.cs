@@ -119,7 +119,14 @@ public class DualSlidingDoor : SlidingDoor
             {
                 door.moveDoor(openDoor);
             }
-            doorIsOpen = openDoor;
+            if(doorStartsOpen)
+            {
+                doorIsOpen = !openDoor;
+            }
+            else
+            {
+                doorIsOpen = openDoor;
+            }
         } 
     }
 }

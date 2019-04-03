@@ -47,16 +47,7 @@ public class SlidingDoor : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-        if(doorChanging)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
-            //TODO: Find speed/animation of original CB door
-            if(transform.position == moveTo)
-            {
-                doorChanging = false;
-                doorIsOpen = !(moveTo == origPos);
-            }
-        }
+        
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("Moving door to opposite state because player pressed O");
@@ -99,6 +90,22 @@ public class SlidingDoor : MonoBehaviour {
                 doorSounds.Play();
             }
             doorChanging = true;
+            StartCoroutine(doMoveDoor(openDoor));
+        }
+    }
+
+    IEnumerator doMoveDoor(bool openDoor)
+    {
+        while(doorChanging)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
+            //TODO: Find speed/animation of original CB door
+            if (transform.position == moveTo)
+            {
+                doorChanging = false;
+                doorIsOpen = openDoor;
+            }
+            yield return null;
         }
     }
     protected virtual void OnTriggerEnter(Collider other)

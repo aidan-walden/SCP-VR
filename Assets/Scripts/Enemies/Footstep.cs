@@ -6,7 +6,7 @@ using UnityEngine;
 public class Footstep : MonoBehaviour {
     public AudioSource footstepsSounds;
     public AudioClip[] footsteps;
-    public int footstepCount = 0;
+    int footstepCount = 0;
 
     void FootstepEvent(float volume)
     {

@@ -28,24 +28,35 @@ public class Elevator : MonoBehaviour
         if (!elevatorIsMoving)
         {
             elevatorIsMoving = true;
+            List<SlidingDoor> closedDoors = new List<SlidingDoor>();
             foreach (ElevatorMove moveScript in moveScripts)
             {
+                /*
+                bool doorOpen = moveScript.eleDoor.doorIsOpen;
+                if(moveScript.eleDoor.doorStartsOpen)
+                {
+                    doorOpen = !doorOpen;
+                }
+                */
                 if(moveScript.eleDoor.doorIsOpen)
                 {
-                    moveScript.eleDoor.moveDoor(false);
+                    moveScript.eleDoor.moveDoor(false); //Close all doors that are open
+                }
+                else
+                {
+                    closedDoors.Add(moveScript.eleDoor);
                 }
                 foreach (Transform eleObject in moveScript.objectsInEle)
                 {
                     if (eleObject.root.tag == "Player")
                     {
                         playerScript = eleObject.root.gameObject.GetComponent<PlayerEvents>();
-
                     }
                 }
             }
             foreach (ElevatorMove moveScript in moveScripts)
             {
-                yield return new WaitUntil(() => !moveScript.eleDoor.doorChanging);
+                yield return new WaitUntil(() => !moveScript.eleDoor.doorChanging); //Wait until doors are closed
             }
             if (playerScript != null)
             {
@@ -55,20 +66,16 @@ public class Elevator : MonoBehaviour
             yield return new WaitForSeconds(movement.length - 4f);
             foreach (ElevatorMove moveScript in moveScripts)
             {
-                moveScript.swapElevators();
+                moveScript.swapElevators(); //Swap objects
             }
             yield return new WaitForSeconds(4f);
             if (playerScript != null)
             {
                 playerScript.playSound(ding);
             }
-
-            foreach (ElevatorMove moveScript in moveScripts)
+            foreach (SlidingDoor moveScript in closedDoors)
             {
-                if (!moveScript.eleDoor.doorIsOpen)
-                {
-                    moveScript.eleDoor.moveDoor(true);
-                }
+                moveScript.moveDoor(true); //Open all doors that are closed
             }
             playerScript = null;
             elevatorIsMoving = false;

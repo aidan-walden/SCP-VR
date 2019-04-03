@@ -1,4 +1,3 @@
-Finish elevators
 Add MTF enemies
 Add tesla gates
 Add all "functionality" rooms (106 recontainment, 914, 008, etc.)
@@ -15,6 +14,7 @@ Add inventory
 Generate the map
 Main menu
 Options
+Go through code and add comments so people looking at it know what any of it even does without analyzing it
 
 
 SCPs in the game so far:
