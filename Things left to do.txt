@@ -1,25 +1,30 @@
-Add MTF enemies
-Add tesla gates
-Add all "functionality" rooms (106 recontainment, 914, 008, etc.)
-Add all "garbage" rooms (generic hallways, dead end rooms, etc.)
-Add 939 properly
-Add 008 properly
-Finish 049
-Add light outages
-Add proper checkpoints
+Fix mask detection
+Fix SCPs camping doors / Going after you even if they cant get to you
+Add room SCPs (008, etc.)
+Add room functionality (106 recontainment, etc.)
+Finish 106 pocket dimension
+Figure out how to make 106 ignore locked doors and things of that nature
+Make radio take batteries
+Add electric outages so 173 can move
+Add MTF
+Add Tesla Gates
+Add Proper Movement
+Add 939
+Finish up "stupid" rooms like dead end halls, storage room, waiting room, etc. (For item spawns have an item spawner script that waits until nav is done generating then just instaniates the object)
+Add ambient sounds
+Finish 079
+Add "garbage" items and less critical items like MasterCard, night vision goggles, electric parts, etc.
+Add 173 vents
+Figure out map randomizing
+Figure out how to generate a random seed
+Figure out if C# seed takes strings and if not figure out how to convert string to number (Get ascii number code of characters?)
+Figure out how to incorporate the random generation of a seed into room generation
 Add endings
-Add more radio
-Add proper masks
-Add inventory
-Generate the map
-Main menu
-Options
-Go through code and add comments so people looking at it know what any of it even does without analyzing it
-
-
-SCPs in the game so far:
-
-(kinda) 106
-(kinda) 173
-(kinda) 096
-(kinda) 049
+File for listing of game on Steam
+Make SCP community aware of game
+Polish up the game, fix rough areas
+Playtest
+Release! (hopefully)
+Find and create VR-specific SCPs (May want to make community poll on whether development should deviate from original game or not)
+Update the game
+Bugfix
