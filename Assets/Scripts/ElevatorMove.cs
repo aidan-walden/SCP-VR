@@ -12,9 +12,18 @@ public class ElevatorMove : MonoBehaviour {
     void Start () {
 
     }
-	
-	// Update is called once per frame
 
+    // Update is called once per frame
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            foreach(Transform passenger in objectsInEle)
+            {
+                Debug.Log("Passenger: " + passenger.name);
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +34,19 @@ public class ElevatorMove : MonoBehaviour {
             {
                 if(other.transform.root.tag == "Player")
                 {
-                    objectsInEle.Add(other.transform.root);
+                    bool playerIsInList = false;
+                    foreach(Transform passenger in objectsInEle)
+                    {
+                        if(passenger == other.transform.root)
+                        {
+                            playerIsInList = true;
+                            break;
+                        }
+                    }
+                    if(!playerIsInList)
+                    {
+                        objectsInEle.Add(other.transform.root);
+                    }
                 }
                 else
                 {

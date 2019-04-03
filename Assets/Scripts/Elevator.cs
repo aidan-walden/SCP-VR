@@ -30,7 +30,10 @@ public class Elevator : MonoBehaviour
             elevatorIsMoving = true;
             foreach (ElevatorMove moveScript in moveScripts)
             {
-                moveScript.eleDoor.moveDoor(false);
+                if(moveScript.eleDoor.doorIsOpen)
+                {
+                    moveScript.eleDoor.moveDoor(false);
+                }
                 foreach (Transform eleObject in moveScript.objectsInEle)
                 {
                     if (eleObject.root.tag == "Player")
@@ -62,7 +65,10 @@ public class Elevator : MonoBehaviour
 
             foreach (ElevatorMove moveScript in moveScripts)
             {
-                moveScript.eleDoor.moveDoor(true);
+                if (!moveScript.eleDoor.doorIsOpen)
+                {
+                    moveScript.eleDoor.moveDoor(true);
+                }
             }
             playerScript = null;
             elevatorIsMoving = false;
