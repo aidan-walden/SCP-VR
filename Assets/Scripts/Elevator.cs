@@ -28,7 +28,7 @@ public class Elevator : MonoBehaviour
         if (!elevatorIsMoving)
         {
             elevatorIsMoving = true;
-            List<SlidingDoor> closedDoors = new List<SlidingDoor>();
+            SlidingDoor oppositeDoor = null;
             foreach (ElevatorMove moveScript in moveScripts)
             {
                 /*
@@ -44,7 +44,7 @@ public class Elevator : MonoBehaviour
                 }
                 else
                 {
-                    closedDoors.Add(moveScript.eleDoor);
+                    oppositeDoor = moveScript.eleDoor;
                 }
                 foreach (Transform eleObject in moveScript.objectsInEle)
                 {
@@ -73,10 +73,7 @@ public class Elevator : MonoBehaviour
             {
                 playerScript.playSound(ding);
             }
-            foreach (SlidingDoor moveScript in closedDoors)
-            {
-                moveScript.moveDoor(true); //Open all doors that are closed
-            }
+            oppositeDoor.moveDoor(true); //Open all doors that are closed
             playerScript = null;
             elevatorIsMoving = false;
         }
