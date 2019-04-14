@@ -15,7 +15,7 @@ public class AudioClipList
 
 [RequireComponent(typeof(Throwable))]
 public class Radio : MonoBehaviour {
-    AudioMixer mixer;
+    public AudioMixer mixer;
     public RadioChannel[] radioChannels = new RadioChannel[3];
     public Text radioText;
     public CustomSongs customSongs;
@@ -52,6 +52,7 @@ public class Radio : MonoBehaviour {
     
     // Use this for initialization
     void Awake () {
+        mixer = (AudioMixer)Resources.Load("AudioMixer");
         //radioChannels[0] = new RadioChannel(1, 0.2f, channelSounds[0].clips);
         //radioChannels[1] = new RadioChannel(2, 0.2f, channelSounds[1].clips);
         radioChannels[0] = new RadioChannel(1, 0.2f, radioStatic);
@@ -69,7 +70,7 @@ public class Radio : MonoBehaviour {
 
     private void Start()
     {
-        mixer = Resources.Load("AudioMixer") as AudioMixer;
+        
     }
 
     IEnumerator setSounds()
