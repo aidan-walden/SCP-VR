@@ -18,10 +18,10 @@ public class Radio : MonoBehaviour {
     public AudioMixer mixer;
     public RadioChannel[] radioChannels = new RadioChannel[3];
     public Text radioText;
-    public CustomSongs customSongs;
-
+    public static CustomSongs customSongs;
     public bool radioIsPlaying, playerIsHolding = false;
     private int currentChannel = 1;
+    public int batteryCharge = 15;
     public int CurrentChannel
     {
         get
@@ -52,6 +52,10 @@ public class Radio : MonoBehaviour {
     
     // Use this for initialization
     void Awake () {
+        if(customSongs == null)
+        {
+            customSongs = GameObject.FindWithTag("GameController").GetComponent<CustomSongs>();
+        }
         mixer = (AudioMixer)Resources.Load("AudioMixer");
         //radioChannels[0] = new RadioChannel(1, 0.2f, channelSounds[0].clips);
         //radioChannels[1] = new RadioChannel(2, 0.2f, channelSounds[1].clips);
@@ -119,7 +123,10 @@ public class Radio : MonoBehaviour {
             switcher.radio = this;
         }
         playerIsHolding = true;
-        changeChannel();
+        if(batteryCharge > 0)
+        {
+            changeChannel();
+        }
     }
 
     protected virtual void OnDetachedFromHand(Hand hand)
@@ -169,6 +176,10 @@ public class Radio : MonoBehaviour {
             {
                StartCoroutine(cycleClips(channel));
             }
+        }
+        if (batteryCharge > 0)
+        {
+            batteryCharge--;
         }
     }
 

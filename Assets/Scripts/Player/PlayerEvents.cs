@@ -8,7 +8,8 @@ public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
     [SerializeField] Image blinkOverlay;
     [SerializeField] float blinkSmooth;
-    [SerializeField] AudioSource playerSounds;
+    [SerializeField] AudioSource playerSounds, intercomSounds;
+    [SerializeField] AudioClip intercomStart, intercomEnd, testSound;
     public bool playerIsDead, playerIsBlinking = false;
     public bool GodMode
     {
@@ -44,7 +45,7 @@ public class PlayerEvents : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log(blinkOverlay.color.a);
+            playSound(testSound, true);
         }
     }
 
@@ -64,20 +65,34 @@ public class PlayerEvents : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void playSound(AudioClip sound)
+    public void playSound(AudioClip sound, bool useIntercom = false)
     {
-        playerSounds.PlayOneShot(sound, 1f);
+        if (useIntercom)
+        {
+            StartCoroutine(playIntercom(sound));
+        }
+        else
+        {
+            playerSounds.PlayOneShot(sound, 1f);
+        }
+    }
+
+    IEnumerator playIntercom(AudioClip sound)
+    {
+        intercomSounds.PlayOneShot(intercomStart, 1f);
+        yield return new WaitForSeconds(intercomStart.length);
+        intercomSounds.PlayOneShot(sound, 1f);
+        yield return new WaitForSeconds(sound.length);
+        intercomSounds.PlayOneShot(intercomEnd, 1f);
     }
 
     IEnumerator blinkOn()
     {
         while(blinkOverlay.color.a < 1f)
         {
-            Debug.Log("Blink overlay opacity: " + blinkOverlay.color.a);
             float newOpacity = Mathf.Lerp(blinkOverlay.color.a, 1f, Time.deltaTime * blinkSmooth);
             if (newOpacity >= 0.99)
             {
-                Debug.Log("Close enough");
                 newOpacity = 1f;
             }
             blinkOverlay.color = new Color(0f, 0f, 0f, newOpacity);
@@ -93,7 +108,6 @@ public class PlayerEvents : MonoBehaviour {
         playerIsBlinking = false;
         while (blinkOverlay.color.a > 0f)
         {
-            Debug.Log("Blink overlay opacity: " + blinkOverlay.color.a);
             float newOpacity = Mathf.Lerp(blinkOverlay.color.a, 0f, Time.deltaTime * blinkSmooth);
             if (newOpacity <= 0.01)
             {

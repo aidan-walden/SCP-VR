@@ -20,8 +20,6 @@ Add ambient sounds
 Add "garbage" items and less critical items like MasterCard, night vision goggles, electric parts, etc. (night vision goggles may not be necessary w/o scp-966)
 Add 173 vents
 Figure out map randomizing
-Figure out how to generate a random seed
-Figure out if C# seed takes strings and if not figure out how to convert string to number (Get ascii number code of characters?)
 Figure out how to incorporate the random generation of a seed into room generation
 File for listing of game on Steam
 Make SCP community aware of game
