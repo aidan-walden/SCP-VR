@@ -8,7 +8,8 @@ public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
     [SerializeField] Image blinkOverlay;
     [SerializeField] float blinkSmooth;
-    [SerializeField] AudioSource playerSounds, intercomSounds;
+    [SerializeField] AudioSource playerSounds;
+    [SerializeField] AudioSource[] intercomSounds;
     [SerializeField] AudioClip intercomStart, intercomEnd, testSound;
     public bool playerIsDead, playerIsBlinking = false;
     public bool GodMode
@@ -79,11 +80,11 @@ public class PlayerEvents : MonoBehaviour {
 
     IEnumerator playIntercom(AudioClip sound)
     {
-        intercomSounds.PlayOneShot(intercomStart, 1f);
+        intercomSounds[0].PlayOneShot(intercomStart, 1f);
         yield return new WaitForSeconds(intercomStart.length);
-        intercomSounds.PlayOneShot(sound, 1f);
+        intercomSounds[1].PlayOneShot(sound, 1f);
         yield return new WaitForSeconds(sound.length + 1.5f);
-        intercomSounds.PlayOneShot(intercomEnd, 1f);
+        intercomSounds[0].PlayOneShot(intercomEnd, 1f);
     }
 
     IEnumerator blinkOn()

@@ -563,7 +563,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 919468fc25bbe724aae39a7d08f27d2f, type: 3}
     - target: {fileID: 114019939348931460, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
         type: 3}
       propertyPath: scp096
@@ -588,7 +588,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5060932109545481105, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
+        type: 3}
+      propertyPath: m_Name
+      value: IntercomOnOff
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 508134027278208978, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
 --- !u!1 &198066837
 GameObject:
