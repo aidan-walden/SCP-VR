@@ -82,7 +82,7 @@ public class PlayerEvents : MonoBehaviour {
         intercomSounds.PlayOneShot(intercomStart, 1f);
         yield return new WaitForSeconds(intercomStart.length);
         intercomSounds.PlayOneShot(sound, 1f);
-        yield return new WaitForSeconds(sound.length);
+        yield return new WaitForSeconds(sound.length + 1.5f);
         intercomSounds.PlayOneShot(intercomEnd, 1f);
     }
 

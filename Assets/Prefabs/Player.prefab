@@ -1484,8 +1484,8 @@ MonoBehaviour:
   blinkSmooth: 10
   playerSounds: {fileID: 9082040916868184283}
   intercomSounds: {fileID: 1358421982366262137}
-  intercomStart: {fileID: 0}
-  intercomEnd: {fileID: 0}
+  intercomStart: {fileID: 8300000, guid: 4a9b83533297802478f92de3c7ad10bf, type: 3}
+  intercomEnd: {fileID: 8300000, guid: d3fd7c81b374a7a4caab10c1340f953f, type: 3}
   testSound: {fileID: 0}
   playerIsDead: 0
   playerIsBlinking: 0
