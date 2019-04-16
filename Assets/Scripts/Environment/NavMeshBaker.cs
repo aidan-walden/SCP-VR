@@ -7,7 +7,7 @@ public class NavMeshBaker : MonoBehaviour {
 
     NavMeshSurface[] surfaces;
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         surfaces = GetComponentsInChildren<NavMeshSurface>();
         foreach(NavMeshSurface surface in surfaces)
         {

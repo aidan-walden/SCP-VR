@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DoctorAttack : Enemy {
 
@@ -8,14 +9,14 @@ public class DoctorAttack : Enemy {
     [SerializeField] AudioClip ringDetected;
     [SerializeField] float armReachRange;
     bool victimHasRingOn = false;
-
+    public GameObject debugObject;
     protected override void Update()
     {
         base.Update();
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log("Doctor is on off mesh link: " + enemyNav.isOnOffMeshLink);
-            Debug.Log("Doctor current destination: " + enemyNav.destination.ToString());
+            enemyNav.ResetPath();
+            enemyNav.SetDestination(forceDestination.transform.position);
         }
         if (playerTargeted)
         {
@@ -37,13 +38,14 @@ public class DoctorAttack : Enemy {
         }
         if(enemyNav.velocity.magnitude > 0)
         {
-            setIdle(0);
-            setWalk(1);
+            enemyAnims.SetBool("isIdle", false);
+            enemyAnims.SetBool("isWalking", true);
         }
         else
         {
-            setWalk(0);
+            enemyAnims.SetBool("isWalking", false);
             enemyAnims.SetTrigger("stopWalk");
+            enemyAnims.SetBool("isIdle", true);
         }
     }
 
@@ -77,6 +79,7 @@ public class DoctorAttack : Enemy {
     void stopWalk()
     {
         enemyAnims.SetTrigger("stopWalk");
+        enemyAnims.SetBool("isWalking", false);
     }
 
     protected override void OnPlayerLost()
@@ -134,6 +137,7 @@ public class DoctorAttack : Enemy {
     {
         while(playerTargeted)
         {
+            Debug.Log("DOCTOR CHASE. PLAYER TARGETED: " + playerTargeted);
             yield return new WaitForSeconds(Random.Range(2f, 6f));
             if(!enemySounds.isPlaying)
             {
@@ -147,6 +151,7 @@ public class DoctorAttack : Enemy {
 
     IEnumerator searchVoice()
     {
+        Debug.Log("DOCTOR SEARCH. PLAYER TARGETED: " + playerTargeted);
         int playerSearchedTimes = 0;
         while(!playerTargeted && playerSearchedTimes <= 5)
         {

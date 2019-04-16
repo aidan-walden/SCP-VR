@@ -17,14 +17,11 @@ public class DoctorRoam : GenericRoam {
     protected override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Doctor is on off mesh link: " + enemyNav.isOnOffMeshLink);
-        }
+
     }
     
     
-    protected override IEnumerator chooseRoamingDest()
+    protected override IEnumerator chooseRoamingDest() //THIS FUNCTION IS THE ROOT OF THE PROBLEMS WITH CAMPING DOORS (FOR 049 AT LEAST)
     {
         isChoosingDest = true;
         yield return new WaitForSeconds(1f);

@@ -32,16 +32,17 @@ public class GenericRoam : MonoBehaviour {
 
         if(!enemyNav.pathPending && !enemy.playerTargeted && shouldRoam) //Check if enemy has reached dest
         {
-            if(enemyNav.remainingDistance <= enemyNav.stoppingDistance)
-            {
-                if(!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
+            //if(enemyNav.remainingDistance <= enemyNav.stoppingDistance)
+            //{
+                //if(!enemyNav.hasPath || enemyNav.velocity.sqrMagnitude == 0f)
+                if(!enemyNav.hasPath)
                 {
                     if(!isChoosingDest)
                     {
                         StartCoroutine(chooseRoamingDest());
                     }
                 }
-            }
+            //}
         }
     }
 
@@ -76,7 +77,13 @@ public class GenericRoam : MonoBehaviour {
 
     public virtual void toggleRoaming(bool roam)
     {
+        Debug.Log("TOGGLE ROAMING CALLED. ROAM: " + roam);
         shouldRoam = roam;
+        if(!roam)
+        {
+            isChoosingDest = false;
+            StopCoroutine(chooseRoamingDest());
+        }
         enemyNav.ResetPath();
     }
 

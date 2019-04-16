@@ -45,8 +45,7 @@ public class Enemy : MonoBehaviour {
                 if(enemyRange > 0)
                 {
                     NavMeshPath path = new NavMeshPath();
-                    enemyNav.CalculatePath(player.transform.position, path);
-                    if (path.status == NavMeshPathStatus.PathPartial || path.status == NavMeshPathStatus.PathInvalid)
+                    if (!enemyNav.CalculatePath(player.transform.position, path)) //This works
                     {
                         OnPlayerLost();
                     }
@@ -69,14 +68,11 @@ public class Enemy : MonoBehaviour {
         }
         else if (lookForPlayer)
         {
-            if (enemyRange > 0 && sqrDist < enemyRange * enemyRange)
+            NavMeshPath path = new NavMeshPath();
+            if (enemyRange > 0 && sqrDist < enemyRange * enemyRange && enemyNav.CalculatePath(player.transform.position, path))
             {
                 OnPlayerSpotted();
             }
-        }
-        if(Input.GetKeyDown(KeyCode.F9))
-        {
-            enemyNav.SetDestination(forceDestination.transform.position);
         }
     }
 
@@ -93,14 +89,9 @@ public class Enemy : MonoBehaviour {
     protected virtual void OnPlayerSpotted()
     {
         enemyNav.isStopped = true;
-        if(enemyRoam != null)
+        if (enemyRoam != null)
         {
             enemyRoam.toggleRoaming(false);
-        }
-        NavMeshPath path = new NavMeshPath();
-        enemyNav.CalculatePath(player.transform.position, path);
-        if (path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
-        {
             enemyNav.ResetPath();
             enemyNav.isStopped = false;
             lookForPlayer = false;
@@ -119,9 +110,11 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void targetPlayer(bool goAfterPlayer = true) //Stop current destination and enter the update loop
     {
+        Debug.Log("TARGET PLAYER CALLED. GO AFTER PLAYER: " + goAfterPlayer + ". OBJECT: " + gameObject.name);
         Debug.Log(enemyNav.name + ", " + goAfterPlayer);
         enemyNav.ResetPath();
         playerTargeted = goAfterPlayer;
+        //enemyRoam.toggleRoaming(!goAfterPlayer);
         if (!goAfterPlayer)
         {
             Debug.Log("Clearing dest" + ", " + enemyNav.name);
