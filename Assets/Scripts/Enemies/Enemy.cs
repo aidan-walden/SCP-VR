@@ -45,9 +45,10 @@ public class Enemy : MonoBehaviour {
                 if(enemyRange > 0)
                 {
                     NavMeshPath path = new NavMeshPath();
-                    if (!enemyNav.CalculatePath(player.transform.position, path)) //This works
-                    {
+                    if (!enemyNav.CalculatePath(player.transform.position, path) || enemyNav.pathStatus == NavMeshPathStatus.PathPartial) //This works
+                    {                    
                         OnPlayerLost();
+                        enemyChasesPlayer = false;
                     }
                     else
                     {
@@ -69,7 +70,7 @@ public class Enemy : MonoBehaviour {
         else if (lookForPlayer)
         {
             NavMeshPath path = new NavMeshPath();
-            if (enemyRange > 0 && sqrDist < enemyRange * enemyRange && enemyNav.CalculatePath(player.transform.position, path))
+            if (enemyChasesPlayer && enemyRange > 0 && sqrDist < enemyRange * enemyRange && enemyNav.CalculatePath(player.transform.position, path))
             {
                 OnPlayerSpotted();
             }

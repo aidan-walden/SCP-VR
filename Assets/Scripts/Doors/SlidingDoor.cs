@@ -24,11 +24,11 @@ public class SlidingDoor : MonoBehaviour {
             enemyCanOpen = value;
         }
     }
-    public bool doorChanging, doorStartsOpen, doorIsOpen = false;
+    public bool doorChanging, doorStartsOpen, doorIsOpen, doorIsLocked = false;
     [SerializeField] bool isDependent = false;
     [SerializeField] protected AudioClip[] doorOpen, doorClose;
     [SerializeField] protected AudioClip computerSound;
-    protected bool enemyIsWalkingThru, doorIsLocked = false;
+    protected bool enemyIsWalkingThru = false;
     public OffMeshLink offMeshLink;
     protected AgentLinkMover agentLinkMover;
     public AudioSource doorSounds;
@@ -55,7 +55,6 @@ public class SlidingDoor : MonoBehaviour {
         }
 
     }
-
 
     public virtual void moveDoor(bool openDoor)
     {

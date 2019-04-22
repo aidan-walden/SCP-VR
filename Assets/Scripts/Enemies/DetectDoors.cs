@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DetectDoors : MonoBehaviour {
     public List<Transform> doorsInRange = new List<Transform>();
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,13 +18,18 @@ public class DetectDoors : MonoBehaviour {
     {
         if (other.tag == "Door")
         {
-            doorsInRange.Add(other.transform);
+            SlidingDoor doorScript = other.gameObject.GetComponent<SlidingDoor>();
+            if (!doorScript.doorIsLocked && doorScript.EnemyCanOpen)
+            {
+                doorsInRange.Add(other.transform);
+            }
+            
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Door")
+        if (other.tag == "Door" && doorsInRange.Contains(other.transform))
         {
             doorsInRange.Remove(other.transform);
         }

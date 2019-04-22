@@ -15,8 +15,7 @@ public class DoctorAttack : Enemy {
         base.Update();
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            enemyNav.ResetPath();
-            enemyNav.SetDestination(forceDestination.transform.position);
+            debugObject.transform.position = enemyNav.destination;
         }
         if (playerTargeted)
         {

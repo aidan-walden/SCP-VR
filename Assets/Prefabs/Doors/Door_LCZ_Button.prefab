@@ -289,6 +289,7 @@ MonoBehaviour:
   doorChanging: 0
   doorStartsOpen: 0
   doorIsOpen: 0
+  doorIsLocked: 0
   isDependent: 1
   doorOpen:
   - {fileID: 0}
@@ -740,6 +741,7 @@ MonoBehaviour:
   doorChanging: 0
   doorStartsOpen: 0
   doorIsOpen: 0
+  doorIsLocked: 0
   isDependent: 1
   doorOpen:
   - {fileID: 0}
@@ -994,7 +996,7 @@ GameObject:
   - component: {fileID: 8245877296906066659}
   m_Layer: 0
   m_Name: Door_LCZ_Button
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1058,6 +1060,7 @@ MonoBehaviour:
   doorChanging: 0
   doorStartsOpen: 0
   doorIsOpen: 0
+  doorIsLocked: 0
   isDependent: 0
   doorOpen:
   - {fileID: 8300000, guid: 9f1d98c960b833c41b441d99ccbcb483, type: 3}
@@ -1068,7 +1071,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b2db2bd608bda9040a15229b93d9f361, type: 3}
   - {fileID: 8300000, guid: fb28f03bf313ebd45b2278f221b46aac, type: 3}
   computerSound: {fileID: 8300000, guid: 9f1fbb1ffd9f1b540b04caca7cd560a1, type: 3}
-  offMeshLink: {fileID: 0}
+  offMeshLink: {fileID: 8165659989822689295}
   doorSounds: {fileID: 8277283617941563071}
   doors:
   - {fileID: 8245881640853869993}
