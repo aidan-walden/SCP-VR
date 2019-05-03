@@ -31,6 +31,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-# Ignore meta files
-*.meta
