@@ -42,7 +42,7 @@ public class ChannelSwitcher : MonoBehaviour
         }
     }
 
-    private void OnRadioChannelUp(SteamVR_Action_In actionIn)
+    private void OnRadioChannelUp(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
     {
         if (changeChannelUpAction.GetStateDown(hand.handType))
         {
@@ -50,7 +50,7 @@ public class ChannelSwitcher : MonoBehaviour
         }
     }
 
-    private void OnRadioChannelDown(SteamVR_Action_In actionIn)
+    private void OnRadioChannelDown(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
     {
         if (changeChannelUpAction.GetStateDown(hand.handType))
         {

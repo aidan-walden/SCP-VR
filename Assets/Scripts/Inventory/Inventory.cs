@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
             openAction.RemoveOnChangeListener(OnOpenActionChange, hand.handType);
     }
 
-    private void OnOpenActionChange(SteamVR_Action_In actionIn)
+    private void OnOpenActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
     {
         if (openAction.GetStateDown(hand.handType))
         {

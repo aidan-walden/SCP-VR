@@ -52,7 +52,7 @@ namespace Valve.VR.InteractionSystem
         }
 
 
-        private void OnForwardActionChange(SteamVR_Action_In actionIn)
+        private void OnForwardActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
         {
             if (isForward.GetStateDown(hand.handType))
             {
@@ -65,7 +65,7 @@ namespace Valve.VR.InteractionSystem
                 moveVertical -= 1f;
             }
         }
-        private void OnBackActionChange(SteamVR_Action_In actionIn)
+        private void OnBackActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
         {
             if (isBack.GetStateDown(hand.handType))
             {
@@ -78,7 +78,7 @@ namespace Valve.VR.InteractionSystem
                 moveVertical += 1f;
             }
         }
-        private void OnLeftActionChange(SteamVR_Action_In actionIn)
+        private void OnLeftActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
         {
             if (isLeft.GetStateDown(hand.handType))
             {
@@ -91,7 +91,7 @@ namespace Valve.VR.InteractionSystem
                 moveHorizontal += 1f;
             }
         }
-        private void OnRightActionChange(SteamVR_Action_In actionIn)
+        private void OnRightActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
         {
             if (isRight.GetStateDown(hand.handType))
             {
