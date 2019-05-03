@@ -22,7 +22,7 @@ public class DoctorRoam : GenericRoam {
     }
     
     
-    protected override IEnumerator chooseRoamingDest() //we must remove the previous 2 doors from possible doors when this function is called after the first time
+    protected override IEnumerator chooseRoamingDest() //TODO: Fix bug where doctor always targets NavEnd instead of one furthest away from him
     {
         isChoosingDest = true;
         yield return new WaitForSeconds(1f);

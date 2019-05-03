@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void OnPlayerLost()
     {
+        Debug.Log("ON PLAYER LOST. ENEMY : " + gameObject.name);
         if (enemyRoam != null)
         {
             enemyRoam.toggleRoaming(true);
@@ -94,10 +95,10 @@ public class Enemy : MonoBehaviour {
         {
             enemyRoam.toggleRoaming(false);
             enemyNav.ResetPath();
-            enemyNav.isStopped = false;
             lookForPlayer = false;
-            targetPlayer(true);
         }
+        enemyNav.isStopped = false;
+        targetPlayer(true);
     }
 
     protected virtual void OnPlayerAttacked()
@@ -111,16 +112,12 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void targetPlayer(bool goAfterPlayer = true) //Stop current destination and enter the update loop
     {
-        Debug.Log("TARGET PLAYER CALLED. GO AFTER PLAYER: " + goAfterPlayer + ". OBJECT: " + gameObject.name);
-        Debug.Log(enemyNav.name + ", " + goAfterPlayer);
         enemyNav.ResetPath();
         playerTargeted = goAfterPlayer;
         //enemyRoam.toggleRoaming(!goAfterPlayer);
         if (!goAfterPlayer)
         {
-            Debug.Log("Clearing dest" + ", " + enemyNav.name);
             enemyNav.ResetPath();
-
         }
         Music enemyMusic = enemyNav.gameObject.GetComponent<Music>();
         if(enemyMusic != null)

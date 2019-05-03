@@ -91,7 +91,7 @@ public class LarryAttack : Enemy {
 
     protected override void OnPlayerAttacked()
     {
-        bringPlayerToPocket();
+        //bringPlayerToPocket();
     }
 
     private void updateAnimTimes()

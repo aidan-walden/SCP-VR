@@ -44,6 +44,7 @@ public class DualSlidingDoor : SlidingDoor
         string tag = other.gameObject.tag;
         if (tag == "EnemyNPC")
         {
+            enemyObj = other.gameObject;
             enemyNav = other.GetComponent<NavMeshAgent>();
             agentLinkMover = other.GetComponent<AgentLinkMover>();
             enemyScript = other.GetComponent<Enemy>();
@@ -62,7 +63,7 @@ public class DualSlidingDoor : SlidingDoor
     }
     protected override void OnTriggerStay(Collider other)
     {
-        if (enemyNav != null)
+        if (enemyNav != null && enemyCanOpen && enemyObj == other.gameObject) //This does not work because as long as an enemy is present in the trigger this will be true. Any other object could be staying
         {
             if (enemyNav.isOnOffMeshLink)
             {

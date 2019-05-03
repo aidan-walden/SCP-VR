@@ -9,6 +9,7 @@ public class SlidingDoor : MonoBehaviour {
     private Vector3 moveTo, origPos;
     protected NavMeshAgent enemyNav;
     protected Enemy enemyScript;
+    protected GameObject enemyObj;
     public float speed = 0.7127584f;
     [SerializeField] protected float computerCloseChance = 15f;
     [SerializeField] protected bool enemyCanOpen = true;
@@ -113,6 +114,7 @@ public class SlidingDoor : MonoBehaviour {
         {
             if (other.tag == "EnemyNPC")
             {
+                enemyObj = other.gameObject;
                 enemyNav = other.GetComponent<NavMeshAgent>();
                 agentLinkMover = other.GetComponent<AgentLinkMover>();
                 enemyScript = other.GetComponent<Enemy>();
@@ -136,7 +138,7 @@ public class SlidingDoor : MonoBehaviour {
     {
         if(!isDependent)
         {
-            if (enemyNav != null && enemyCanOpen)
+            if (enemyNav != null && enemyCanOpen && enemyObj == other.gameObject)
             {
                 if (enemyNav.isOnOffMeshLink)
                 {
@@ -173,6 +175,8 @@ public class SlidingDoor : MonoBehaviour {
                 Debug.Log("Closing door behind enemy");
                 enemyIsWalkingThru = false;
                 enemyScript.enemyChasesPlayer = true;
+                enemyObj = null;
+                enemyNav = null;
             }
         }
     }

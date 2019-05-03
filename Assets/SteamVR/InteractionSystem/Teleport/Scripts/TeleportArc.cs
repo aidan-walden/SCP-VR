@@ -40,15 +40,12 @@ namespace Valve.VR.InteractionSystem
         private Transform arcObjectsTransfrom;
         private bool arcInvalid = false;
         private float scale = 1;
-        //private DrawSCPLogo scp;
-        //private GameObject drawnScpLogo;
 
 
         //-------------------------------------------------
         void Start()
         {
             arcTimeOffset = Time.time;
-            //scp = GetComponent<DrawSCPLogo>();
         }
 
 
@@ -128,7 +125,6 @@ namespace Valve.VR.InteractionSystem
             {
                 CreateLineRendererObjects();
             }
-            //drawnScpLogo = Instantiate(scp.SCPLogo, lineRenderers[lineRenderers.Length - 1].GetPosition(1), scp.SCPLogo.transform.rotation);
         }
 
 
@@ -141,7 +137,6 @@ namespace Valve.VR.InteractionSystem
                 HideLineSegments(0, segmentCount);
             }
             showArc = false;
-            //Destroy(drawnScpLogo);
         }
 
 
