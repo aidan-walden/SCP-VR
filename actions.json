@@ -36,23 +36,12 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/HeadsetOnHead",
+      "type": "boolean",
+      "requirement": "optional"
+    },
+    {
       "name": "/actions/default/in/OpenInv",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Left",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Right",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Forward",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Backwards",
       "type": "boolean"
     },
     {
@@ -82,6 +71,11 @@
     {
       "name": "/actions/buggy/in/Reset",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/mixedreality/in/ExternalCamera",
+      "type": "pose",
+      "requirement": "optional"
     }
   ],
   "action_sets": [
@@ -95,6 +89,10 @@
     },
     {
       "name": "/actions/buggy",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/mixedreality",
       "usage": "single"
     }
   ],
@@ -114,26 +112,41 @@
     {
       "controller_type": "holographic_controller",
       "binding_url": "bindings_holographic_controller.json"
+    },
+    {
+      "controller_type": "vive",
+      "binding_url": "binding_vive.json"
+    },
+    {
+      "controller_type": "vive_pro",
+      "binding_url": "binding_vive_pro.json"
+    },
+    {
+      "controller_type": "rift",
+      "binding_url": "binding_rift.json"
+    },
+    {
+      "controller_type": "holographic_hmd",
+      "binding_url": "binding_holographic_hmd.json"
+    },
+    {
+      "controller_type": "vive_tracker_camera",
+      "binding_url": "binding_vive_tracker_camera.json"
     }
   ],
   "localization": [
     {
       "language_tag": "en_US",
-      "/actions/default/in/InteractUI": "Interact With UI",
-      "/actions/default/in/Teleport": "Teleport",
-      "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/GrabGrip": "Grab Grip",
+      "/actions/default/in/GrabPinch": "Grab Pinch",
+      "/actions/default/in/HeadsetOnHead": "Headset on head (proximity sensor)",
+      "/actions/default/in/InteractUI": "Interact With UI",
+      "/actions/default/in/Pose": "Pose",
       "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
       "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
-      "/actions/default/in/Pose": "Pose",
+      "/actions/default/in/Teleport": "Teleport",
       "/actions/default/out/Haptic": "Haptic",
-      "/actions/platformer/in/Move": "Move",
-      "/actions/platformer/in/Jump": "Jump",
-      "/actions/default/in/OpenInv": "Open Inventory",
-      "/actions/default/in/Forward": "Go forward",
-      "/actions/default/in/Left": "Go left",
-      "/actions/default/in/Right": "Go right",
-      "/actions/default/in/Backwards": "Go backwards"
+      "/actions/platformer/in/Jump": "Jump"
     }
   ]
 }
