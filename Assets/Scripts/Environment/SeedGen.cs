@@ -8,7 +8,8 @@ public class SeedGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("THE NUMBER VALUE SEED FOR " + seed + " IS: " + seed.GetHashCode());
+        Random.InitState(seed.GetHashCode());
+        Debug.Log("THE NUMBER VALUE SEED FOR " + seed + " IS: " + seed.GetHashCode() + ". RANDOM NUMBER FOR THIS SEED: " + Random.Range(1, 10));
     }
 
     // Update is called once per frame

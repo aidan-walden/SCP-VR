@@ -5,11 +5,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class RadioChannel {
-
-
     public bool isPlaying = false;
-
-    
     public int ChannelNum
     {
         get
@@ -25,7 +21,6 @@ public class RadioChannel {
             return waitBwClipsDuration;
         }
     }
-    
 
     public int channelNum;
     public int currentTrack = 0;
@@ -36,29 +31,12 @@ public class RadioChannel {
     public AudioClip idleSound;
     public bool commsActive = false;
 
-    /* 
-     public RadioChannel(int channelNum, float waitBwClipsDuration, AudioClip[] channelSounds)
-     {
-         this.channelNum = channelNum;
-         this.waitBwClipsDuration = waitBwClipsDuration;
-         Array.Copy(this.channelSounds, channelSounds, this.channelSounds.Length);
-     }
-     */
-
-    //ADDING THE ARRAY TO THE CONSTRUCTOR BREAKS EVERYTHING??
-
     public RadioChannel(int channelNum, float waitBwClipsDuration, AudioClip idleSound, bool isCommsChannel = false)
     {
-
-
         this.channelNum = channelNum;
-
-
         this.waitBwClipsDuration = waitBwClipsDuration;
         this.isCommsChannel = isCommsChannel;
         this.idleSound = idleSound;
-        
-        //Array.Copy(channelSounds, this.channelSounds, channelSounds.Length);
     }
 
     public IEnumerator startComms(AudioClip comm)
@@ -78,7 +56,4 @@ public class RadioChannel {
             Debug.LogWarning("Start Comms called on non-comms channel. Ignoring.");
         }
     }
-    
-
-
 }
