@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.65
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d07d2172e76d3fa429e80a14d2ae3616, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -70,7 +70,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
-    m_ReflectionCompression: 0
+    m_ReflectionCompression: 2
     m_MixedBakeMode: 1
     m_BakeBackend: 0
     m_PVRSampling: 1
@@ -1291,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4940325618114070, guid: dc2ec2cc4e54be3438b44cd575f9004e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2ec2cc4e54be3438b44cd575f9004e, type: 3}
@@ -4475,7 +4475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4189876539075018, guid: 471d4525241332443bca256bcb4b2d72, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 471d4525241332443bca256bcb4b2d72, type: 3}
@@ -4938,7 +4938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4478527703944230, guid: fd3b4dab2cd8f284ab4ac9e6e4403746, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114448191508741014, guid: fd3b4dab2cd8f284ab4ac9e6e4403746,
         type: 3}
@@ -4993,7 +4993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742473118477630, guid: c68b25f7333a3284ea737eca45d27e4c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114280609336631410, guid: c68b25f7333a3284ea737eca45d27e4c,
         type: 3}
@@ -5944,16 +5944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1431179152}
     m_Modifications:
-    - target: {fileID: 8358518997934644493, guid: 1c89e201dcacdb34d8989f92410a4525,
-        type: 3}
-      propertyPath: m_Name
-      value: Door_LCZ_Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 8358518997934644493, guid: 1c89e201dcacdb34d8989f92410a4525,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
     - target: {fileID: 8352502975383702373, guid: 1c89e201dcacdb34d8989f92410a4525,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6023,6 +6013,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.008851661
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358518997934644493, guid: 1c89e201dcacdb34d8989f92410a4525,
+        type: 3}
+      propertyPath: m_Name
+      value: Door_LCZ_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358518997934644493, guid: 1c89e201dcacdb34d8989f92410a4525,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c89e201dcacdb34d8989f92410a4525, type: 3}
