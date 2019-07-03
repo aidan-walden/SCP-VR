@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 114553062092943814}
   - component: {fileID: 114902055910687600}
   - component: {fileID: 114591178757887156}
-  - component: {fileID: 114345327447418576}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: Untagged
@@ -385,26 +384,6 @@ MonoBehaviour:
   offsetHoriz: 5
   offsetVert: 10
   openAction:
-    actionPath: 
-    needsReinit: 0
-  hand: {fileID: 0}
---- !u!114 &114345327447418576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330509098682706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23a8bd8e6f763474dac84b85ecc4b286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radio: {fileID: 0}
-  changeChannelUpAction:
-    actionPath: 
-    needsReinit: 0
-  changeChannelDownAction:
     actionPath: 
     needsReinit: 0
   hand: {fileID: 0}
@@ -1251,7 +1230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4768978553096508
 Transform:
   m_ObjectHideFlags: 0
@@ -1298,8 +1277,8 @@ MonoBehaviour:
   rig2DFallback: {fileID: 1410311330933318}
   audioListener: {fileID: 4427205472686426}
   headsetOnHead:
-    actionPath: /actions//in/HeadsetOnHead
-    needsReinit: 1
+    actionPath: /actions/default/in/HeadsetOnHead
+    needsReinit: 0
   allowToggleTo2D: 1
 --- !u!82 &82655648985616330
 AudioSource:
@@ -1692,7 +1671,6 @@ GameObject:
   - component: {fileID: 4564233564771632}
   - component: {fileID: 114180750018040900}
   - component: {fileID: 114455040757419236}
-  - component: {fileID: 114019939348931460}
   m_Layer: 26
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1810,27 +1788,6 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Pose_DeviceIndexChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   broadcastDeviceChanges: 1
---- !u!114 &114019939348931460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902740339738860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae60bda3a18067842967ebb95c441bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invSphere: {fileID: 1477860607310606, guid: 41fc1d63a5a573e469924e42ed0f5006, type: 3}
-  scp096: {fileID: 0}
-  radio: {fileID: 0}
-  offsetHoriz: 5
-  offsetVert: 10
-  openAction:
-    actionPath: 
-    needsReinit: 0
-  hand: {fileID: 0}
 --- !u!1 &1946813039002842
 GameObject:
   m_ObjectHideFlags: 0

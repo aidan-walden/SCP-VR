@@ -1097,8 +1097,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2016742450}
-        m_MethodName: setDoctorEnabled
-        m_Mode: 0
+        m_MethodName: setLarryEnabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1267,7 +1267,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2016742450}
         m_MethodName: setShyGuyEnabled
-        m_Mode: 0
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2179,6 +2179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927375905}
   - component: {fileID: 927375906}
+  - component: {fileID: 927375907}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -2213,6 +2214,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540bda73d096c41489f07cc816c4acb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &927375907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927375904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a6a70209b6e6345bfe18b02314a54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Facility
+  internalProcessPath: 
+  internalProcessArgs: 
+  loadAdditive: 0
+  loadAsync: 1
+  loadingScreen: {fileID: 0}
+  progressBarEmpty: {fileID: 0}
+  progressBarFull: {fileID: 0}
+  loadingScreenWidthInMeters: 6
+  progressBarWidthInMeters: 3
+  loadingScreenDistance: 0
+  loadingScreenTransform: {fileID: 0}
+  progressBarTransform: {fileID: 0}
+  front: {fileID: 0}
+  back: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  top: {fileID: 0}
+  bottom: {fileID: 0}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  showGrid: 0
+  fadeOutTime: 0.5
+  fadeInTime: 0.5
+  postLoadSettleTime: 0
+  loadingScreenFadeInTime: 1
+  loadingScreenFadeOutTime: 0.25
+  autoTriggerOnEnable: 0
 --- !u!1 &977217944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,6 +2570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1797374335991358, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4768978553096508, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.49
@@ -2598,8 +2642,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114591178757887156, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
-    - {fileID: 114345327447418576, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
-    - {fileID: 114019939348931460, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
 --- !u!1 &1070794377 stripped
 GameObject:
@@ -2620,7 +2662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerClicked:
-    actionPath: /actions/default/in/GrabPinch
+    actionPath: /actions/default/in/InteractUI
     needsReinit: 0
 --- !u!114 &1070794379
 MonoBehaviour:
@@ -2636,7 +2678,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pose: {fileID: 0}
   interactWithUI:
-    actionPath: /actions/default/in/GrabPinch
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+  active: 1
+  color: {r: 0, g: 0, b: 0, a: 0}
+  thickness: 0.002
+  clickColor: {r: 0, g: 1, b: 0, a: 1}
+  holder: {fileID: 0}
+  pointer: {fileID: 0}
+  addRigidBody: 0
+  reference: {fileID: 0}
+--- !u!1 &1110548845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1902740339738860, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1070794376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1110548846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110548845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9605115099307b644bc13e9f47e6d7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerClicked:
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+--- !u!114 &1110548847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110548845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f511c1adaa1e94ebe7ca97bbcabd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pose: {fileID: 0}
+  interactWithUI:
+    actionPath: /actions/default/in/InteractUI
     needsReinit: 0
   active: 1
   color: {r: 0, g: 0, b: 0, a: 0}
@@ -3391,7 +3478,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2016742450}
         m_MethodName: setPeanutEnabled
-        m_Mode: 0
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4097,7 +4184,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2016742450}
         m_MethodName: setDoctorEnabled
-        m_Mode: 0
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4118,9 +4205,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016742448}
-  - component: {fileID: 2016742447}
   - component: {fileID: 2016742446}
   - component: {fileID: 2016742450}
+  - component: {fileID: 2016742447}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -4149,9 +4236,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2016742445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1c07a6449b0ca439ee6fac5f6f7d83, type: 3}
+  m_Script: {fileID: 11500000, guid: 9494590f0ca206840ab84fbe411d45d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
+  playerSpawnPoint: {fileID: 0}
 --- !u!4 &2016742448
 Transform:
   m_ObjectHideFlags: 0

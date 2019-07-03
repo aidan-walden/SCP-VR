@@ -2,10 +2,10 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "application.generated.unity.scpvr.exe",
+      "app_key": "application.generated.unity.containmentbreachvr.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\Aidan\\Documents\\Unity Projects\\SCP-VR\\actions.json",
+      "action_manifest_path": "C:\\Users\\Aidan\\Documents\\GitHub\\SCP-VR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Containment Breach VR [Testing]"
