@@ -6,7 +6,7 @@ using AidanTools;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class PeanutMove : Enemy {
-    public Camera playerCam;
+    Camera playerCam;
     AidanTools.AidanTools tools;
     public Renderer peanutRender;
     bool PlayerIsBlinking
@@ -29,6 +29,7 @@ public class PeanutMove : Enemy {
     {
         base.Start();
         tools = new AidanTools.AidanTools();
+        playerCam = player.transform.GetChild(0).GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame

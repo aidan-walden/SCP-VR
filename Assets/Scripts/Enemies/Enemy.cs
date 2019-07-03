@@ -14,15 +14,19 @@ public class Enemy : MonoBehaviour {
     protected bool lookForPlayer = true;
     public float enemyRange;
     protected float sqrDist;
-    [SerializeField] protected GameObject player, forceDestination;
+    public static GameObject player;
+    [SerializeField] protected GameObject forceDestination;
     [SerializeField] protected NavMeshAgent enemyNav;
     [SerializeField] protected AudioSource enemySounds;
-    protected PlayerEvents playerScript;
+    protected static PlayerEvents playerScript;
     [SerializeField] protected GenericRoam enemyRoam;
+
+
 
     protected virtual void Start()
     {
         enemyNav.autoTraverseOffMeshLink = false;
+        player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.transform.root.GetComponent<PlayerEvents>();
     }
 

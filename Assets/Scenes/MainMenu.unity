@@ -4209,7 +4209,7 @@ GameObject:
   - component: {fileID: 2016742450}
   - component: {fileID: 2016742447}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: PregameManager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4236,11 +4236,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2016742445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9494590f0ca206840ab84fbe411d45d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d1c07a6449b0ca439ee6fac5f6f7d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
-  playerSpawnPoint: {fileID: 0}
 --- !u!4 &2016742448
 Transform:
   m_ObjectHideFlags: 0

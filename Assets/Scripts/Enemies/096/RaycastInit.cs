@@ -6,7 +6,7 @@ using AidanTools;
 [RequireComponent(typeof(Renderer))]
 public class RaycastInit : MonoBehaviour {
     public float viewDistance = Mathf.Infinity;
-    public Camera playerCam;
+    Camera playerCam;
     AidanTools.AidanTools tools;
     private ShyGuyTrigger triggerScript;
     Renderer shyGuyFace;
@@ -14,7 +14,8 @@ public class RaycastInit : MonoBehaviour {
         triggerScript = GetComponentInParent<ShyGuyTrigger>();
         tools = new AidanTools.AidanTools();
         shyGuyFace = GetComponent<Renderer>();
-	}
+        playerCam = Enemy.player.transform.GetChild(0).GetComponentInChildren<Camera>();
+    }
     private void Update()
     {
         if(!triggerScript.IsRaging && shyGuyFace.isVisible)

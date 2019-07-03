@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyEnabler : MonoBehaviour
 {
     public bool larryEnabled, doctorEnabled, peanutEnabled, shyGuyEnabled = true;
 

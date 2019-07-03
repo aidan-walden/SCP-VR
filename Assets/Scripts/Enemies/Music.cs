@@ -8,10 +8,11 @@ public class Music : MonoBehaviour {
     bool chaseMusicActive = false;
     AudioSource[] playerAudio;
     AudioSource playerMusic;
-    [SerializeField] GameObject player;
+    static GameObject player;
     PlayerEvents playerEvents;
     // Use this for initialization
     void Start () {
+        player = Enemy.player;
         playerAudio = player.transform.root.GetComponents<AudioSource>(); //Get the HeadCollider's master object's AudioSource components using the Player parameter from TargetPlayer
         playerMusic = playerAudio[0];
         playerEvents = player.transform.root.GetComponent<PlayerEvents>();
@@ -42,7 +43,6 @@ public class Music : MonoBehaviour {
 
     public void playKillSound()
     {
-
         playerEvents.playSound(killSound);
     }
 

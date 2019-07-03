@@ -14,8 +14,9 @@ public class MainMenu : MonoBehaviour
         Transform[] hands = { SteamObjects.GetChild(1), SteamObjects.GetChild(2) };
         foreach(Transform hand in hands) //Remove UI Laser interaction scripts
         {
-            Destroy(hand.gameObject.GetComponent<VRUIInput>());
-            Destroy(hand.gameObject.GetComponent<SteamVR_LaserPointer>());
+            Destroy(hand.GetComponent<VRUIInput>());
+            Destroy(hand.GetComponent<SteamVR_LaserPointer>());
+            Destroy(hand.GetChild(5).gameObject);
         }
         GetComponent<SteamVR_LoadLevel>().Trigger();
     }
