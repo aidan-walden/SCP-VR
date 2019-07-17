@@ -187,6 +187,7 @@ public class Radio : MonoBehaviour {
     {
         if (radioIsPlaying)
         {
+            StartCoroutine(degradeBattery());
             yield return new WaitForSeconds((channel.channelSounds.clip.length - channel.channelSounds.time) + channel.WaitBwClipsDuration);
             if(radioIsPlaying)
             {
@@ -226,10 +227,20 @@ public class Radio : MonoBehaviour {
         if(!playerIsHolding)
         {
             radioIsPlaying = false;
+            StopCoroutine(degradeBattery());
             foreach(RadioChannel channel in radioChannels)
             {
                 channel.channelSounds.Pause();
             }
         }
+    }
+
+    IEnumerator degradeBattery()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(30f);
+            batteryCharge--;
+        }   
     }
 }

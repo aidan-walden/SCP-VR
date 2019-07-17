@@ -13,9 +13,9 @@ public class Music : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = Enemy.player;
-        playerAudio = player.transform.root.GetComponents<AudioSource>(); //Get the HeadCollider's master object's AudioSource components using the Player parameter from TargetPlayer
+        playerAudio = player.GetComponents<AudioSource>();
         playerMusic = playerAudio[0];
-        playerEvents = player.transform.root.GetComponent<PlayerEvents>();
+        playerEvents = player.GetComponent<PlayerEvents>();
     }
 	
 	// Update is called once per frame

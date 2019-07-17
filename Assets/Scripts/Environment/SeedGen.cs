@@ -9,7 +9,7 @@ public class SeedGen : MonoBehaviour
     void Start()
     {
         Random.InitState(seed.GetHashCode());
-        Debug.Log("THE NUMBER VALUE SEED FOR " + seed + " IS: " + seed.GetHashCode() + ". RANDOM NUMBER FOR THIS SEED: " + Random.Range(1, 10));
+        Debug.Log("THE NUMBER VALUE SEED FOR " + seed + " IS: " + seed.GetHashCode() + ". RANDOM NUMBER FOR THIS SEED: " + Random.Range(1, 100000));
     }
 
     // Update is called once per frame
