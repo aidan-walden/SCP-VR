@@ -5,7 +5,7 @@ using UnityEngine;
 public class TeslaFire : MonoBehaviour
 {
     public AudioClip standby, charge, fire;
-    public float chargeDiff, fireDiff;
+    public float chargeDiff, fireDiff, electricRate;
     public AudioSource teslaSounds;
     public GameObject teslaKill;
     private bool playerInRange, teslaActive = false;
@@ -41,11 +41,34 @@ public class TeslaFire : MonoBehaviour
             yield return new WaitForSeconds(charge.length - chargeDiff);
             teslaSounds.PlayOneShot(fire);
             teslaKill.SetActive(true);
+            StartCoroutine(moveElectric());
             yield return new WaitForSeconds(fire.length - fireDiff);
             teslaKill.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
         teslaActive = false;
+        yield return null;
+    }
+
+    IEnumerator moveElectric()
+    {
+        while(teslaKill.activeSelf)
+        {
+            int coord = Random.Range(0, 2);
+            if(coord == 0)
+            {
+                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x * -1, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z);
+            }
+            else if(coord == 1)
+            {
+                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y * -1, teslaKill.transform.localScale.z);
+            }
+            else
+            {
+                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z * -1);
+            }
+            yield return new WaitForSeconds(electricRate);
+        }
         yield return null;
     }
 }

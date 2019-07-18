@@ -734,6 +734,7 @@ MonoBehaviour:
   fire: {fileID: 8300000, guid: b2fc35192221c4542ad6b28ab9da9676, type: 3}
   chargeDiff: 0.3
   fireDiff: 0.05
+  electricRate: 0.07
   teslaSounds: {fileID: 5139893956116557429}
   teslaKill: {fileID: 5139893955780468962}
 --- !u!1 &5139893956071126737
