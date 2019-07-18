@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TeslaFire : MonoBehaviour
 {
-    public AudioClip standby, charge, fire;
+    public AudioClip charge, fire;
     public float chargeDiff, fireDiff, electricRate;
     public AudioSource teslaSounds;
     public GameObject teslaKill;
     private bool playerInRange, teslaActive = false;
+    public bool teslaReady = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,9 +33,11 @@ public class TeslaFire : MonoBehaviour
         }
     }
 
+
     IEnumerator loopFire() //TODO: Randomly change rotation of teslaKill to make lights and electric texture chaotic
     {
-        while(playerInRange)
+        yield return new WaitUntil(() => teslaReady);
+        while (playerInRange)
         {
             teslaActive = true;
             teslaSounds.PlayOneShot(charge);

@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2462862602115475608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4516073518185505649}
+  - component: {fileID: 5949844462260237367}
+  - component: {fileID: 987350958768160102}
+  m_Layer: 0
+  m_Name: teslaChargeTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4516073518185505649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462862602115475608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00000059605, y: 8.12e-13, z: 3.02}
+  m_LocalScale: {x: 4.956194, y: 17.254799, z: 5.971926}
+  m_Children:
+  - {fileID: 8392641864011745393}
+  m_Father: {fileID: 157105491946932856}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5949844462260237367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462862602115475608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &987350958768160102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462862602115475608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc6c3fa38cc13a489e05d8d78de1927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: 8300000, guid: 51015d2a419650c42bb50920e631232e, type: 3}
+  chargeup: {fileID: 8300000, guid: ed75012d19ab2f3468b7fabe1f892002, type: 3}
+  fireScript: {fileID: 5139893956047833974}
+  teslaLoop: {fileID: 4972880185106143509}
 --- !u!1 &3780067392824309867
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +95,7 @@ Transform:
   - {fileID: 5139893956047833971}
   - {fileID: 5139893955780468963}
   - {fileID: 5139893957173153439}
+  - {fileID: 4516073518185505649}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -671,7 +734,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5139893956047833971}
-  - component: {fileID: 5139893956047833969}
   - component: {fileID: 5139893956047833968}
   - component: {fileID: 5139893956047833974}
   m_Layer: 0
@@ -690,20 +752,12 @@ Transform:
   m_GameObject: {fileID: 5139893956047833970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.02}
-  m_LocalScale: {x: 4.48, y: 3.95, z: 6.04}
+  m_LocalScale: {x: 4.48, y: 3.9523432, z: 6.04}
   m_Children:
   - {fileID: 5139893956116557428}
   m_Father: {fileID: 157105491946932856}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5139893956047833969
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5139893956047833970}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &5139893956047833968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -729,7 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdd4b65ac810b841bd7f79db537503c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standby: {fileID: 0}
   charge: {fileID: 8300000, guid: 6be09b5b51af7634bb0c64062be77045, type: 3}
   fire: {fileID: 8300000, guid: b2fc35192221c4542ad6b28ab9da9676, type: 3}
   chargeDiff: 0.3
@@ -737,6 +790,7 @@ MonoBehaviour:
   electricRate: 0.07
   teslaSounds: {fileID: 5139893956116557429}
   teslaKill: {fileID: 5139893955780468962}
+  teslaReady: 0
 --- !u!1 &5139893956071126737
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,8 +907,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5139893956116557431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0037946454, y: 0.0050631827, z: -0.014735374}
-  m_LocalScale: {x: 0.8883928, y: 0.34430358, z: 0.9635753}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5139893956047833971}
   m_RootOrder: 0
@@ -1718,6 +1772,134 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &5197834388222598647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8392641864011745393}
+  - component: {fileID: 4972880185106143509}
+  m_Layer: 0
+  m_Name: teslaCharge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8392641864011745393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197834388222598647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4516073518185505649}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &4972880185106143509
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197834388222598647}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243815623879889166, guid: 6c9521335a9b04e48a259b875b49ae73,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &5139893956956165864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1738,12 +1920,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0c17a302370668a4594de900df2b2472,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0014277864
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c17a302370668a4594de900df2b2472,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c17a302370668a4594de900df2b2472,
         type: 3}
