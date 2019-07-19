@@ -7,7 +7,7 @@ public class TeslaFire : MonoBehaviour
     public AudioClip charge, fire;
     public float chargeDiff, fireDiff, electricRate;
     public AudioSource teslaSounds;
-    public GameObject teslaKill;
+    public GameObject electricity, teslaKill;
     private bool playerInRange, teslaActive = false;
     public bool teslaReady = false;
 
@@ -34,7 +34,7 @@ public class TeslaFire : MonoBehaviour
     }
 
 
-    IEnumerator loopFire() //TODO: Randomly change rotation of teslaKill to make lights and electric texture chaotic
+    IEnumerator loopFire()
     {
         yield return new WaitUntil(() => teslaReady);
         while (playerInRange)
@@ -44,9 +44,11 @@ public class TeslaFire : MonoBehaviour
             yield return new WaitForSeconds(charge.length - chargeDiff);
             teslaSounds.PlayOneShot(fire);
             teslaKill.SetActive(true);
+            electricity.SetActive(true);
             StartCoroutine(moveElectric());
             yield return new WaitForSeconds(fire.length - fireDiff);
             teslaKill.SetActive(false);
+            electricity.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
         teslaActive = false;
@@ -60,15 +62,15 @@ public class TeslaFire : MonoBehaviour
             int coord = Random.Range(0, 2);
             if(coord == 0)
             {
-                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x * -1, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z);
+                electricity.transform.localScale = new Vector3(teslaKill.transform.localScale.x * -1, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z);
             }
             else if(coord == 1)
             {
-                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y * -1, teslaKill.transform.localScale.z);
+                electricity.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y * -1, teslaKill.transform.localScale.z);
             }
             else
             {
-                teslaKill.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z * -1);
+                electricity.transform.localScale = new Vector3(teslaKill.transform.localScale.x, teslaKill.transform.localScale.y, teslaKill.transform.localScale.z * -1);
             }
             yield return new WaitForSeconds(electricRate);
         }

@@ -3963,6 +3963,11 @@ PrefabInstance:
       propertyPath: godMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114006526168649594, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e,
+        type: 3}
+      propertyPath: testSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 530c79ffb868ef342813a629f5c73566, type: 3}
     m_RemovedComponents:
     - {fileID: 114591178757887156, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e1a2327ad8c5afc4d81dc4ff0b54e40e, type: 3}
