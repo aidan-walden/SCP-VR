@@ -11,6 +11,7 @@ TagManager:
   - EnemyNPC
   - Door
   - Item
+  - FriendlyNPC
   layers:
   - Default
   - TransparentFX

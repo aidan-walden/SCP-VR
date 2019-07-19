@@ -10,5 +10,9 @@ public class TeslaKill : MonoBehaviour
         {
             other.transform.root.GetComponent<PlayerEvents>().killPlayer();
         }
+        else if(other.gameObject.tag == "FriendlyNPC")
+        {
+            other.gameObject.GetComponent<ScriptedNPC>().kill();
+        }
     }
 }

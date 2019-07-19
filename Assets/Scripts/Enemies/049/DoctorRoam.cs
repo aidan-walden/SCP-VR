@@ -14,12 +14,6 @@ public class DoctorRoam : GenericRoam {
         detectDoors = doorDetector.gameObject.GetComponent<DetectDoors>();
         StartCoroutine(chooseRoamingDest());
     }
-
-    protected override void Update()
-    {
-        base.Update();
-
-    }
     
     
     protected override IEnumerator chooseRoamingDest() //TODO: Fix bug where doctor always targets NavEnd instead of one furthest away from him

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TeslaCharge : MonoBehaviour
 {
-    public AudioClip idle, chargeup;
-    public TeslaFire fireScript;
-    public AudioSource teslaLoop;
+    [SerializeField] AudioClip idle, chargeup;
+    [SerializeField] TeslaFire fireScript;
+    [SerializeField] AudioSource teslaLoop;
     bool teslaCharging = false;
     private void OnTriggerEnter(Collider other)
     {

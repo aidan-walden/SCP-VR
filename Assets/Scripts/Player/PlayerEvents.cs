@@ -8,7 +8,7 @@ public class PlayerEvents : MonoBehaviour {
     [SerializeField] private bool godMode = false;
     [SerializeField] Image blinkOverlay;
     [SerializeField] float blinkSmooth;
-    [SerializeField] AudioSource playerSounds;
+    AudioSource playerSounds;
     [SerializeField] AudioSource[] intercomSounds;
     [SerializeField] AudioClip intercomStart, intercomEnd, testSound;
     public bool playerIsDead, playerIsBlinking = false;
@@ -33,8 +33,14 @@ public class PlayerEvents : MonoBehaviour {
         }
     }
     public float blinkDur = 0.3f;
-	// Use this for initialization
-	void Start () {
+
+    private void Awake()
+    {
+        playerSounds = GetComponent<AudioSource>();
+    }
+
+    // Use this for initialization
+    void Start () {
         RingOn = true;
 	}
 	

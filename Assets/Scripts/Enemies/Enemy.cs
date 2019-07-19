@@ -8,7 +8,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour {
-    [SerializeField] protected Animator enemyAnims;
+    protected Animator enemyAnims;
     public bool playerTargeted = false;
     public bool enemyChasesPlayer = true;
     protected bool lookForPlayer = true;
@@ -16,12 +16,17 @@ public class Enemy : MonoBehaviour {
     protected float sqrDist;
     public static GameObject player;
     [SerializeField] protected GameObject forceDestination;
-    [SerializeField] protected NavMeshAgent enemyNav;
+    protected NavMeshAgent enemyNav;
     [SerializeField] protected AudioSource enemySounds;
     protected static PlayerEvents playerScript;
-    [SerializeField] protected GenericRoam enemyRoam;
+    protected GenericRoam enemyRoam;
 
-
+    protected void Awake()
+    {
+        enemyNav = GetComponent<NavMeshAgent>();
+        enemyRoam = GetComponent<GenericRoam>();
+        enemyAnims = GetComponent<Animator>();
+    }
 
     protected virtual void Start()
     {

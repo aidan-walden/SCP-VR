@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TeslaFire : MonoBehaviour
 {
-    public AudioClip charge, fire;
-    public float chargeDiff, fireDiff, electricRate;
-    public AudioSource teslaSounds;
-    public GameObject electricity, teslaKill;
+    [SerializeField] AudioClip charge, fire;
+    [SerializeField] float chargeDiff, fireDiff, electricRate;
+    [SerializeField] AudioSource teslaSounds;
+    [SerializeField] GameObject electricity, teslaKill;
     private bool playerInRange, teslaActive = false;
     public bool teslaReady = false;
 
