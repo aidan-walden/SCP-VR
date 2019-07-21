@@ -13,9 +13,9 @@ public class TeslaFire : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.root.tag == "Player")
+        if(other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC")
         {
-            Debug.Log("Player has entered range");
+            Debug.Log("Valid target has entered range");
             playerInRange = true;
             if(!teslaActive)
             {
@@ -26,9 +26,9 @@ public class TeslaFire : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.transform.root.tag == "Player")
+        if(other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC")
         {
-            Debug.Log("Player has left range");
+            Debug.Log("Target has left range");
             playerInRange = false;
         }
     }

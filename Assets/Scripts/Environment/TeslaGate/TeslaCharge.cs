@@ -7,10 +7,11 @@ public class TeslaCharge : MonoBehaviour
     [SerializeField] AudioClip idle, chargeup;
     [SerializeField] TeslaFire fireScript;
     [SerializeField] AudioSource teslaLoop;
-    bool teslaCharging = false;
+    [SerializeField] GameObject scientist;
+    private bool teslaCharging = false;
     private void OnTriggerEnter(Collider other)
     {
-        if(!teslaCharging && other.transform.root.tag == "Player")
+        if(!teslaCharging && (other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC"))
         {
             StartCoroutine(teslaChargeup());
         }
@@ -18,7 +19,7 @@ public class TeslaCharge : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.transform.root.tag == "Player")
+        if(other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC")
         {
             StartCoroutine(teslaPowerDown());
         }

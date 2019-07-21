@@ -8,44 +8,39 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class ScriptedNPC : MonoBehaviour
 {
+    public Transform destination;
     protected NavMeshAgent wanderNav;
     protected Animator wanderAnims;
     protected AudioSource wanderSounds;
-    protected bool isRunning = false;
     protected void Awake()
     {
         wanderNav = GetComponent<NavMeshAgent>();
         wanderAnims = GetComponent<Animator>();
         wanderSounds = GetComponent<AudioSource>();
-        wanderNav.updateUpAxis = false;
+        //wanderNav.updateUpAxis = false;
         wanderNav.updateRotation = false;
     }
 
-    protected void Start()
+    private void Start()
     {
         startRun();
     }
 
     public void kill()
     {
+        wanderNav.isStopped = true;
         wanderAnims.SetBool("isDead", true);
+        Destroy(wanderSounds);
+        CapsuleCollider coll = GetComponent<CapsuleCollider>();
+        coll.center = new Vector3(coll.center.x, coll.center.y + 500, coll.center.z); //Trigger ontriggerexit for any triggers we are in when the NPC dies
     }
 
-    protected void startRun()
+    public void startRun()
     {
         wanderAnims.SetBool("isIdle", false);
         wanderAnims.SetBool("isRunning", true);
-        wanderNav.SetDestination(new Vector3(0, 0, 0));
-        //StartCoroutine(run());
+        wanderNav.SetDestination(destination.position);
     }
-
-    IEnumerator run()
-    {
-        while (isRunning)
-        {
-            
-        }
-        yield return null;
-    }
+    
 
 }
