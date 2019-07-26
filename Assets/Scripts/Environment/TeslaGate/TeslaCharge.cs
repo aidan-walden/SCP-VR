@@ -9,11 +9,16 @@ public class TeslaCharge : MonoBehaviour
     [SerializeField] AudioSource teslaLoop;
     [SerializeField] GameObject scientist;
     private bool teslaCharging = false;
+    private List<GameObject> presentObj = new List<GameObject>();
     private void OnTriggerEnter(Collider other)
     {
-        if(!teslaCharging && (other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC"))
+        if(other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC")
         {
-            StartCoroutine(teslaChargeup());
+            presentObj.Add(other.transform.root.gameObject);
+            if(!teslaCharging)
+            {
+                StartCoroutine(teslaChargeup());
+            }
         }
     }
 
@@ -21,7 +26,11 @@ public class TeslaCharge : MonoBehaviour
     {
         if(other.transform.root.tag == "Player" || other.gameObject.tag == "FriendlyNPC")
         {
-            StartCoroutine(teslaPowerDown());
+            presentObj.Remove(other.transform.root.gameObject);
+            if (presentObj.Count == 0)
+            {
+                StartCoroutine(teslaPowerDown());
+            }
         }
     }
 
