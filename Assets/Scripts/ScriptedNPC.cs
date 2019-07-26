@@ -18,7 +18,7 @@ public class ScriptedNPC : MonoBehaviour
         wanderAnims = GetComponent<Animator>();
         wanderSounds = GetComponent<AudioSource>();
         //wanderNav.updateUpAxis = false;
-        wanderNav.updateRotation = false;
+        //wanderNav.updateRotation = false;
     }
 
     private void Start()

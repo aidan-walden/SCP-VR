@@ -1432,6 +1432,7 @@ MonoBehaviour:
   otherSpawn: {fileID: 8186196752474205877}
   scientist: {fileID: 2349712964188501142, guid: fe34da777f75e454e89e885a8fcb2901,
     type: 3}
+  testingObj: {fileID: 0}
 --- !u!1 &6926651616241983080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1494,7 @@ MonoBehaviour:
   otherSpawn: {fileID: 6743123678893127705}
   scientist: {fileID: 2349712964188501142, guid: fe34da777f75e454e89e885a8fcb2901,
     type: 3}
+  testingObj: {fileID: 0}
 --- !u!1 &7006844690715358926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,13 +1548,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8191742404178950962}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: -2.836, z: -2.704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1278196405597140412}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1001 &5643664878427896600
 PrefabInstance:
   m_ObjectHideFlags: 0

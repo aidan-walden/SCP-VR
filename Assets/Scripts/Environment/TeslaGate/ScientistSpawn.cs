@@ -15,6 +15,7 @@ public class ScientistSpawn : MonoBehaviour
         if(!sciSpawned && other.transform.root.tag == "Player")
         {
             GameObject spawnedSci = Instantiate(scientist);
+            spawnedSci.transform.rotation = otherSpawn.rotation;
             spawnedSci.GetComponent<NavMeshAgent>().Warp(otherSpawn.position);
             spawnedSci.GetComponent<ScriptedNPC>().destination = transform.GetChild(0).transform;
             sciSpawned = true;
