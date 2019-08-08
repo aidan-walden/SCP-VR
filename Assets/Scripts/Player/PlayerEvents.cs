@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerEvents : MonoBehaviour {
-    [SerializeField] private bool godMode = false;
+    [SerializeField] private bool godMode, ringOn = false;
     [SerializeField] Image blinkOverlay;
     [SerializeField] float blinkSmooth;
     AudioSource playerSounds;
@@ -19,7 +19,6 @@ public class PlayerEvents : MonoBehaviour {
             return godMode;
         }
     }
-    private bool ringOn = false;
     public bool RingOn
     {
         get
@@ -89,7 +88,7 @@ public class PlayerEvents : MonoBehaviour {
         intercomSounds[0].PlayOneShot(intercomStart, 1f);
         yield return new WaitForSeconds(intercomStart.length);
         intercomSounds[1].PlayOneShot(sound, 1f);
-        yield return new WaitForSeconds(sound.length + 1.5f);
+        yield return new WaitForSeconds(sound.length + 0.5f);
         intercomSounds[0].PlayOneShot(intercomEnd, 1f);
     }
 

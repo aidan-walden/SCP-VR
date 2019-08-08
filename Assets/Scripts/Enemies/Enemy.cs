@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
     protected static PlayerEvents playerScript;
     protected GenericRoam enemyRoam;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         enemyNav = GetComponent<NavMeshAgent>();
         enemyRoam = GetComponent<GenericRoam>();
@@ -112,7 +112,6 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void OnPlayerAttacked()
     {
-        
         if(!playerScript.GodMode)
         {
             playerScript.killPlayer();

@@ -83,6 +83,10 @@ public class DoctorAttack : Enemy {
 
     protected override void OnPlayerLost()
     {
+        if(enemyAnims.GetBool("isInReachRange"))
+        {
+            lowerArmWhileWalking();
+        }
         base.OnPlayerLost();
         stopWalk();
         StartCoroutine(searchVoice());

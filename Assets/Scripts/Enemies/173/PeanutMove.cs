@@ -41,7 +41,6 @@ public class PeanutMove : Enemy {
             relativePos = player.transform.position - transform.position;
             sqrDist = relativePos.sqrMagnitude;
         }
-        Debug.Log("Player can see: " + playerCanSee());
         if (playerTargeted && (PlayerIsBlinking || !playerCanSee())) //Constantly update destination to change with the players position
         {
             if (enemyRange > 0 && sqrDist > enemyRange * enemyRange)

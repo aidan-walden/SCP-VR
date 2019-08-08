@@ -14,8 +14,8 @@ public class LarryAttack : Enemy {
     [SerializeField] Vector3 newMucusScale;
     public bool growMucus = false;
 	// Use this for initialization
-	protected override void Start () {
-        base.Start();
+	protected override void Awake () {
+        base.Awake();
         lookForPlayer = false;
         larryTimer = Random.Range(300, 600);
         updateAnimTimes();
@@ -89,11 +89,6 @@ public class LarryAttack : Enemy {
         enemyNav.Warp(transform.position - (transform.up * 200));
     }
 
-    protected override void OnPlayerAttacked()
-    {
-        //bringPlayerToPocket();
-    }
-
     private void updateAnimTimes()
     {
         AnimationClip[] clips = enemyAnims.runtimeAnimatorController.animationClips;
@@ -126,10 +121,10 @@ public class LarryAttack : Enemy {
         }
     }
 
-    public void bringPlayerToPocket()
+    /*public void bringPlayerToPocket()
     {
         player.transform.root.position += Vector3.up * 20;
         OnPlayerLost();
-    }
+    }*/
 
 }
