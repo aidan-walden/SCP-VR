@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class TestingScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject otherObject;
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void logToConsole()
-    {
-        Debug.Log("Console log function called in testing script");
+        transform.rotation = Quaternion.identity;
+        otherObject.transform.rotation = transform.rotation;
     }
 }

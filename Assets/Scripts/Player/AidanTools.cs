@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AidanTools
 {
 
-    public class AidanTools : MonoBehaviour
+    public class AidanTools
     {
 	    public bool calculateIfInBounds(Plane[] planes, GameObject obj)
         {

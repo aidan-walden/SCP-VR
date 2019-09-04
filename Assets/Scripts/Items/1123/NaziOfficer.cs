@@ -31,10 +31,6 @@ public class NaziOfficer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            roomDoor.AddForce(roomDoor.transform.up * doorForce, ForceMode.VelocityChange);
-        }
     }
 
     public void openRoomDoor()
