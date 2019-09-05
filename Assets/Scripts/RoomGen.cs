@@ -18,10 +18,6 @@ public class RoomGen : MonoBehaviour
         startRoom.transform.position = Vector3.zero; //Place starting room in center of map
         startRoom.transform.rotation = Quaternion.identity;
         startRoom.transform.SetParent(enviornment);
-        foreach(GameObject door in startRoom.doors)
-        {
-            door.transform.rotation = Quaternion.identity;
-        }
         UnityEngine.Random.InitState(seed.GetHashCode());
         StartCoroutine(generateRooms(startRoom));
     }
@@ -74,8 +70,15 @@ public class RoomGen : MonoBehaviour
                     tempParent.transform.position = closestDoor.transform.position; //Move tempParent gameobject to edge of room
                     newRoom.transform.SetParent(tempParent.transform);
                     //tempParent.transform.rotation = Quaternion.identity;
-                    Debug.Log("About to generate new room " + newRoom.gameObject.name + ". Attaching to room " + prevRoom.name + ". Door rotation is: " + door.transform.rotation.y + ". Euler angles: " + door.transform.rotation.eulerAngles.y);
-                    tempParent.transform.rotation = Quaternion.Euler(0f, door.transform.rotation.y, 0f); //Align new room to match rotation of door leading to it
+                    Debug.Log("About to generate new room " + newRoom.gameObject.name + ". Attaching to room " + prevRoom.name + ". Door rotation is: " + door.transform.rotation.y + ". Math.Floor'd: " + (float)Math.Floor(door.transform.rotation.y));
+                    if(door.transform.rotation.y < 1f) //Negative numbers exist
+                    {
+                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Ceiling(door.transform.rotation.y), 0f); //Align new room to match rotation of door leading to it, use Math.Ceiling to fix floating point error
+                    }
+                    else
+                    {
+                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Floor(door.transform.rotation.y), 0f); //Align new room to match rotation of door leading to it, use Math.Floor to fix floating point error
+                    }
                     tempParent.transform.position = door.transform.position; //New room should now be perfectly aligned
                     Destroy(door);
                     placeDoors(newRoom, closestDoor);
