@@ -1,5 +1,5 @@
 # SCP-VR
-A Unity port of SCP Containment Breach with the primary goal of supporting VR Input. Requires an HTC Vive at the moment.
+A Unity port of SCP Containment Breach with the primary goal of supporting VR Input. Requires an HTC Vive or Valve Index at the moment.
 
 # Early in developemnt
 
