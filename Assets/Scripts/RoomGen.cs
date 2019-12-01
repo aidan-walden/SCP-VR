@@ -70,14 +70,14 @@ public class RoomGen : MonoBehaviour
                     tempParent.transform.position = closestDoor.transform.position; //Move tempParent gameobject to edge of room
                     newRoom.transform.SetParent(tempParent.transform);
                     //tempParent.transform.rotation = Quaternion.identity;
-                    Debug.Log("About to generate new room " + newRoom.gameObject.name + ". Attaching to room " + prevRoom.name + ". Door rotation is: " + door.transform.rotation.y + ". Math.Floor'd: " + (float)Math.Floor(door.transform.rotation.y));
-                    if(door.transform.rotation.y < 1f) //Negative numbers exist
+                    Debug.Log("About to generate new room " + newRoom.gameObject.name + ". Attaching to room " + prevRoom.name + ". Door rotation is: " + door.transform.rotation.eulerAngles.y + " Math.Floor'd: " + (float)Math.Floor(door.transform.rotation.eulerAngles.y));
+                    if(door.transform.rotation.eulerAngles.y < 0f) //Negative numbers exist
                     {
-                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Ceiling(door.transform.rotation.y), 0f); //Align new room to match rotation of door leading to it, use Math.Ceiling to fix floating point error
+                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Ceiling(door.transform.rotation.eulerAngles.y), 0f); //Align new room to match rotation of door leading to it, use Math.Ceiling to fix floating point error
                     }
                     else
                     {
-                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Floor(door.transform.rotation.y), 0f); //Align new room to match rotation of door leading to it, use Math.Floor to fix floating point error
+                        tempParent.transform.rotation = Quaternion.Euler(0f, (float)Math.Floor(door.transform.rotation.eulerAngles.y), 0f); //Align new room to match rotation of door leading to it, use Math.Floor to fix floating point error
                     }
                     tempParent.transform.position = door.transform.position; //New room should now be perfectly aligned
                     Destroy(door);
@@ -133,7 +133,7 @@ public class RoomGen : MonoBehaviour
             {
                 GameObject newDoor = Instantiate(room.doorPrefab);
                 newDoor.transform.position = door.transform.position;
-                newDoor.transform.rotation = door.transform.rotation;
+                newDoor.transform.rotation = Quaternion.Euler(-90f, door.transform.rotation.y, 90f + door.transform.rotation.z);
                 newDoor.transform.SetParent(room.transform);
                 Debug.Log("Deleting door " + door.name + " in room " + room.roomName);
                 room.doors.Remove(door); //Remove door from list before deleting it to prevent error when we get to the new room later

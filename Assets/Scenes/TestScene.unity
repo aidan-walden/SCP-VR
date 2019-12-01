@@ -152,12 +152,13 @@ MonoBehaviour:
   startingRoomPrefab: {fileID: 1370008088654433951, guid: 0604a529c7c831745a13fc2a2c152597,
     type: 3}
   rooms:
-  - {fileID: 7352351726963364900, guid: 748faa9283122d44aa07590db8e22200, type: 3}
   - {fileID: 1783176217062732455, guid: 8ef7ad34c3d5b0a4d89017324988868e, type: 3}
+  - {fileID: 7352351726963364900, guid: 748faa9283122d44aa07590db8e22200, type: 3}
   roomsLeft: []
   generatedRooms: []
   enviornment: {fileID: 1382757724}
-  seed: jajajaj
+  seed: You might think he loves you for your money but I know what he really loves
+    you for it's your brand new leopard skin pillbox hat
 --- !u!4 &130885229
 Transform:
   m_ObjectHideFlags: 0

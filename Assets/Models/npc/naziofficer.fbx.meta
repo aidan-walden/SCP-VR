@@ -1,23 +1,218 @@
 fileFormatVersion: 2
 guid: 8d9af2de663f80d48bed69003ab92c87
 ModelImporter:
-  serializedVersion: 25
-  internalIDToNameTable:
-  - first:
-      74: 3113821743293069616
-    second: naziofficer.ms3d.ao|naziofficer.ms3d.act
-  - first:
-      74: -5252816984213320552
-    second: idle
-  - first:
-      74: -8384384781261380182
-    second: equip_gun
-  - first:
-      74: 9140648327377092124
-    second: gun_idle
-  - first:
-      74: 4338783613461544757
-    second: load_gun_slowmo
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: _no_name_
+    100002: _no_name_1
+    100004: _no_name_10
+    100006: _no_name_10_end
+    100008: _no_name_11
+    100010: _no_name_11_end
+    100012: _no_name_12
+    100014: _no_name_12_end
+    100016: _no_name_13
+    100018: _no_name_13_end
+    100020: _no_name_14
+    100022: _no_name_14_end
+    100024: _no_name_15
+    100026: _no_name_15_end
+    100028: _no_name_16
+    100030: _no_name_16_end
+    100032: _no_name_17
+    100034: _no_name_17_end
+    100036: _no_name_18
+    100038: _no_name_18_end
+    100040: _no_name_19
+    100042: _no_name_19_end
+    100044: _no_name_1_end
+    100046: _no_name_2
+    100048: _no_name_20
+    100050: _no_name_20_end
+    100052: _no_name_21
+    100054: _no_name_21_end
+    100056: _no_name_22
+    100058: _no_name_22_end
+    100060: _no_name_23
+    100062: _no_name_23_end
+    100064: _no_name_24
+    100066: _no_name_24_end
+    100068: _no_name_25
+    100070: _no_name_25_end
+    100072: _no_name_26
+    100074: _no_name_26_end
+    100076: _no_name_27
+    100078: _no_name_27_end
+    100080: _no_name_28
+    100082: _no_name_28_end
+    100084: _no_name_29
+    100086: _no_name_29_end
+    100088: _no_name_2_end
+    100090: _no_name_3
+    100092: _no_name_30
+    100094: _no_name_30_end
+    100096: _no_name_3_end
+    100098: _no_name_4
+    100100: _no_name_4_end
+    100102: _no_name_5
+    100104: _no_name_5_end
+    100106: _no_name_6
+    100108: _no_name_6_end
+    100110: _no_name_7
+    100112: _no_name_7_end
+    100114: _no_name_8
+    100116: _no_name_8_end
+    100118: _no_name_9
+    100120: _no_name_9_end
+    100122: _no_name__end
+    100124: Bip01
+    100126: Bip01_Head
+    100128: Bip01_HeadNub
+    100130: Bip01_L_Calf
+    100132: Bip01_L_Clavicle
+    100134: Bip01_L_Finger0
+    100136: Bip01_L_Finger0Nub
+    100138: Bip01_L_Foot
+    100140: Bip01_L_Forearm
+    100142: Bip01_L_Hand
+    100144: Bip01_L_Thigh
+    100146: Bip01_L_Toe0
+    100148: Bip01_L_Toe0Nub
+    100150: Bip01_L_UpperArm
+    100152: Bip01_Neck
+    100154: Bip01_Pelvis
+    100156: Bip01_R_Calf
+    100158: Bip01_R_Clavicle
+    100160: Bip01_R_Finger0
+    100162: Bip01_R_Finger0Nub
+    100164: Bip01_R_Foot
+    100166: Bip01_R_Forearm
+    100168: Bip01_R_Hand
+    100170: Bip01_R_Thigh
+    100172: Bip01_R_Toe0
+    100174: Bip01_R_Toe0Nub
+    100176: Bip01_R_UpperArm
+    100178: Bip01_Spine
+    100180: Bip01_Spine1
+    100182: Bip01_Spine2
+    100184: FIRESPOT
+    100186: //RootNode
+    100188: naziofficer.ms3d.ao
+    100190: naziofficer.ms3d.mo
+    100192: Object01
+    100194: Object01_end
+    100196: Scene_Root
+    100198: Skeleton
+    400000: _no_name_
+    400002: _no_name_1
+    400004: _no_name_10
+    400006: _no_name_10_end
+    400008: _no_name_11
+    400010: _no_name_11_end
+    400012: _no_name_12
+    400014: _no_name_12_end
+    400016: _no_name_13
+    400018: _no_name_13_end
+    400020: _no_name_14
+    400022: _no_name_14_end
+    400024: _no_name_15
+    400026: _no_name_15_end
+    400028: _no_name_16
+    400030: _no_name_16_end
+    400032: _no_name_17
+    400034: _no_name_17_end
+    400036: _no_name_18
+    400038: _no_name_18_end
+    400040: _no_name_19
+    400042: _no_name_19_end
+    400044: _no_name_1_end
+    400046: _no_name_2
+    400048: _no_name_20
+    400050: _no_name_20_end
+    400052: _no_name_21
+    400054: _no_name_21_end
+    400056: _no_name_22
+    400058: _no_name_22_end
+    400060: _no_name_23
+    400062: _no_name_23_end
+    400064: _no_name_24
+    400066: _no_name_24_end
+    400068: _no_name_25
+    400070: _no_name_25_end
+    400072: _no_name_26
+    400074: _no_name_26_end
+    400076: _no_name_27
+    400078: _no_name_27_end
+    400080: _no_name_28
+    400082: _no_name_28_end
+    400084: _no_name_29
+    400086: _no_name_29_end
+    400088: _no_name_2_end
+    400090: _no_name_3
+    400092: _no_name_30
+    400094: _no_name_30_end
+    400096: _no_name_3_end
+    400098: _no_name_4
+    400100: _no_name_4_end
+    400102: _no_name_5
+    400104: _no_name_5_end
+    400106: _no_name_6
+    400108: _no_name_6_end
+    400110: _no_name_7
+    400112: _no_name_7_end
+    400114: _no_name_8
+    400116: _no_name_8_end
+    400118: _no_name_9
+    400120: _no_name_9_end
+    400122: _no_name__end
+    400124: Bip01
+    400126: Bip01_Head
+    400128: Bip01_HeadNub
+    400130: Bip01_L_Calf
+    400132: Bip01_L_Clavicle
+    400134: Bip01_L_Finger0
+    400136: Bip01_L_Finger0Nub
+    400138: Bip01_L_Foot
+    400140: Bip01_L_Forearm
+    400142: Bip01_L_Hand
+    400144: Bip01_L_Thigh
+    400146: Bip01_L_Toe0
+    400148: Bip01_L_Toe0Nub
+    400150: Bip01_L_UpperArm
+    400152: Bip01_Neck
+    400154: Bip01_Pelvis
+    400156: Bip01_R_Calf
+    400158: Bip01_R_Clavicle
+    400160: Bip01_R_Finger0
+    400162: Bip01_R_Finger0Nub
+    400164: Bip01_R_Foot
+    400166: Bip01_R_Forearm
+    400168: Bip01_R_Hand
+    400170: Bip01_R_Thigh
+    400172: Bip01_R_Toe0
+    400174: Bip01_R_Toe0Nub
+    400176: Bip01_R_UpperArm
+    400178: Bip01_Spine
+    400180: Bip01_Spine1
+    400182: Bip01_Spine2
+    400184: FIRESPOT
+    400186: //RootNode
+    400188: naziofficer.ms3d.ao
+    400190: naziofficer.ms3d.mo
+    400192: Object01
+    400194: Object01_end
+    400196: Scene_Root
+    400198: Skeleton
+    2100000: PDX08_-_Default.001
+    2100002: mauzer.001
+    4300000: naziofficer.ms3d.mo
+    7400000: naziofficer.ms3d.ao|naziofficer.ms3d.act
+    7400002: idle
+    7400004: equip_gun
+    7400006: gun_idle
+    7400008: load_gun_slowmo
+    9500000: //RootNode
+    13700000: naziofficer.ms3d.mo
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -49,7 +244,6 @@ ModelImporter:
     - serializedVersion: 16
       name: naziofficer.ms3d.ao|naziofficer.ms3d.act
       takeName: naziofficer.ms3d.ao|naziofficer.ms3d.act
-      internalID: 3113821743293069616
       firstFrame: 0
       lastFrame: 127
       wrapMode: 0
@@ -78,7 +272,6 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: naziofficer.ms3d.ao|naziofficer.ms3d.act
-      internalID: -5252816984213320552
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -107,7 +300,6 @@ ModelImporter:
     - serializedVersion: 16
       name: equip_gun
       takeName: naziofficer.ms3d.ao|naziofficer.ms3d.act
-      internalID: -8384384781261380182
       firstFrame: 25
       lastFrame: 31
       wrapMode: 0
@@ -136,7 +328,6 @@ ModelImporter:
     - serializedVersion: 16
       name: gun_idle
       takeName: naziofficer.ms3d.ao|naziofficer.ms3d.act
-      internalID: 9140648327377092124
       firstFrame: 32
       lastFrame: 52
       wrapMode: 0
@@ -165,7 +356,6 @@ ModelImporter:
     - serializedVersion: 16
       name: load_gun_slowmo
       takeName: naziofficer.ms3d.ao|naziofficer.ms3d.act
-      internalID: 4338783613461544757
       firstFrame: 53
       lastFrame: 127
       wrapMode: 0
@@ -205,19 +395,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 2
@@ -226,11 +415,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 2
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -240,7 +428,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -65,10 +65,10 @@ public class NaziOfficer : MonoBehaviour
         facePlayer = true;
         StartCoroutine(lookAtPlayer());
         float time = 0f;
-        RuntimeAnimatorController ac = naziAnims.runtimeAnimatorController;    //Get Animator controller
-        for (int i = 0; i < ac.animationClips.Length; i++)                 //For all animations
+        RuntimeAnimatorController ac = naziAnims.runtimeAnimatorController;
+        for (int i = 0; i < ac.animationClips.Length; i++) //For all animations
         {
-            if (ac.animationClips[i].name == "load_gun_slowmo")        //If it has the same name as your clip
+            if (ac.animationClips[i].name == "load_gun_slowmo")
             {
                 time = ac.animationClips[i].length;
             }

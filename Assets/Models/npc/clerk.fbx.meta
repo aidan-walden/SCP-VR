@@ -1,29 +1,223 @@
 fileFormatVersion: 2
 guid: ae33c4e103e77b9459e0a7bab8db41fd
 ModelImporter:
-  serializedVersion: 25
-  internalIDToNameTable:
-  - first:
-      74: 1540148166511367460
-    second: clerk.ms3d.ao|clerk.ms3d.act
-  - first:
-      74: 5833339422428634604
-    second: fall_on_back
-  - first:
-      74: 4492361235292804843
-    second: fall_backwards
-  - first:
-      74: -4477962172814739039
-    second: fall_forwards
-  - first:
-      74: -3611705421258844183
-    second: lose_balance_fall_backwards
-  - first:
-      74: 6200578666267062213
-    second: run
-  - first:
-      74: -5252816984213320552
-    second: idle
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: _no_name_
+    100002: _no_name_1
+    100004: _no_name_10
+    100006: _no_name_10_end
+    100008: _no_name_11
+    100010: _no_name_11_end
+    100012: _no_name_12
+    100014: _no_name_12_end
+    100016: _no_name_13
+    100018: _no_name_13_end
+    100020: _no_name_14
+    100022: _no_name_14_end
+    100024: _no_name_15
+    100026: _no_name_15_end
+    100028: _no_name_16
+    100030: _no_name_16_end
+    100032: _no_name_17
+    100034: _no_name_17_end
+    100036: _no_name_18
+    100038: _no_name_18_end
+    100040: _no_name_19
+    100042: _no_name_19_end
+    100044: _no_name_1_end
+    100046: _no_name_2
+    100048: _no_name_20
+    100050: _no_name_20_end
+    100052: _no_name_21
+    100054: _no_name_21_end
+    100056: _no_name_22
+    100058: _no_name_22_end
+    100060: _no_name_23
+    100062: _no_name_23_end
+    100064: _no_name_24
+    100066: _no_name_24_end
+    100068: _no_name_25
+    100070: _no_name_25_end
+    100072: _no_name_26
+    100074: _no_name_26_end
+    100076: _no_name_27
+    100078: _no_name_27_end
+    100080: _no_name_28
+    100082: _no_name_28_end
+    100084: _no_name_29
+    100086: _no_name_29_end
+    100088: _no_name_2_end
+    100090: _no_name_3
+    100092: _no_name_30
+    100094: _no_name_30_end
+    100096: _no_name_31
+    100098: _no_name_31_end
+    100100: _no_name_3_end
+    100102: _no_name_4
+    100104: _no_name_4_end
+    100106: _no_name_5
+    100108: _no_name_5_end
+    100110: _no_name_6
+    100112: _no_name_6_end
+    100114: _no_name_7
+    100116: _no_name_7_end
+    100118: _no_name_8
+    100120: _no_name_8_end
+    100122: _no_name_9
+    100124: _no_name_9_end
+    100126: _no_name__end
+    100128: Bip01
+    100130: Bip01_Head
+    100132: Bip01_HeadNub
+    100134: Bip01_L_Calf
+    100136: Bip01_L_Clavicle
+    100138: Bip01_L_Finger0
+    100140: Bip01_L_Finger0Nub
+    100142: Bip01_L_Foot
+    100144: Bip01_L_Forearm
+    100146: Bip01_L_Hand
+    100148: Bip01_L_Thigh
+    100150: Bip01_L_Toe0
+    100152: Bip01_L_Toe0Nub
+    100154: Bip01_L_UpperArm
+    100156: Bip01_Neck
+    100158: Bip01_Pelvis
+    100160: Bip01_R_Calf
+    100162: Bip01_R_Clavicle
+    100164: Bip01_R_Finger0
+    100166: Bip01_R_Finger0Nub
+    100168: Bip01_R_Foot
+    100170: Bip01_R_Forearm
+    100172: Bip01_R_Hand
+    100174: Bip01_R_Thigh
+    100176: Bip01_R_Toe0
+    100178: Bip01_R_Toe0Nub
+    100180: Bip01_R_UpperArm
+    100182: Bip01_Spine
+    100184: Bip01_Spine1
+    100186: Bip01_Spine2
+    100188: Bip01_Spine3
+    100190: //RootNode
+    100192: clerk.ms3d.ao
+    100194: clerk.ms3d.mo
+    100196: FIRESPOT
+    100198: Scene_Root
+    100200: Scene_Root1
+    100202: Scene_Root2
+    400000: _no_name_
+    400002: _no_name_1
+    400004: _no_name_10
+    400006: _no_name_10_end
+    400008: _no_name_11
+    400010: _no_name_11_end
+    400012: _no_name_12
+    400014: _no_name_12_end
+    400016: _no_name_13
+    400018: _no_name_13_end
+    400020: _no_name_14
+    400022: _no_name_14_end
+    400024: _no_name_15
+    400026: _no_name_15_end
+    400028: _no_name_16
+    400030: _no_name_16_end
+    400032: _no_name_17
+    400034: _no_name_17_end
+    400036: _no_name_18
+    400038: _no_name_18_end
+    400040: _no_name_19
+    400042: _no_name_19_end
+    400044: _no_name_1_end
+    400046: _no_name_2
+    400048: _no_name_20
+    400050: _no_name_20_end
+    400052: _no_name_21
+    400054: _no_name_21_end
+    400056: _no_name_22
+    400058: _no_name_22_end
+    400060: _no_name_23
+    400062: _no_name_23_end
+    400064: _no_name_24
+    400066: _no_name_24_end
+    400068: _no_name_25
+    400070: _no_name_25_end
+    400072: _no_name_26
+    400074: _no_name_26_end
+    400076: _no_name_27
+    400078: _no_name_27_end
+    400080: _no_name_28
+    400082: _no_name_28_end
+    400084: _no_name_29
+    400086: _no_name_29_end
+    400088: _no_name_2_end
+    400090: _no_name_3
+    400092: _no_name_30
+    400094: _no_name_30_end
+    400096: _no_name_31
+    400098: _no_name_31_end
+    400100: _no_name_3_end
+    400102: _no_name_4
+    400104: _no_name_4_end
+    400106: _no_name_5
+    400108: _no_name_5_end
+    400110: _no_name_6
+    400112: _no_name_6_end
+    400114: _no_name_7
+    400116: _no_name_7_end
+    400118: _no_name_8
+    400120: _no_name_8_end
+    400122: _no_name_9
+    400124: _no_name_9_end
+    400126: _no_name__end
+    400128: Bip01
+    400130: Bip01_Head
+    400132: Bip01_HeadNub
+    400134: Bip01_L_Calf
+    400136: Bip01_L_Clavicle
+    400138: Bip01_L_Finger0
+    400140: Bip01_L_Finger0Nub
+    400142: Bip01_L_Foot
+    400144: Bip01_L_Forearm
+    400146: Bip01_L_Hand
+    400148: Bip01_L_Thigh
+    400150: Bip01_L_Toe0
+    400152: Bip01_L_Toe0Nub
+    400154: Bip01_L_UpperArm
+    400156: Bip01_Neck
+    400158: Bip01_Pelvis
+    400160: Bip01_R_Calf
+    400162: Bip01_R_Clavicle
+    400164: Bip01_R_Finger0
+    400166: Bip01_R_Finger0Nub
+    400168: Bip01_R_Foot
+    400170: Bip01_R_Forearm
+    400172: Bip01_R_Hand
+    400174: Bip01_R_Thigh
+    400176: Bip01_R_Toe0
+    400178: Bip01_R_Toe0Nub
+    400180: Bip01_R_UpperArm
+    400182: Bip01_Spine
+    400184: Bip01_Spine1
+    400186: Bip01_Spine2
+    400188: Bip01_Spine3
+    400190: //RootNode
+    400192: clerk.ms3d.ao
+    400194: clerk.ms3d.mo
+    400196: FIRESPOT
+    400198: Scene_Root
+    400200: Scene_Root1
+    400202: Scene_Root2
+    2100000: PDX04_-_Default
+    4300000: clerk.ms3d.mo
+    7400000: clerk.ms3d.ao|clerk.ms3d.act
+    7400002: fall_on_back
+    7400004: fall_backwards
+    7400006: fall_forwards
+    7400008: lose_balance_fall_backwards
+    7400010: run
+    7400012: idle
+    9500000: //RootNode
+    13700000: clerk.ms3d.mo
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -55,7 +249,6 @@ ModelImporter:
     - serializedVersion: 16
       name: clerk.ms3d.ao|clerk.ms3d.act
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: 1540148166511367460
       firstFrame: 0
       lastFrame: 553
       wrapMode: 0
@@ -84,7 +277,6 @@ ModelImporter:
     - serializedVersion: 16
       name: fall_on_back
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: 5833339422428634604
       firstFrame: 0
       lastFrame: 19
       wrapMode: 0
@@ -113,7 +305,6 @@ ModelImporter:
     - serializedVersion: 16
       name: fall_backwards
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: 4492361235292804843
       firstFrame: 20
       lastFrame: 39
       wrapMode: 0
@@ -142,7 +333,6 @@ ModelImporter:
     - serializedVersion: 16
       name: fall_forwards
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: -4477962172814739039
       firstFrame: 40
       lastFrame: 58
       wrapMode: 0
@@ -171,7 +361,6 @@ ModelImporter:
     - serializedVersion: 16
       name: lose_balance_fall_backwards
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: -3611705421258844183
       firstFrame: 60
       lastFrame: 78
       wrapMode: 0
@@ -200,7 +389,6 @@ ModelImporter:
     - serializedVersion: 16
       name: run
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: 6200578666267062213
       firstFrame: 300
       lastFrame: 317
       wrapMode: 0
@@ -229,7 +417,6 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: clerk.ms3d.ao|clerk.ms3d.act
-      internalID: -5252816984213320552
       firstFrame: 210
       lastFrame: 229
       wrapMode: 0
@@ -269,19 +456,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 2
@@ -290,11 +476,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 2
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -304,7 +489,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

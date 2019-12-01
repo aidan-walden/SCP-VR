@@ -36,11 +36,11 @@ public class SlidingDoor : MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start () {
-        EnemyCanOpen = enemyCanOpen;
+        EnemyCanOpen = enemyCanOpen; //Set property to execute code in set
         origPos = transform.position;
         moveTo = origPos;
-        doorStartsOpen = doorIsOpen;
-        if(!enemyCanOpen && !isDependent)
+        doorStartsOpen = doorIsOpen; //Set property to execute code in set
+        if (!enemyCanOpen && !isDependent)
         {
             offMeshLink.activated = false;
         }
@@ -71,7 +71,7 @@ public class SlidingDoor : MonoBehaviour {
                 {
                     System.Random rnd = new System.Random();
                     int openSound = rnd.Next(0, doorOpen.Length - 1);
-                    doorSounds.clip = doorOpen[openSound];
+                    doorSounds.clip = doorOpen[openSound]; //Play randomly chosen sound
                 }
                 moveTo = openPos.position;
             }

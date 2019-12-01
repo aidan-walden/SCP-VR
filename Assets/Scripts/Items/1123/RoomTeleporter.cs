@@ -17,7 +17,7 @@ public class RoomTeleporter : Teleporter
                 isUsed = true;
                 NaziOfficer naziScript = naziOfficer.GetComponent<NaziOfficer>();
                 other.transform.rotation = destination.transform.rotation;
-                naziScript.StopAllCoroutines();
+                naziScript.StopAllCoroutines(); //Stop animations / actions
                 naziOfficer.transform.position = newOfficerPos.position;
                 naziOfficer.transform.rotation = newOfficerPos.rotation;
                 naziScript.equipGun();
